@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/theme">
+        <file>qss/theme.css</file>
+        <file>themeFiles/darkColors.ini</file>
+        <file>themeFiles/defaultColors.ini</file>
+    </qresource>
+</RCC>

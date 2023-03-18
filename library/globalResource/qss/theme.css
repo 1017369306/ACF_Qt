@@ -1,0 +1,1257 @@
+/* ================================================ *
+author:zhangyang
+lastedited:2022.3
+* ================================================ */
+
+QWidget
+{
+    color: $PrimaryTextColor;
+    background-color: $RegionColor;
+}
+
+QFrame{
+    color: $PrimaryTextColor;
+    background-color: $RegionColor;
+    border-radius: $DefaultCornerRadius;
+}
+
+QFrame[showBorder="true"]{
+    border: 1px solid $BorderColor;
+}
+
+QDialog
+{
+    background-color: $RegionColor;
+}
+
+QSplitter::handle
+{
+    background-color: $BorderColor;
+}
+QSplitter::handle:hover
+{
+    background-color: $SecondaryBorderColor;
+}
+QSplitter::handle:pressed{
+    background-color: $SecondaryBorderColor;
+}
+
+/* =============================================== */
+/* Label                                           */
+/* =============================================== */
+QLabel{
+    background-color: transparent;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+}
+
+/* A QLabel is a QFrame ... */
+/* A QToolTip is a QLabel ... */
+QToolTip {
+    border: 1px solid $BorderColor;
+    padding: $DefaultInputPadding;
+/*    border-radius: $DefaultCornerRadius;*/
+    font-size: $DefaultFontSizepx;
+    background-color: $RegionColor;
+    color: $PrimaryTextColor;
+}
+
+/* =============================================== */
+/* TextBox                                         */
+/* =============================================== */
+QLineEdit {
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    padding: $DefaultInputPadding;
+    height: $DefaultControlHeightpx;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QLineEdit:hover{
+    border-color: $SecondaryBorderColor;
+}
+QLineEdit:focus{
+    border-color: $PrimaryColor;
+}
+/*QLineEdit[readOnly="true"] { color: gray }*/
+QLineEdit[echoMode="2"]{
+    lineedit-password-character: 9679;/*字符的ascii码35 88等 */
+}
+
+QLineEdit:read-only {
+    opacity: 153;/*0.6*/
+}
+
+QLineEdit:disabled{
+    opacity: 102;/*0.4*/
+}
+
+QTextEdit{
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    padding: $DefaultInputPadding;
+    height: $DefaultControlHeightpx;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QTextEdit:hover{
+    border-color: $SecondaryBorderColor;
+}
+QTextEdit:focus{
+    border-color: $PrimaryColor;
+}
+QTextEdit:read-only {
+    opacity: 153;/*0.6*/
+}
+QTextEdit:disabled{
+    opacity: 102;/*0.4*/
+}
+
+/* =============================================== */
+/* Button                                          */
+/* =============================================== */
+QPushButton{
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    color: $PrimaryTextColor;
+    padding: $DefaultControlPadding;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QPushButton:hover, QPushButton:checked{
+    background-color: $SecondaryRegionColor;
+    opacity: 230;/*0.9*/
+}
+QPushButton:pressed{
+    background-color: $BorderColor;
+    opacity: 153;/*0.6*/
+}
+QPushButton:disabled{
+    opacity: 102;/*0.4*/
+}
+
+QPushButton[isIcon='true']{
+    background-color: transparent;
+    border: 0px;
+    border-radius: $DefaultCornerRadius;
+    color: $PrimaryTextColor;
+    padding: $DefaultControlPadding;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QPushButton[isIcon='true']:hover, QPushButton[isIcon='true']:checked{
+    background-color: $SecondaryRegionColor;
+}
+
+QPushButton[isIcon='true']:pressed{
+    background-color: $BorderColor;
+    opacity: 153;/*0.6*/
+}
+
+QPushButton[isIcon='true']:disabled{
+    opacity: 102;/*0.4*/
+}
+
+QPushButton[isIconNoPadding='true']{
+    background-color: transparent;
+    border: 0px;
+    border-radius: $DefaultCornerRadius;
+    color: $PrimaryTextColor;
+    padding: 0px;
+    height: $DefaultIconHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QPushButton[isIconNoPadding='true']:hover, QPushButton[isIconNoPadding='true']:checked{
+    background-color: $SecondaryRegionColor;
+}
+
+QPushButton[isIconNoPadding='true']:pressed{
+    background-color: $BorderColor;
+    opacity: 153;/*0.6*/
+}
+
+QPushButton[isIconNoPadding='true']:disabled{
+    opacity: 102;/*0.4*/
+}
+
+QPushButton[isIconTransparent='true']{
+    background-color: transparent;
+    border: 0px;
+    border-radius: $DefaultCornerRadius;
+    color: $PrimaryTextColor;
+    padding: 0px;
+    height: $DefaultIconHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QPushButton[isIconTransparent='true']:hover, QPushButton[isIconTransparent='true']:checked{
+    background-color: transparent;
+}
+
+QPushButton[isIconTransparent='true']:pressed{
+    background-color: transparent;
+}
+
+QToolButton,QToolButton:unchecked {
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    padding: $DefaultControlPadding;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QToolButton:checked{
+    border: 3px solid $BorderColor;
+}
+QToolButton:hover{
+    background-color: $SecondaryRegionColor;
+    opacity: 230;/*0.9*/
+}
+QToolButton:pressed{
+    background-color: $BorderColor;
+    opacity: 153;/*0.6*/
+}
+QToolButton:disabled{
+    opacity: 102;/*0.4*/
+}
+QToolButton[isIcon='true']:checked{
+    border: 1px solid $BorderColor;
+}
+QToolButton[isIconTransparent='true'], QToolButton[isIconTransparent='true']:unchecked{
+    background-color: transparent;
+    border: 0px solid transparent;
+}
+QToolButton[isIconTransparent='true']:checked{
+    border: 0px solid transparent;
+}
+QToolButton[isIconTransparent='true']:hover{
+    background-color: transparent;
+}
+QToolButton[isIconTransparent='true']:pressed{
+    background-color: transparent;
+}
+
+/* =============================================== */
+/* QMenuBar                              */
+/* =============================================== */
+QMenuBar {
+    background-color: $RegionColor;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QMenuBar::item {
+    spacing: 3px; /* spacing between menu bar items */
+    padding: $DefaultInputPadding;
+    background-color: transparent;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+/*    border-radius: $DefaultCornerRadius;*/
+}
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background-color: $SecondaryRegionColor;
+}
+QMenuBar::item:pressed {
+    background-color: $SecondaryRegionColor;
+}
+
+/* =============================================== */
+/* QMenu                              */
+/* =============================================== */
+QMenu
+{
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+}
+QMenu::item
+{
+    background-color: transparent;
+/*    border-radius: $DefaultCornerRadius;*/
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+    padding: $DefaultControlPadding;
+    color: $PrimaryTextColor;
+    padding-right: $DefaultIconHeightpx;
+}
+QMenu::item:selected
+{
+    background-color: $SecondaryRegionColor;
+}
+QMenu::item:hover
+{
+    background-color: $SecondaryRegionColor;
+}
+QMenu::icon:checked
+{
+    padding: 1px;
+}
+QMenu::separator
+{
+    height: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    background-color: $ThirdlyTextColor;
+}
+QMenu::indicator {
+    width: $DefaultIconHeightpx;
+    height: $DefaultIconHeightpx;
+    padding-left: 10px;
+}
+/* non-exclusive indicator = check box style indicator (see QActionGroup::setExclusive) */
+QMenu::indicator:non-exclusive:unchecked {
+    image: url("./appPics/svgs/theme/checkboxUnChecked.svg");
+}
+
+QMenu::indicator:non-exclusive:unchecked:selected {
+    image: url("./appPics/svgs/theme/checkboxUnChecked_hover.svg");
+}
+
+QMenu::indicator:non-exclusive:checked {
+    image: url("./appPics/svgs/theme/checkboxChecked_hover.svg");
+}
+
+QMenu::indicator:non-exclusive:checked:selected {
+    image: url("./appPics/svgs/theme/checkboxChecked_hover.svg");
+}
+
+/* exclusive indicator = radio button style indicator (see QActionGroup::setExclusive) */
+QMenu::indicator:exclusive:unchecked {
+    image: url("./appPics/svgs/theme/radioButtonOff.svg");
+}
+
+QMenu::indicator:exclusive:unchecked:selected {
+    image: url("./appPics/svgs/theme/radioButtonOff_hover.svg");
+}
+
+QMenu::indicator:exclusive:checked {
+    image: url("./appPics/svgs/theme/radioButtonOn_hover.svg");
+}
+
+QMenu::indicator:exclusive:checked:selected {
+    image: url("./appPics/svgs/theme/radioButtonOn_hover.svg");
+}
+QMenu:disabled{
+    opacity: 102;/*0.4*/
+}
+
+/* =============================================== */
+/* QProgressBar                                    */
+/* =============================================== */
+QProgressBar {
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    text-align: center;
+    height: $DefaultIconHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QProgressBar::chunk {
+    background-color: $PrimaryColor;
+    border-radius: $DefaultCornerRadius;
+}
+
+/* =============================================== */
+/* Slider                                          */
+/* =============================================== */
+QSlider{
+    min-width: 30px;
+    min-height: 30px;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QSlider::groove{
+    border: 0px solid $BorderColor;
+    background: transparent;
+}
+QSlider::handle {/*设置中间的那个滑动的键*/
+    border: 1px solid $BorderColor;
+    background: #FFFFFF;
+}
+QSlider::handle:hover {
+/*    background: $BorderColor;*/
+    border: 2px solid $BorderColor;
+}
+QSlider::handle:pressed {
+    border: 2px solid $PrimaryColor;
+}
+/* 滑动条 */
+/* 滑动条：背景 */
+QSlider::groove:horizontal {
+    height: 6px;
+}
+QSlider::groove:vertical{
+    width: 6px;
+}
+/* 滑动条：已经划过的从地方 */
+QSlider::sub-page:horizontal {
+    background-color: $PrimaryColor;
+}
+/* 滑动条：还没有滑上去的地方 */
+QSlider::add-page:horizontal {
+    background-color: $BorderColor;
+}
+QSlider::sub-page:vertical {
+    background-color: $BorderColor;
+}
+QSlider::add-page:vertical {
+    background-color: $PrimaryColor;
+}
+/* 滑动条：滑块 */
+QSlider::handle:horizontal {
+    margin: -10 0 -10 0;
+    width: 24px;
+    border-radius: 12px;
+}
+QSlider::handle:vertical {
+    margin: 0 -10 0 -10;
+    height: 24px;
+    border-radius: 12px;
+}
+
+/* =============================================== */
+/* ScrollBar                                       */
+/* =============================================== */
+QScrollBar{
+    background-color: transparent;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QScrollBar:vertical{
+    width: 10px;
+}
+QScrollBar:horizontal{
+    height: 10px;
+}
+QScrollBar::handle{
+    background-color: $BorderColor;
+    border-radius: $DefaultCornerRadius;
+}
+QScrollBar::handle:vertical{
+    width: 8px;
+    min-height: $DefaultIconHeightpx;
+}
+QScrollBar::handle:horizontal{
+    height: 8px;
+    min-width: $DefaultIconHeightpx;
+}
+QScrollBar::handle:hover, QScrollBar::handle:pressed {
+    background-color: $SecondaryBorderColor;
+}
+QScrollBar::add-line, QScrollBar::sub-line,
+QScrollBar::add-page, QScrollBar::sub-page {
+    width: 0px;
+    background: transparent;
+}
+QScrollArea{
+    background-color: transparent;
+    border: none;
+}
+
+/* =============================================== */
+/* DockWidget                                       */
+/* =============================================== */
+QDockWidget {
+    border: 1px solid $BorderColor;
+    titlebar-close-icon: url(./appPics/svgs/theme/close.svg);
+    titlebar-normal-icon: url(./appPics/svgs/theme/normalSize.svg);
+}
+
+QDockWidget::title {
+    text-align: left;
+    background: $TitleColor;
+/*    padding-left: $DefaultIconHeightpx;*/
+    padding: $DefaultControlPadding;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QDockWidget::close-button, QDockWidget::float-button {
+    padding: 0px;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QDockWidget::close-button:hover, QDockWidget::float-button:hover {
+/*    background: gray;*/
+}
+
+QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
+/*    padding: 1px -1px -1px 1px;*/
+}
+
+/*QDockWidget::close-button {
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    position: absolute;
+    top: 0px; left: 0px; bottom: 0px;
+    width: $DefaultControlHeightpx;
+}
+
+QDockWidget::float-button {
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    position: absolute;
+    top: 0px; left: 16px; bottom: 0px;
+    width: $DefaultControlHeightpx;
+}*/
+
+/* =============================================== */
+/* QTabBar                                    */
+/* =============================================== */
+CustomTabBar::tab, QTabBar::tab
+{
+    background-color: $SecondaryRegionColor;
+    height: $DefaultControlHeightpx;
+    color: $PrimaryTextColor;
+    border: 1px solid $BorderColor;
+    padding: $DefaultInputPadding;
+    text-align: center;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+CustomTabBar::tab:hover, QTabBar::tab:hover{
+/*    background-color: $BorderColor;*/
+    opacity: 230;/*0.9*/
+}
+CustomTabBar::tab:selected, QTabBar::tab:selected
+{
+    background-color: $RegionColor;
+}
+CustomTabBar::tab:disabled, QTabBar::tab:disabled{
+    opacity: 102;/*0.4*/
+}
+
+/* the scroll buttons are tool buttons */
+/*QTabBar QToolButton {
+    border-image: url(scrollbutton.png) 2;
+    border-width: 2px;
+}*/
+
+/*QTabBar::tear {
+    image: url(./appPics/svgs/theme/radioButtonOff.svg);
+}*/
+/* the width of the scroll buttons */
+CustomTabBar::scroller, QTabBar::scroller {
+    width: $DefaultScrollerWidthpx;
+}
+
+/* the arrow mark in the tool buttons */
+CustomTabBar QToolButton::right-arrow, QTabBar QToolButton::right-arrow {
+    image: url(./appPics/svgs/theme/right.svg);
+    icon-size: $DefaultIconHeightpx;
+}
+
+CustomTabBar QToolButton::left-arrow, QTabBar QToolButton::left-arrow {
+    image: url(./appPics/svgs/theme/left.svg);
+    icon-size: $DefaultIconHeightpx;
+}
+
+CustomTabBar::close-button, QTabBar::close-button {
+    image: url(./appPics/svgs/theme/close.svg);
+    subcontrol-position: right;
+}
+CustomTabBar::close-button:hover, QTabBar::close-button:hover {
+    image: url(./appPics/svgs/theme/close_hover.svg);
+}
+
+/* =============================================== */
+/* QTabWidget                                    */
+/* =============================================== */
+QTabWidget::pane
+{
+    background-color: transparent;
+    border: 1px solid $BorderColor;
+    border-radius: 0px;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QTabWidget::tab-bar {
+    left: 0px; /* move to the right by 0px */
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+/* =============================================== */
+/* QTableWidget                                    */
+/* =============================================== */
+QTableWidget, QTableView
+{
+    gridline-color: $BorderColor;    /*表格中的网格线条颜色*/
+    background-color: $RegionColor;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/
+    /*alternate-background-color: ;*/
+    /*selection-color:;    鼠标选中时前景色：文字颜色*/
+    selection-background-color: $PrimaryColor;   /*鼠标选中时背景色*/
+    border: 0px solid $BorderColor;  /*边框线的宽度、颜色*/
+    /*border:none;    去除边界线*/
+    /*border-radius:5px;*/
+    margin: $DefaultControlPadding;  /*表格与边框的间距*/
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QTableView
+{
+    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/
+    alternate-background-color: $SecondaryRegionColor;
+    selection-background-color: $PrimaryColor;   /*鼠标选中时背景色*/
+}
+QTableView QTableCornerButton::section
+{
+    background-color: $RegionColor;
+    border: none;
+}
+QHeaderView::section
+{
+    background-color: $RegionColor;
+    height: $DefaultControlHeightpx;
+    font-weight: bold;
+    font-size: $DefaultFontSizepx;
+}
+QTableView::item, QTabWidget::item{
+    background: transparent;
+    outline-style: none;
+    border: none;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QTableView::item:hover {
+    background: $BorderColor;
+}
+
+QTableView::item:selected {
+    background: $PrimaryColor;
+}
+
+QTableView::item:selected:active {
+    background: $PrimaryColor;
+}
+
+QTableView::item:selected:!active {
+    background: $SecondaryBorderColor;
+}
+
+QTableWidget QComboBox{
+    margin: 2px;
+    border: none;
+}
+
+/* =============================================== */
+/* GroupBox                                        */
+/* =============================================== */
+QGroupBox {
+    background-color: transparent;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    margin-top: 1ex;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+    padding: $DefaultControlPadding;
+    padding-top: $DefaultMarginToppx;
+}
+QGroupBox::title {
+    background-color: $RegionColor;
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    left: 1ex;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+/* =============================================== */
+/* QRadioButton                                        */
+/* =============================================== */
+QRadioButton{
+    spacing: 2px;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+/*    height: $DefaultControlHeightpx;*/
+}
+QRadioButton::indicator {   /* indicator是一个子组件，这里的width和height分别指定按钮的宽和高 */
+    width: $DefaultIconHeightpx;
+    height: $DefaultIconHeightpx;
+}
+
+QRadioButton::indicator::unchecked {   /* 未选中时状态，也即正常状态*/
+    image: url("./appPics/svgs/theme/radioButtonOff.svg");
+}
+
+QRadioButton::indicator:unchecked:hover {   /* 未选中时，鼠标悬停时的状态*/
+    image: url("./appPics/svgs/theme/radioButtonOff_hover.svg");
+}
+
+QRadioButton::indicator:unchecked:pressed {   /*未选中时，按钮下按时的状态*/
+    image: url("./appPics/svgs/theme/radioButtonOff_hover.svg");
+}
+QRadioButton::indicator:unchecked:disabled {   /*未选中时，按钮下按时的状态*/
+    opacity: 102;/*0.4*/
+}
+
+QRadioButton::indicator::checked {   /* 按钮选中时的状态*/
+    image: url("./appPics/svgs/theme/radioButtonOn_hover.svg");
+}
+
+QRadioButton::indicator:checked:hover {   /* 按钮选中时，鼠标悬停状态*/
+    image: url("./appPics/svgs/theme/radioButtonOn_hover.svg");
+}
+
+QRadioButton::indicator:checked:pressed { /* 按钮选中时，鼠标下按时的状态*/
+    image: url("./appPics/svgs/theme/radioButtonOn_hover.svg");
+}
+QRadioButton::indicator:checked:disabled { /* 按钮选中时，鼠标下按时的状态*/
+    opacity: 102;/*0.4*/
+}
+
+/* =============================================== */
+/* QCheckBox                                        */
+/* =============================================== */
+QCheckBox {
+    spacing: 0.2ex;  /* 在这里我们也可以设置复选的文本样式*/
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QCheckBox::indicator {
+    width: $DefaultIconHeightpx;
+    height: $DefaultIconHeightpx;
+}
+
+QCheckBox::indicator:unchecked
+{
+    image: url("./appPics/svgs/theme/checkboxUnChecked.svg");
+}
+QCheckBox::indicator:unchecked:hover
+{
+    image: url("./appPics/svgs/theme/checkboxUnChecked_hover.svg");
+}
+QCheckBox::indicator:unchecked:pressed
+{
+    image: url("./appPics/svgs/theme/checkboxUnChecked_hover.svg");
+}
+QCheckBox::indicator:checked
+{
+    image: url("./appPics/svgs/theme/checkboxChecked_hover.svg");
+}
+QCheckBox::indicator:checked:hover
+{
+    image: url("./appPics/svgs/theme/checkboxChecked_hover.svg");
+}
+QCheckBox::indicator:checked:pressed
+{
+    image: url("./appPics/svgs/theme/checkboxChecked_hover.svg");
+}
+QCheckBox::indicator:indeterminate
+{
+    image: url("./appPics/svgs/theme/checkboxPartiallyChecked_hover.svg");
+}
+QCheckBox::indicator:indeterminate:hover
+{
+    image: url("./appPics/svgs/theme/checkboxPartiallyChecked_hover.svg");
+}
+QCheckBox::indicator:indeterminate:pressed
+{
+    image: url("./appPics/svgs/theme/checkboxPartiallyChecked_hover.svg");
+}
+QCheckBox::indicator:disabled
+{
+    opacity: 102;/*0.4*/
+}
+
+QCheckBox[isSwitch="true"]::indicator:unchecked
+{
+    image: url("./appPics/svgs/theme/switchOff.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:unchecked:hover
+{
+    image: url("./appPics/svgs/theme/switchOff.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:unchecked:pressed
+{
+    image: url("./appPics/svgs/theme/switchOff.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:checked
+{
+    image: url("./appPics/svgs/theme/switch_On.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:checked:hover
+{
+    image: url("./appPics/svgs/theme/switch_On.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:checked:pressed
+{
+    image: url("./appPics/svgs/theme/switch_On.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:indeterminate
+{
+    image: url("./appPics/svgs/theme/switchOff.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:indeterminate:hover
+{
+    image: url("./appPics/svgs/theme/switchOff.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:indeterminate:pressed
+{
+    image: url("./appPics/svgs/theme/switchOff.svg");
+}
+QCheckBox[isSwitch="true"]::indicator:disabled
+{
+    opacity: 102;/*0.4*/
+}
+
+/* =============================================== */
+/* QComboBox                                        */
+/* =============================================== */
+QComboBox {
+    background-color: $RegionColor;
+    /* 边框宽度,线条样式,颜色 */
+    border:1px solid $BorderColor;
+    /* 倒角 */
+    border-radius: $DefaultCornerRadius;
+    /* 内边框 */
+    padding: $DefaultInputPadding;
+    height: $DefaultControlHeightpx;
+    min-width: 75px;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QComboBox:editable {
+    background-color: $RegionColor;
+}
+
+/* 渐变色:从左到右,黑白渐变 */
+/*QComboBox:!editable,QComboBox::drop-down:editable {*/
+/*    background:qlineargradient(x1:0, y1:0, x2:1, y2:0,*/
+/*                               stop:0 rgb(0,0,0), stop:1 rgb(255,255,255));*/
+/*}*/
+
+/* 当下拉框打开时,背景颜色渐变 */
+/*QComboBox:!editable:on, QComboBox::drop-down:editable:on {*/
+/*    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,*/
+/*                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,*/
+/*                                stop: 0.5 #DDDDDD, stop: 1.0 #BBBBBB);*/
+/*}*/
+
+/* 当下拉框打开时, 移动显示框文本位置*/
+/*QComboBox:on {*/
+/*    padding-top: 3px;*/
+/*    padding-left: 4px;*/
+/*}*/
+
+/* 鼠标悬浮时的样式 */
+QComboBox:hover {
+    /* 边框宽度,线条样式,颜色 */
+    border:1px solid $PrimaryColor;
+}
+
+/* 下拉按钮 */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    /* 按钮位置,右上角 */
+    subcontrol-position: center right;
+    /* 按钮宽度 */
+    width: $DefaultControlHeightpx;
+    border: 0px;
+    /* 一条边框线控制 */
+/*    border-left-width: 2px;
+    border-left-color: $PrimaryColor;
+    border-left-style: solid;*/
+    /* 倒角 */
+/*    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;*/
+}
+
+/* 下拉按钮图片 */
+QComboBox::down-arrow {
+    image: url("./appPics/svgs/theme/arrowDown.svg");
+    background-color: transparent;
+    width: $DefaultControlHeightpx;
+    height: $DefaultControlHeightpx;
+}
+QComboBox::down-arrow:on {
+    image: url("./appPics/svgs/theme/arrowUp.svg");
+}
+
+QComboBox::down-arrow:hover, QComboBox::down-arrow:pressed {
+    image: url("./appPics/svgs/theme/arrowDown_hover.svg");
+}
+
+QComboBox::down-arrow:on:hover, QComboBox::down-arrow:on:pressed {
+    image: url("./appPics/svgs/theme/arrowUp_hover.svg");
+}
+
+/* 下拉按钮位移 */
+/*QComboBox::down-arrow:on {*/
+/*    top: 1px;*/
+/*    left: 1px;*/
+/*}*/
+
+/* 下拉列表里的颜色 */
+QComboBox QAbstractItemView {
+    background-color: $RegionColor;
+    outline: 0px solid $BorderColor;
+    border: 1px solid $BorderColor;
+    /* 倒角 */
+    border-radius: $DefaultCornerRadius;
+/*    selection-background-color: $PrimaryColor;*/
+}
+
+QComboBox QAbstractItemView::item
+{
+    /* 内边框 */
+    padding: $DefaultInputPadding;
+    height: $DefaultControlHeightpx;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QComboBox QAbstractItemView::item:hover, QComboBox QAbstractItemView::item:selected
+{
+    background-color: $SecondaryRegionColor;
+}
+QComboBox QAbstractItemView::item:selected:!active{
+    background-color: $SecondaryRegionColor;
+}
+
+/* =============================================== */
+/* QSpinBox                                        */
+/* =============================================== */
+QSpinBox {
+    border: 1px solid $BorderColor;
+    background: transparent;
+    min-width: $DefaultControlHeightpx;
+    height: $DefaultControlHeightpx;
+}
+
+/* 向上按钮 */
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: $DefaultIconHeightpx;
+    border-image: url("./appPics/svgs/theme/arrowUp.svg");
+    border-width: 1px;
+}
+QSpinBox:hover, QSpinBox:pressed{
+    border: 1px solid $PrimaryColor;
+}
+
+/* 向上按钮 */
+QSpinBox::up-button:hover, QSpinBox::up-button:pressed {
+    border-image: url("./appPics/svgs/theme/arrowUp_hover.svg") 1;
+}
+
+/* 向上按钮里的小箭头 */
+QSpinBox::up-arrow {
+    image: url("./appPics/svgs/theme/arrowUp.svg");
+    width: 0.5ex;
+    height: 0.5ex;
+}
+
+/* 向下按钮 */
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: $DefaultIconHeightpx;
+    border-image: url("./appPics/svgs/theme/arrowDown.svg");
+    border-width: 1px;
+}
+
+/* 向下按钮 */
+QSpinBox::down-button:hover, QSpinBox::down-button:pressed {
+    border-image:url("./appPics/svgs/theme/arrowDown_hover.svg") 1;
+}
+
+/* 向下按钮里的小箭头 */
+QSpinBox::down-arrow {
+    image: url("./appPics/svgs/theme/arrowDown.svg");
+    width: 0.5ex;
+    height: 0.5ex;
+}
+
+/* =============================================== */
+/* QDoubleSpinBox                                        */
+/* =============================================== */
+QDoubleSpinBox{
+    border: 1px solid $BorderColor;
+    background: transparent;
+    min-width: $DefaultControlHeightpx;
+    height: $DefaultControlHeightpx;
+}
+QDoubleSpinBox:hover, QDoubleSpinBox:pressed{
+    border: 1px solid $PrimaryColor;
+}
+
+/* =============================================== */
+/* ToolBox                                         */
+/* =============================================== */
+QToolBox{
+    border: 1px solid $BorderColor;
+    height: $DefaultControlHeightpx;
+}
+QToolBox::tab {
+    background-color: $RegionColor;
+    border: 0px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+}
+QToolBox::tab:hover, QToolBox::tab:pressed, QToolBox::tab:selected {
+    background-color: $SecondaryRegionColor;
+}
+
+/* =============================================== */
+/* QListView                                         */
+/* =============================================== */
+QListWidget, QListView
+{
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+/*    alternate-background-color: $SecondaryRegionColor;*/
+}
+QListWidget::item, QListView::item{
+    background-color: transparent;
+    border: 0px solid $BorderColor;
+    height: $DefaultControlHeightpx;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QListView[isRadius="true"]::item{
+    border-radius: $DefaultCornerRadius;
+}
+/*QListView::item:alternate{*/
+/*    background-color: #1B2337;*/
+/*}*/
+QListView::item:hover, QListView::item:selected, QListView::item:selected:active{
+    background-color: $SecondaryRegionColor;
+}
+QListView::item:selected:!active{
+    background-color: $SecondaryRegionColor;
+}
+QListView::disabled{
+    opacity: 102;/*0.4*/
+}
+
+/* =============================================== */
+/* QDateEdit                                         */
+/* =============================================== */
+QDateEdit{
+    background-color: $RegionColor;
+    border-radius: $DefaultCornerRadius;
+    border: 1px solid $BorderColor;
+    min-height: $DefaultControlHeightpx;
+    min-width: 120px;
+    padding: $DefaultInputPadding;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QDateEdit::down-button{
+    image: url(./appPics/svgs/theme/arrowDown.svg);
+    width: $DefaultIconHeightpx;
+}
+QDateEdit::down-button:hover{
+    image: url(./appPics/svgs/theme/arrowDown_hover.svg);
+}
+QDateEdit::up-button{
+    image: url(./appPics/svgs/theme/arrowUp.svg);
+    width: $DefaultIconHeightpx;
+}
+QDateEdit::up-button:hover{
+    image: url(./appPics/svgs/theme/arrowUp_hover.svg);
+}
+/*QDateEdit[isDrop="true"]::drop-down{
+    subcontrol-origin: border;
+    subcontrol-position: center right;
+    width: $DefaultControlHeightpx;
+}
+QDateEdit[isDrop="true"]::down-arrow{
+    image: url("./appPics/svgs/theme/dateTime.svg");
+    width: $DefaultIconHeightpx;
+    height: $DefaultIconHeightpx;
+}
+QDateEdit[isDrop="true"]::down-button, QDateEdit[isDrop="true"]::down-button:hover{
+    image: none;
+    width: 0px;
+}
+QDateEdit[isDrop="true"]::up-button, QDateEdit[isDrop="true"]::up-button:hover{
+    image: none;
+    width: 0px;
+}*/
+QDateEdit:hover{
+    border: 1px solid $SecondaryBorderColor;
+}
+QDateEdit:focus{
+    border: 1px solid $PrimaryColor;
+}
+
+/* =============================================== */
+/* QTimeEdit                                   */
+/* =============================================== */
+QTimeEdit{
+    background-color: $RegionColor;
+    border-radius: $DefaultCornerRadius;
+    border: 1px solid $BorderColor;
+    min-height: $DefaultControlHeightpx;
+    min-width: 120px;
+    padding: $DefaultInputPadding;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+QTimeEdit::down-button{
+    image: url(./appPics/svgs/theme/arrowDown.svg);
+    width: $DefaultIconHeightpx;
+}
+QTimeEdit::down-button:hover{
+    image: url(./appPics/svgs/theme/arrowDown_hover.svg);
+}
+QTimeEdit::up-button{
+    image: url(./appPics/svgs/theme/arrowUp.svg);
+    width: $DefaultIconHeightpx;
+}
+QTimeEdit::up-button:hover{
+    image: url(./appPics/svgs/theme/arrowUp_hover.svg);
+}
+
+/* =============================================== */
+/* QDateTimeEdit                                   */
+/* =============================================== */
+QDateTimeEdit{
+    background-color: $RegionColor;
+    border-radius: $DefaultCornerRadius;
+    border: 1px solid $BorderColor;
+    min-height: $DefaultControlHeightpx;
+    min-width: 180px;
+    padding: $DefaultInputPadding;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QDateTimeEdit::down-button{
+    image: url(./appPics/svgs/theme/arrowDown.svg);
+    width: $DefaultIconHeightpx;
+}
+QDateTimeEdit::down-button:hover{
+    image: url(./appPics/svgs/theme/arrowDown_hover.svg);
+}
+/* 向下按钮里的小箭头 */
+/*QDateTimeEdit::down-arrow {
+    image: url("./appPics/svgs/theme/arrowDown.svg");
+    width: 0.5em;
+    height: 0.5em;
+}*/
+QDateTimeEdit::up-button{
+    image: url(./appPics/svgs/theme/arrowUp.svg);
+    width: $DefaultIconHeightpx;
+}
+QDateTimeEdit::up-button:hover{
+    image: url(./appPics/svgs/theme/arrowUp_hover.svg);
+}
+/* 向上按钮里的小箭头 */
+/*QDateTimeEdit::up-arrow {
+    image: url("./appPics/svgs/theme/arrowUp.svg");
+    width: 0.5em;
+    height: 0.5em;
+}*/
+QDateTimeEdit:hover{
+    border: 1px solid $SecondaryBorderColor;
+}
+QDateTimeEdit:focus{
+    border: 1px solid $PrimaryColor;
+}
+
+/* =============================================== */
+/* QCalendarWidget                                 */
+/* =============================================== */
+QCalendarWidget{
+    background-color: $RegionColor;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+}
+QCalendarWidget QWidget#qt_calendar_navigationbar{
+    background-color: $RegionColor;
+}
+
+QCalendarWidget QToolButton{
+    background-color: transparent;
+    border: 0px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+    padding: $DefaultControlPadding;
+    height: $DefaultControlHeightpx;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+}
+
+QCalendarWidget QToolButton#qt_calendar_prevmonth{
+    qproperty-icon: url(./appPics/svgs/theme/left.svg);
+}
+QCalendarWidget QToolButton#qt_calendar_nextmonth{
+    qproperty-icon: url(./appPics/svgs/theme/right.svg);
+}
+
+QCalendarWidget QToolButton#qt_calendar_monthbutton{
+/*    padding-right: 10px;*/
+}
+
+QCalendarWidget QToolButton#qt_calendar_yearbutton{
+/*    padding-right: 10px;*/
+}
+
+QCalendarWidget QSpinBox::up-button{
+    image: url(./appPics/svgs/theme/arrowUp.svg);
+    width: 1ex;
+}
+QCalendarWidget QSpinBox::up-button:hover{
+    image: url(./appPics/svgs/theme/arrowUp_hover.svg);
+}
+QCalendarWidget QSpinBox::down-button{
+    image: url(./appPics/svgs/theme/arrowDown.svg);
+    width: 1ex;
+}
+QCalendarWidget QSpinBox::down-button:hover{
+    image: url(./appPics/svgs/theme/arrowDown_hover.svg);
+}
+
+QCalendarWidget QTableView
+{
+    margin: 0px;
+    font-size: $DefaultFontSizepx;
+}
+
+QCalendarWidget QAbstractItemView
+{
+    selection-background-color: $PrimaryColor;
+    selection-color: $TextIconColor;
+}
+
+/* =============================================== */
+/* QMessageBox                              */
+/* =============================================== */
+QMessageBox{
+    background-color: $RegionColor;
+    color: $PrimaryTextColor;
+    font-size: $DefaultFontSizepx;
+    icon-size: $DefaultIconHeightpx;
+/*    border-radius: $DefaultCornerRadius;*/
+/*    border: 1px solid $BorderColor;*/
+}

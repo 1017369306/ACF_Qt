@@ -1,0 +1,11 @@
+{
+    "Name" : "logLib",
+    "DisplayName" : "log4Qt日志插件",
+    "Description" : "log4Qt日志插件",
+    "Category" : "Common Plugin",
+    "Icon" : "",
+    "Author" : "张洋",
+    "Version" : "V 1.0.0.0",
+    "Copyright" : "Copyright by zhangyang",
+    "Level" : 1
+}

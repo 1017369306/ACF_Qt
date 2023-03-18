@@ -1,0 +1,17 @@
+{
+    "Name" : "homePage",
+    "DisplayName" : "首页",
+    "Description" : "首页",
+    "Category" : "Module Plugin",
+    "Icon" : "./appPics/svgs/theme/home.svg",
+    "Author" : "张洋",
+    "Version" : "V 1.0.0.0",
+    "Copyright" : "Copyright by zhangyang",
+    "Level" : 1,
+    "CustomData" : {
+        "MultipleInstance" : 1,
+        "CanClose" : false,
+        "Group" : 1,
+        "Index" : 0
+    }
+}

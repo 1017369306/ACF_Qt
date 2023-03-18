@@ -1,0 +1,17 @@
+{
+    "Name" : "nativeControls",
+    "DisplayName" : "基础控件展示",
+    "Description" : "此界面主要用于展示基础控件，观察在不同主题，不同分辨率下的样式。",
+    "Category" : "Common Plugin",
+    "Icon" : "",
+    "Author" : "张洋",
+    "Version" : "V 1.0.0.0",
+    "Copyright" : "Copyright by zhangyang",
+    "Level" : 0,
+    "CustomData" : {
+        "MultipleInstance" : 2,
+        "CanClose" : true,
+        "Group" : 1,
+        "Index" : 2
+    }
+}

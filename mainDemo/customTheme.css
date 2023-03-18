@@ -1,0 +1,28 @@
+/* ================================================ *
+author:zhangyang
+lastedited:2022.12.18
+* ================================================ */
+
+
+/* =============================================== */
+/* Label                                           */
+/* =============================================== */
+QLabel[title]{
+    font: bold $LargeFontSizepx;
+}
+
+QLabel[head]{
+    font-size: $MiddleFontSizepx;
+}
+
+QLabel[PrimaryColor]{
+    color: $PrimaryColor;
+}
+
+QTextEdit[PrimaryColor]{
+    color: $PrimaryColor;
+}
+
+QListView[isPluginView="true"]::item{
+    height: 8em;
+}

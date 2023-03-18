@@ -1,0 +1,11 @@
+{
+    "Name" : "notifyLib",
+    "DisplayName" : "qtnotify2消息提示插件",
+    "Description" : "qtnotify2消息提示插件",
+    "Category" : "Common Plugin",
+    "Icon" : "",
+    "Author" : "张洋",
+    "Version" : "V 1.0.0.0",
+    "Copyright" : "Copyright by zhangyang",
+    "Level" : 1
+}

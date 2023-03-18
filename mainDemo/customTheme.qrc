@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/qss">
+        <file>customTheme.css</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,36 @@
+/* ================================================ *
+author:zhangyang
+lastedited:2022.12.26
+* ================================================ */
+
+/* =============================================== */
+/* notify                                           */
+/* =============================================== */
+#notify-background {
+    background: $RegionColor;
+    border: 1px solid $BorderColor;
+    border-radius: $DefaultCornerRadius;
+}
+#notify-title{
+    font-weight: bold;
+    font-size: $MiddleFontSizepx;
+    color: $PrimaryTextColor;
+}
+#notify-body{
+    font-size: $DefaultFontSizepx;
+    color: $PrimaryTextColor;
+}
+#notify-close-btn{
+    border: 0;
+    padding: 0;
+    border-radius: $DefaultCornerRadius;
+    height: $DefaultControlHeightpx;
+    width: $DefaultControlHeightpx;
+    color: $PrimaryTextColor;
+    icon-size: $DefaultIconHeightpx;
+    font-size: $DefaultFontSizepx;
+    image: url(./appPics/svgs/theme/close.svg);
+}
+#notify-close-btn:hover{
+    background-color: $SecondaryBorderColor;
+}

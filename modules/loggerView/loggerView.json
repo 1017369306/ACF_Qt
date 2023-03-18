@@ -1,0 +1,17 @@
+{
+    "Name" : "loggerView",
+    "DisplayName" : "日志管理",
+    "Description" : "此界面用于查询系统的日志！",
+    "Category" : "Common Plugin",
+    "Icon" : "",
+    "Author" : "张洋",
+    "Version" : "V 1.0.0.0",
+    "Copyright" : "Copyright by zhangyang",
+    "Level" : 0,
+    "CustomData" : {
+        "MultipleInstance" : 1,
+        "CanClose" : true,
+        "Group" : 1,
+        "Index" : 1
+    }
+}
