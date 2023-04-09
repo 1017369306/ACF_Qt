@@ -47,6 +47,9 @@ public:
     //根据插件名获取插件
     QPluginLoader *getPlugin(const QString &name);
 
+    //根据插件名获取插件
+    IPlugIn *getIPlugin(const QString &name);
+
     QString getPluginDir() const;
     void setPluginDir(const QString &pluginDir);
 

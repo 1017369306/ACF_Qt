@@ -2,6 +2,9 @@
 #define ILOGGER_H
 
 #include "IPlugIn.h"
+#include <globalInfoEnum.h>
+#include <globalEnums.h>
+
 //#include <log4cplus/log4cplus.h>
 //#include <log4cplus/logger.h>
 
@@ -43,16 +46,64 @@ public:
     virtual QUuid getGUID() override {return m_guid;}
 
     /**
-     * @brief getPlugInType 获取此插件的类型
-     * @return 插件的类型
-     */
-    PlugInType getPlugInType() override {return PlugInType::PlugIn_Logger;}
-
-     /**
      * @brief initModule 初始化模块
      * @return true：初始化成功；false:初始化失败
      */
     virtual int initModule() override {return 0;}
+
+    /**
+     * @brief run 运行插件
+     * @return
+     */
+    int run() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
+
+    /**
+     * @brief stop 停止插件
+     * @return
+     */
+    int stop() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
+
+    /**
+     * @brief sendData 插件运行起来后，给其发送数据
+     * @param data
+     */
+    virtual void sendData(QVariant data = QVariant::Invalid) override {
+        if(data.isValid() && data.canConvert<LoggerBaseStruct>()){
+            LoggerBaseStruct logger = data.value<LoggerBaseStruct>();
+            switch (logger.level) {
+            case LoggerBaseLevel::TRACE_LogLevel:
+            {
+                this->writeTrace(logger.message);
+                break;
+            }
+            case LoggerBaseLevel::DEBUG_LogLevel:
+            {
+                this->writeDebug(logger.message);
+                break;
+            }
+            case LoggerBaseLevel::INFO_LogLevel:
+            {
+                this->writeInfo(logger.message);
+                break;
+            }
+            case LoggerBaseLevel::WARN_LogLevel:
+            {
+                this->writeWarn(logger.message);
+                break;
+            }
+            case LoggerBaseLevel::ERROR_LogLevel:
+            {
+                this->writeError(logger.message);
+                break;
+            }
+            case LoggerBaseLevel::FATAL_LogLevel:
+            {
+                this->writeFatal(logger.message);
+                break;
+            }
+            }
+        }
+    }
 
      /**
      * @brief disModule 销毁模块
@@ -62,7 +113,7 @@ public:
     /**
      * @brief ThemeChanged 主题改变通知
      */
-    virtual void ThemeChanged() override {}
+    virtual void cssStyleChanged() override {}
 
     /**
      * @brief LanguageChanged 语言改变通知

@@ -2,6 +2,7 @@
 #include "ui_pluginview.h"
 #include <pluginManager.h>
 #include <QListView>
+#include <frameworktool.h>
 
 PluginView::PluginView(QWidget *parent) :
     ModuleBase(parent),
@@ -53,6 +54,8 @@ void PluginView::loadAllPlugins(){
             connect(info, &PluginInfoView::pluginStatusChanging, this, &PluginView::slot_pluginStatusChanging);
 
             QListWidgetItem *listItem = new QListWidgetItem();
+            //QSize中其中一个为0，表示自适应，两个都为0才是0
+            listItem->setSizeHint(QSize(0, info->height()));
 //            listItem->setSizeHint(QSize(400, 200));
             //此多种方式才是默认设置
             listItem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);

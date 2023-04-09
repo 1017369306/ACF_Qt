@@ -32,7 +32,7 @@ public:
     /**
      * @brief ThemeChanged 主题改变通知
      */
-    void ThemeChanged() override;
+    void cssStyleChanged() override;
 
     /**
      * @brief LanguageChanged 语言改变通知

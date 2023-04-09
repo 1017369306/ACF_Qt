@@ -15,7 +15,6 @@
 #include <globalhelper.h>
 #include <pluginManager.h>
 #include <loggerBase.h>
-#include <notifybase.h>
 #include <moduleBase.h>
 #include <QDebug>
 #include <QResource>
@@ -26,6 +25,7 @@
 #include <QMessageBox>
 #include <QScreen>
 #include <customnativecontrol.h>
+#include <frameworktool.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->initModules();
 
     //此分辨率下，初始化元素的相对大小
-    this->initResolution();
+    frameworkTool::initResolution();
 
     //获取有哪些主题样式
     this->loadAllTheme();
@@ -53,22 +53,17 @@ MainWindow::MainWindow(QWidget *parent)
     //建立所有信号和槽
     this->connectAllSignal();
 
-    NotifyBase::instance()->notify(NotifyBase::NotifyLevel::SuccessLevel, "测试", "测试信息！！！今天的天气真好，真象出去玩一玩！");
+    m_notify = PluginManager::instance()->getIPlugin(notifyName);
+
+    if(m_notify != nullptr){
+        m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::SuccessLevel, "测试", "测试信息！！！今天的天气真好，真象出去玩一玩！")));
+    }
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::initResolution(){
-    int scaleRate = 0;
-    QScreen *screen = QGuiApplication::primaryScreen();
-    if(screen->geometry().x() != 0){
-        scaleRate = screen->geometry().x() / GlobalSizes::Const_LeftTopX;
-    }
-    resolutionChanged(scaleRate);
 }
 
 void MainWindow::initWidgetTop(){
@@ -475,6 +470,8 @@ void MainWindow::connectAllSignal(){
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::slot_tabCurrentChanged);
     connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::slot_tabCloseRequested);
 
+    connect(frameworkTool::instance(), &frameworkTool::cssStyleChanged, this, &MainWindow::slot_cssStyleChanged);
+
     //检测屏幕分辨率的变化
     QDesktopWidget *desktopwidget = QApplication::desktop();
     connect(desktopwidget, SIGNAL(resized(int)), this, SLOT(slot_desktopwidgetResized()));
@@ -504,13 +501,15 @@ void MainWindow::slot_availableGeometryChanged(const QRect &geometry){
     if(geometry.x() != 0){
         scaleRate = geometry.x() / GlobalSizes::Const_LeftTopX;
     }
-    resolutionChanged(scaleRate);
+    //屏幕分辩改变信号
+    frameworkTool::resolutionChanged(scaleRate);
 }
 
 void MainWindow::slot_physicalSizeChanged(const QSizeF &size){
     qDebug() << "Screen physicalSizeChanged(width, height):" << size.width() << size.height();
 
-    resolutionChanged();
+    //屏幕分辩改变信号
+    frameworkTool::resolutionChanged();
 }
 
 void MainWindow::slot_physicalDotsPerInchChanged(qreal dpi){
@@ -558,43 +557,6 @@ void MainWindow::slot_desktopwidgetPrimaryScreenChanged(){
 
 }
 
-/**
-* @brief resolutionChanged 屏幕分辩改变信号
-*/
-void MainWindow::resolutionChanged(int scale){
-    QDesktopWidget *desktop = QApplication::desktop();
-    double rate = 1;
-    double widthRate = 0, heigthRate = 0;
-    //计算分辨率的缩放比例：当前的屏幕宽度/标准宽度
-    if(m_currentPixWidth != desktop->width()){
-        m_currentPixWidth = desktop->width();
-
-        widthRate = m_currentPixWidth / GlobalSizes::Const_PixWidth;
-    }
-    if(m_currentPixHeight != desktop->height()){
-        m_currentPixHeight = desktop->height();
-
-        heigthRate = m_currentPixHeight / GlobalSizes::Const_PixHeight;
-    }
-    if(widthRate != 0){
-        rate = qMin(widthRate, heigthRate);
-    }
-
-    //最终缩放比例为：计算分辨率的缩放比例 * 放大比例
-    if(scale != 0){
-        rate = rate * scale;
-    }
-    if(rate != 0){
-        //按理应该乘以多少倍，但实际情况来看，要小一点好一点，这个乘以个系数，这个系数最好可在配置文件中配置
-        if(rate > 1){
-            rate = rate * 0.75;
-        }
-        GlobalSizes::instance()->updateSize(rate);
-        this->reLoadCssStyle();
-
-    }
-}
-
 double MainWindow::getTabBarWidth(QTabBar *tabBar, const QString &text){
     int pixelsWidth = tabBar->fontMetrics().width(text);
     return pixelsWidth;
@@ -638,78 +600,9 @@ void MainWindow::slot_language(bool checked){
 void MainWindow::slot_themeSelectedItem(const int &index, const QVariant property){
     if(index >= 0 && property.isValid()){
         QString themePath = property.toString();
-        if(QFile::exists(themePath)){
-            GlobalColors *colors = GlobalColors::instance();
-            QSettings *config = new QSettings(themePath, QSettings::IniFormat);
-            QStringList keys = config->allKeys();
-            int count = keys.length();
-            for (int i = 0; i < count; i++) {
-                QVariant value = colors->property(keys.at(i).toLatin1());
-                if(value.isValid()){
-                    colors->setProperty(keys.at(i).toLatin1(), config->value(keys.at(i)));
-                }
-            }
 
-            //更新svg中的颜色
-            //QApplication::applicationDirPath()
-            SvgHelper::updateAllSvg("./appPics/svgs/", colors->PrimaryTextColor(), colors->PrimaryColor());
-
-            //更新qss样式
-            this->reLoadCssStyle();
-
-            //所有插件的信息
-            QList<PlugInProperty> plugIns = PluginManager::instance()->allPluginsProperty();
-            int length = plugIns.length();
-            for (int i = 0; i < length; i++) {
-                PlugInProperty property = plugIns.at(i);
-                QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
-                if(loader && loader->isLoaded()){
-                    IPlugIn *plugin = qobject_cast<IPlugIn *>(loader->instance());
-                    if(plugin){
-                        //给每一个加载了的插件发送主题改变通知
-                        plugin->ThemeChanged();
-                    }
-                }
-            }
-        }
-    }
-}
-
-void MainWindow::reLoadCssStyle(){
-    QStringList cssList{":/theme/qss/theme.css", ":/qss/customTheme.css"};
-    auto style = FileHelper::readlFiles(cssList);
-    if(!style.isEmpty())
-    {
-        QString css(style);
-        QList<QObject *> instances{GlobalColors::instance(), GlobalSizes::instance()};
-        int length = instances.length();
-        for (int i = 0; i < length; i++) {
-            QObject *obj = instances.at(i);
-            int propertyCount = obj->metaObject()->propertyCount();
-            //propertyOffset返回类的属性开始的整数索引（假设超类可能有自己的属性）。如果您也希望获得超类的属性，您可以从0开始。
-            int propertyOffset = obj->metaObject()->propertyOffset();
-            for(int j = propertyOffset; j < propertyCount; j++){
-                QMetaProperty metaProperty = obj->metaObject()->property(j);
-                QString value = GlobalMethods::getShowValue(metaProperty.read(obj));
-                css.replace("$" + QString(metaProperty.name()), value);
-            }
-        }
-
-        qDebug() << "加载样式文件成功！Theme:" << css;
-        this->setStyleSheet(css);
-        this->m_menuBar->setStyleSheet(css);
-        foreach (QMenu *menu, m_allMenus) {
-            menu->setStyleSheet(css);
-        }
-
-        this->initIcon();
-
-        //重新初始化此模块
-        if(NotifyBase::instance() != nullptr){
-            NotifyBase::instance()->initModule();
-        }
-
-        this->repaint();
+        //调用框架的方法进行更换主题
+        frameworkTool::reLoadTheme(themePath);
     }
 }
 
@@ -736,7 +629,9 @@ void MainWindow::addTab(IPlugIn *plugIn){
         if(moduleProperty.multipleInstance > 1){
             if(m_tabs.contains(property.name)){
                 if(m_tabs.value(property.name) >= moduleProperty.multipleInstance){
-                    NotifyBase::instance()->notify(NotifyBase::NotifyLevel::WarnLevel, "警告", "功能模块【" + property.displayName + "】已加载了 " + QString::number(m_tabs.value(property.name)) + " 个，不能再加载新实例了！");
+                    if(m_notify != nullptr){
+                        m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::WarnLevel, "警告", "功能模块【" + property.displayName + "】已加载了 " + QString::number(m_tabs.value(property.name)) + " 个，不能再加载新实例了！")));
+                    }
                     return;
                 }
             }
@@ -750,7 +645,9 @@ void MainWindow::addTab(IPlugIn *plugIn){
                 newIndex = ui->tabWidget->addTab(widget, QIcon(property.icon), property.displayName);
             }
             if(newIndex == index){
-                NotifyBase::instance()->notify(NotifyBase::NotifyLevel::ErrorLevel, "错误", "功能模块【" + property.displayName + "】加载异常！此功能可加载多个实例，但当前实例和已打开的此功能模块为同一实例。");
+                if(m_notify != nullptr){
+                    m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::ErrorLevel, "错误", "功能模块【" + property.displayName + "】加载异常！此功能可加载多个实例，但当前实例和已打开的此功能模块为同一实例。")));
+                }
                 ui->tabWidget->setCurrentIndex(index);
                 return;
             }
@@ -759,7 +656,9 @@ void MainWindow::addTab(IPlugIn *plugIn){
             }
         }
         else{
-            NotifyBase::instance()->notify(NotifyBase::NotifyLevel::WarnLevel, "警告", "功能模块【" + property.displayName + "】重复加载！此功能仅可加载1个实例，已跳转到已打开的此功能模块。");
+            if(m_notify != nullptr){
+                m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::WarnLevel, "警告", "功能模块【" + property.displayName + "】重复加载！此功能仅可加载1个实例，已跳转到已打开的此功能模块。")));
+            }
             ui->tabWidget->setCurrentIndex(index);
             return;
         }
@@ -801,18 +700,12 @@ void MainWindow::addTab(IPlugIn *plugIn){
         m_tabs[property.name]++;
     }
     m_tabPropertys.insert(property.displayName, property);
-    NotifyBase::instance()->notify(NotifyBase::NotifyLevel::SuccessLevel, "成功", "功能模块【" + property.displayName + "】加载成功！");
+
+    if(m_notify != nullptr){
+        m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::SuccessLevel, "成功", "功能模块【" + property.displayName + "】加载成功！")));
+    }
 
 }
-
-//void MainWindow::slot_closeTab(){
-//    QPushButton *btn = qobject_cast<QPushButton *>(sender());
-//    if(btn != nullptr){
-//        PlugInProperty property = btn->property(CUSTOMDATA).value<PlugInProperty>();
-//        int index = btn->property("index").value<int>();
-//        this->slot_closeTabRequested(index, property);
-//    }
-//}
 
 //tab的关闭按钮被点击的槽
 void MainWindow::slot_tabCloseRequested(int index)
@@ -831,14 +724,6 @@ void MainWindow::slot_tabCloseRequested(int index)
             m_tabIsClosing = false;
         }
     }
-//    QWidget *rightSide = ((QTabBar*)(ui->tabWidget->tabBar()))->tabButton(index, QTabBar::RightSide);
-//    if(rightSide){
-//        QPushButton *closeBtn = static_cast<QPushButton *>(rightSide);
-//        if(closeBtn){
-//            PlugInProperty property = closeBtn->property(CUSTOMDATA).value<PlugInProperty>();
-//            this->deal_tabCloseRequested(index, property);
-//        }
-//    }
 }
 
 void MainWindow::slot_tabCurrentChanged(int index){
@@ -879,6 +764,18 @@ void MainWindow::slot_listWidgetItemClicked(QListWidgetItem *item){
             }
         }
     }
+}
+
+/**
+ * @brief MainWindow::slot_cssStyleChanged 系统的css样式改变后，主界面的额外处理
+ */
+void MainWindow::slot_cssStyleChanged(){
+    this->m_menuBar->setStyleSheet(frameworkTool::getAppCss());
+    foreach (QMenu *menu, m_allMenus) {
+        menu->setStyleSheet(frameworkTool::getAppCss());
+    }
+
+    this->initIcon();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)//判断鼠标点击时是否小于标题栏高度

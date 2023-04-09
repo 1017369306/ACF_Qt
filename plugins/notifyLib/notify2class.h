@@ -2,11 +2,17 @@
 #define NOTIFY2CLASS_H
 
 #include <QObject>
-#include <notifybase.h>
+#include <globalInfoEnum.h>
+#include <globalEnums.h>
+#include <loggerBase.h>
 // 包含头文件
 #include "notifymanager.h"
 
-class Notify2Class : public NotifyBase
+#define def_notifyLevel "level"
+#define def_notifyTitle "title"
+#define def_notifyBody "body"
+
+class Notify2Class : public QObject, public IPlugIn
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID Plugin_iid FILE "notifyLib.json")
@@ -15,29 +21,101 @@ public:
     Notify2Class();
     ~Notify2Class();
 
+    /**
+     * @brief getGUID 获取唯一识别编号
+     * @return 返回唯一识别编号
+     */
+    QUuid getGUID() override {return m_guid;}
+
      /**
      * @brief initModule 初始化模块
      * @return true：初始化成功；false:初始化失败
      */
     int initModule() override;
 
+    /**
+     * @brief run 运行插件
+     * @return
+     */
+    int run() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
+
+    /**
+     * @brief stop 停止插件
+     * @return
+     */
+    int stop() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
+
+    /**
+     * @brief sendData 插件运行起来后，给其发送数据
+     * @param data
+     */
+    virtual void sendData(QVariant data = QVariant::Invalid) override {
+        if(data.isValid() && data.canConvert<NotifyStruct>()){
+            NotifyStruct notify = data.value<NotifyStruct>();
+            // 追加扩展数据
+            switch (notify.level) {
+            case NotifyLevel::InfoLevel:
+            {
+                notify.data.insert("icon", "./appPics/svgs/theme/info.svg"); // 自定义消息图标，也可传入QPixmap
+                LOG_INFO(notify.body.toStdString());
+                break;
+            }
+            case NotifyLevel::SuccessLevel:
+            {
+                notify.data.insert("icon", "./appPics/svgs/theme/success.svg"); // 自定义消息图标，也可传入QPixmap
+                LOG_INFO(notify.body.toStdString());
+                break;
+            }
+            case NotifyLevel::WarnLevel:
+            {
+                notify.data.insert("icon", "./appPics/svgs/theme/warn.svg"); // 自定义消息图标，也可传入QPixmap
+                LOG_WARN(notify.body.toStdString());
+                break;
+            }
+            case NotifyLevel::ErrorLevel:
+            {
+                notify.data.insert("icon", "./appPics/svgs/theme/error.svg"); // 自定义消息图标，也可传入QPixmap
+                LOG_ERROR(notify.body.toStdString());
+                break;
+            }
+            case NotifyLevel::FatalLevel:
+            {
+                notify.data.insert("icon", "./appPics/svgs/theme/fatal.svg"); // 自定义消息图标，也可传入QPixmap
+                LOG_FATAL(notify.body.toStdString());
+                break;
+            }
+            default:{
+                notify.data.insert("icon", "./appPics/svgs/theme/info.svg"); // 自定义消息图标，也可传入QPixmap
+                LOG_TRACE(notify.body.toStdString());
+                break;
+            }
+            }
+            if(manager != nullptr){
+                //TODO 根据不同等级显示不同的图标
+                notify.data.insert(def_notifyLevel, (int)notify.level);
+                manager->notify(notify.title, notify.body, notify.data);
+            }
+        }
+    }
+
      /**
      * @brief disModule 销毁模块
      */
     void disModule() override;
 
-    /**
-    * @brief notify 实现具体的弹窗消息
-    * @param level 弹窗等级
-    * @param title 消息标题
-    * @param body 消息内容体
-    * @param data 消息的其余属性
-    */
-    void notify(const NotifyLevel &level, const QString &title, const QString &body, QVariantMap data = QVariantMap()) override;
-
     IPlugIn *createNewPlugin() override {return this;}
 
     QWidget *getWidget(QWidget *parent = nullptr) override {return nullptr;}
+
+    /**
+     * @brief ThemeChanged 主题改变通知
+     */
+    void cssStyleChanged() override;
+
+    /**
+     * @brief LanguageChanged 语言改变通知
+     */
+    void LanguageChanged() override {}
 
 private:
 
@@ -46,6 +124,11 @@ private:
 private:
 
     NotifyManager *manager = nullptr;
+
+    /**
+     * @brief m_str_GUID 功能组件的唯一识别ID
+     */
+    QUuid m_guid;
 
 };
 

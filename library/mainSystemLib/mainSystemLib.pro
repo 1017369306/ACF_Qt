@@ -14,12 +14,13 @@ CONFIG += c++11
 
 HEADERS += \
     customnativecontrol.h \
+    frameworktool.h \
+    globalEnums.h \
     globalInfoEnum.h \
     globalhelper.h \
     loggerBase.h \
     mainSystemLib_global.h \
     moduleBase.h \
-    notifybase.h \
     pluginManager.h \
     taskBase.h
 
@@ -31,11 +32,11 @@ unix {
 
 SOURCES += \
     customnativecontrol.cpp \
+    frameworktool.cpp \
     globalInfoEnum.cpp \
     globalhelper.cpp \
     loggerBase.cpp \
     moduleBase.cpp \
-    notifyBase.cpp \
     pluginManager.cpp \
     taskBase.cpp
 
