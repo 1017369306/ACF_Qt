@@ -1,7 +1,9 @@
 #include "queryHeader.h"
 #include "ui_queryHeader.h"
 #include <globalSizes.h>
-#include <notifybase.h>
+#include <IPlugIn.h>
+#include <pluginManager.h>
+#include <globalEnums.h>
 
 queryHeader::queryHeader(QWidget *parent) :
     QWidget(parent),
@@ -85,7 +87,10 @@ void queryHeader::slot_minusClicked(bool checked){
         ui->listWidget->removeItemWidget(ui->listWidget->item(ui->listWidget->count() - 1));
     }
     else{
-        NotifyBase::instance()->notify(NotifyBase::NotifyLevel::WarnLevel, "警告", "删除查询条件失败，至少需要1个查询条件！");
+        IPlugIn *m_notify = PluginManager::instance()->getIPlugin("notifyLib");
+        if(m_notify != nullptr){
+            m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::WarnLevel, "警告", "删除查询条件失败，至少需要1个查询条件！")));
+        }
     }
 }
 

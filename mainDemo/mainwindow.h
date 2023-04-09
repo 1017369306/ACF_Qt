@@ -8,6 +8,8 @@
 #include <customlistitem.h>
 
 #define VERSION "V 1.0.0.1"
+#define notifyName "notifyLib"
+
 static const int CODE_RESTART = 773;
 
 QT_BEGIN_NAMESPACE
@@ -82,12 +84,9 @@ private slots:
 
     void slots_menuTriggered(QAction *action);
 
-private:
+    void slot_cssStyleChanged();
 
-    /**
-     * @brief initResolution 此分辨率下，初始化元素的相对大小
-     */
-    void initResolution();
+private:
 
     /**
      * @brief loadAllTheme 获取有哪些主题样式
@@ -129,19 +128,11 @@ private:
      */
     void initIcon();
 
-    void reLoadCssStyle();
-
     /**
      * @brief addTab 新增tab页
      * @param plugIn 插件信息
      */
     void addTab(IPlugIn *plugIn);
-
-    /**
-     * @brief resolutionChanged 屏幕分辩改变信号
-     * @param scale 缩放比例
-     */
-    void resolutionChanged(int scale = 0);
 
     /**
      * @brief getTabBarWidth 获取此选项卡的宽度
@@ -180,6 +171,8 @@ private:
 //    QMenu *m_codeMenu = nullptr;
 //    QMenu *m_aboutMenu = nullptr;
     QList<QMenu *> m_allMenus;
+
+    IPlugIn *m_notify = nullptr;
 
     //仅仅在第一次手动改变缩放比例时，才设置tabwidget的tabbar为自适应
 //    int m_changeRateCount = 0;

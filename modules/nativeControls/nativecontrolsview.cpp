@@ -72,7 +72,7 @@ void NativeControlsView::initData(){
 /**
  * @brief ThemeChanged 主题改变通知
  */
-void NativeControlsView::ThemeChanged(){
+void NativeControlsView::cssStyleChanged(){
     this->initIcon();
 }
 

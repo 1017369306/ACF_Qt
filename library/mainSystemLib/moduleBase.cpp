@@ -1,5 +1,4 @@
 #include "moduleBase.h"
-#include <globalInfoEnum.h>
 #include <QJsonObject>
 
 ModuleBase::ModuleBase(QWidget *parent) : QWidget(parent)

@@ -7,6 +7,7 @@
 #include <QMetaType>
 #include <QWidget>
 #include <QMenu>
+#include <globalInfoEnum.h>
 
 #define PluginJson_MultipleInstance "MultipleInstance"
 #define PluginJson_CanClose "CanClose"
@@ -87,6 +88,9 @@ public:
 };
 Q_DECLARE_METATYPE(ModuleProperty)
 
+/**
+ * @brief The ModuleBase class 功能模块的基类
+ */
 class ModuleBase : public QWidget,  public IPlugIn
 { 
     Q_OBJECT
@@ -103,20 +107,32 @@ public:
     QUuid getGUID() override {return m_guid;}
 
     /**
-     * @brief getPlugInType 获取此插件的类型
-     * @return 插件的类型
-     */
-    PlugInType getPlugInType() override {return PlugInType::PlugIn_Module;}
-
-    /**
      * @brief initModule 初始化模块
      */
     int initModule() override;
 
     /**
+     * @brief run 运行插件
+     * @return
+     */
+    int run() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
+
+    /**
+     * @brief stop 停止插件
+     * @return
+     */
+    int stop() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
+
+    /**
+     * @brief sendData 插件运行起来后，给其发送数据
+     * @param data
+     */
+    void sendData(QVariant data = QVariant::Invalid) override {}
+
+    /**
      * @brief ThemeChanged 主题改变通知
      */
-    virtual void ThemeChanged() override {}
+    virtual void cssStyleChanged() override {}
 
     /**
      * @brief LanguageChanged 语言改变通知

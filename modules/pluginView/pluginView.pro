@@ -1,4 +1,4 @@
-QT += widgets network
+QT += widgets network svg xml
 CONFIG += c++11
 
 TEMPLATE = lib          #表明这个makefile是一个lib的makefile

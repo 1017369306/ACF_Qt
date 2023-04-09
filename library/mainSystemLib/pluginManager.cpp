@@ -197,6 +197,15 @@ QPluginLoader *PluginManager::getPlugin(const QString &name)
     return m_managerPrivate->m_loaders.value(m_managerPrivate->m_names.key(name));
 }
 
+IPlugIn *PluginManager::getIPlugin(const QString &name){
+    QPluginLoader *plugin = this->getPlugin(name);
+    if(plugin != nullptr){
+        IPlugIn *iplugin = qobject_cast<IPlugIn *>(plugin->instance());
+        return iplugin;
+    }
+    return nullptr;
+}
+
 void PluginManager::loadPlugin(const QString &filepath)
 {
     if(!QLibrary::isLibrary(filepath))
