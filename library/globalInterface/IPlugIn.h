@@ -1,6 +1,10 @@
+﻿//解决中文乱码
+//#pragma execution_character_set("utf-8")
+
 #ifndef IPLUGIN_H
 #define IPLUGIN_H
 
+#include <globalInterface_global.h>
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
@@ -79,10 +83,11 @@ enum PlugInLevel{
 /**
  * @brief The PlugInProperty struct 插件的信息
  */
-class PlugInProperty
+class GLOBALINTERFACE_EXPORT PlugInProperty
 {
 public:
     QString name;//服务端对应的name
+    QString type;//插件的具体类型
     QString displayName;//显示名称
     QString description;//插件的描述
     QString category;//插件的分组
@@ -101,7 +106,7 @@ Q_DECLARE_METATYPE(PlugInProperty)
  * 作者 张洋
  * 创建日期 2022-12-05
  */
-class IPlugIn
+class GLOBALINTERFACE_EXPORT IPlugIn
 {
   //接口属性定义
  public:

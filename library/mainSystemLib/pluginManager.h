@@ -1,12 +1,14 @@
-#ifndef PLUGINMANAGER_H
+﻿#ifndef PLUGINMANAGER_H
 #define PLUGINMANAGER_H
 
+#include "mainSystemLib_global.h"
 #include <QObject>
 #include <QPluginLoader>
 #include <QVariant>
 #include <IPlugIn.h>
 
 #define PluginJson_Name "Name"
+#define PluginJson_Type "Type"
 #define PluginJson_DisplayName "DisplayName"
 #define PluginJson_Description "Description"
 #define PluginJson_Category "Category"
@@ -18,7 +20,7 @@
 #define PluginJson_Dependencies "Dependencies"
 #define PluginJson_CustomData "CustomData"
 
-class PluginManager : public QObject
+class MAINSYSTEMLIB_EXPORT PluginManager : public QObject
 {
     Q_OBJECT
 public:
@@ -64,6 +66,10 @@ public:
 
     //卸载某个插件
     void unloadPlugin(const QString &filepath);
+
+signals:
+
+    void pluginStatusChanged(const PlugInProperty& property, const bool& isLoad);
 
 private:
 

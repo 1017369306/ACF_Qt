@@ -1,4 +1,4 @@
-#ifndef GLOBALRESOURCE_GLOBAL_H
+﻿#ifndef GLOBALRESOURCE_GLOBAL_H
 #define GLOBALRESOURCE_GLOBAL_H
 
 #include <QtCore/qglobal.h>

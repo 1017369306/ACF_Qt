@@ -1,3 +1,6 @@
+﻿//解决中文乱码
+#pragma execution_character_set("utf-8")
+
 #include "queryItem.h"
 #include "ui_queryItem.h"
 

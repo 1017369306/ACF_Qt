@@ -1,0 +1,1 @@
+#include "../src/docking/QtnDockWidgetPanel.h"

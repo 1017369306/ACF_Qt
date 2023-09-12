@@ -1,4 +1,4 @@
-/* ================================================ *
+﻿/* ================================================ *
 author:zhangyang
 lastedited:2022.12.26
 * ================================================ */
@@ -32,5 +32,5 @@ lastedited:2022.12.26
     image: url(./appPics/svgs/theme/close.svg);
 }
 #notify-close-btn:hover{
-    background-color: $SecondaryBorderColor;
+    background-color: $SecondaryRegionColor;
 }

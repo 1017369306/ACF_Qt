@@ -1,4 +1,4 @@
-#include "notify2class.h"
+﻿#include "notify2class.h"
 #include <globalInfoEnum.h>
 #include <QMessageBox>
 #include <globalhelper.h>
@@ -7,8 +7,8 @@
 #include <globalColors.h>
 #include <frameworktool.h>
 
-Notify2Class::Notify2Class() {
-    this->m_guid = QUuid::createUuid(); //new guid
+Notify2Class::Notify2Class() : DefaultPlugin() {
+
 }
 
 Notify2Class::~Notify2Class(){
@@ -28,7 +28,7 @@ int Notify2Class::initModule(){
     }
 
     if(!frameworkTool::getCustomCssList().contains(":/qss/notifyTheme.css")){
-        frameworkTool::getCustomCssList().append(":/qss/notifyTheme.css");
+        frameworkTool::appendCustomCss(":/qss/notifyTheme.css");
         frameworkTool::reLoadCssStyle();
 
         this->cssStyleChanged();

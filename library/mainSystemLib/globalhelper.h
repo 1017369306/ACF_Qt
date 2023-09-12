@@ -1,6 +1,7 @@
-#ifndef GLOBALHELPER_H
+﻿#ifndef GLOBALHELPER_H
 #define GLOBALHELPER_H
 
+#include "mainSystemLib_global.h"
 #include <QObject>
 #include <QWidget>
 #include <QFileInfoList>
@@ -24,7 +25,7 @@
  * 作者 zhangyang
  * 日期 2022-4-19
  */
-class GlobalMethods : public QObject
+class MAINSYSTEMLIB_EXPORT GlobalMethods : public QObject
 {
     Q_OBJECT
 
@@ -144,14 +145,14 @@ private:
 /**
  * @brief The LogDataModel struct 日志结构体
  */
-struct LogDataModel
+struct MAINSYSTEMLIB_EXPORT LogDataModel
 {
     QDateTime recordTime;
     QString logLevel= "";
     QString msg = "";
 };
 
-class LogReaderHelper
+class MAINSYSTEMLIB_EXPORT LogReaderHelper
 {
 public:
 
@@ -206,7 +207,7 @@ public:
 /**
  * @brief The FileHelper class 文件帮助类
  */
-class FileHelper{
+class MAINSYSTEMLIB_EXPORT FileHelper{
 public:
 
     /**
@@ -259,7 +260,7 @@ public:
 /**
  * @brief The PixmapHelper class 图像处理帮助类
  */
-class PixmapHelper{
+class MAINSYSTEMLIB_EXPORT PixmapHelper{
 public:
 
     static QPixmap loadSvg(const QString &path, const int &width = 22, const int &height = 22);
@@ -269,7 +270,7 @@ public:
 /**
  * @brief The IconHelper class Icon处理帮助类
  */
-class IconHelper{
+class MAINSYSTEMLIB_EXPORT IconHelper{
 public:
 
     static QPixmap loadSvg(const QString &path, QColor &color, const int &width = 22, const int &height = 22){
@@ -355,7 +356,7 @@ public:
 /**
  * @brief The ColorHelper class color帮助类
  */
-class ColorHelper{
+class MAINSYSTEMLIB_EXPORT ColorHelper{
 
 public:
 
@@ -374,7 +375,7 @@ public:
 /**
  * @brief The SvgHelper class SVG矢量图帮助类
  */
-class SvgHelper{
+class MAINSYSTEMLIB_EXPORT SvgHelper{
 
 public:
 

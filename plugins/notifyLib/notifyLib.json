@@ -1,5 +1,6 @@
-{
+﻿{
     "Name" : "notifyLib",
+    "Type" : "notify",
     "DisplayName" : "qtnotify2消息提示插件",
     "Description" : "qtnotify2消息提示插件",
     "Category" : "Common Plugin",

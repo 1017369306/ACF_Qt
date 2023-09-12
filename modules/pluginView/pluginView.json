@@ -1,8 +1,9 @@
-{
+﻿{
     "Name" : "pluginView",
+    "Type" : "module",
     "DisplayName" : "插件管理",
     "Description" : "此界面主要用于管理插件的安装，卸载，查看插件的相关信息！",
-    "Category" : "Common Plugin",
+    "Category" : "Module Plugin",
     "Icon" : "",
     "Author" : "张洋",
     "Version" : "V 1.0.0.0",

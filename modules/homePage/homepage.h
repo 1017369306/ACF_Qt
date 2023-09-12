@@ -1,4 +1,4 @@
-#ifndef HOMEPAGE_H
+﻿#ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
 #include <moduleBase.h>
@@ -21,6 +21,10 @@ public:
     QWidget *getWidget(QWidget *parent = nullptr) override {return this;}
 
     void disModule() override;
+
+private:
+
+    void slot_createException(bool checked = false);
 
 private:
     Ui::homePage *ui;

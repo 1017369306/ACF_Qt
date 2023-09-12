@@ -1,0 +1,6 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>../../res/VisualStudio2019/styleconfig.xml</file>
+    </qresource>
+</RCC>

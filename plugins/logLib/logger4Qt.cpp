@@ -1,11 +1,9 @@
-#include "logger4Qt.h"
+﻿#include "logger4Qt.h"
 #include <globalInfoEnum.h>
 #include <QFileInfo>
 
-Logger4Qt::Logger4Qt() : LoggerBase(){
-    if(this->m_loggerBase == nullptr){
-        m_loggerBase = this;
-    }
+Logger4Qt::Logger4Qt() : DefaultPlugin(){
+
 }
 
 Logger4Qt::~Logger4Qt(){

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE STYLE>
+<STYLE version="1.0">
+    <global>
+        <!--- PixelMetric -->
+        <pixelMetric>
+            <metric number="SplitterWidth">4</metric>
+            <metric number="MenuButtonIndicator">14</metric>
+            <metric number="LargeIconSize">32</metric>
+            <metric number="ButtonIconSize">16</metric>
+            <metric number="SmallIconSize">16</metric>
+            <metric number="ScrollBarExtent">14</metric>
+            <metric number="ToggleSwitchThumbSize">2</metric>
+        </pixelMetric>
+    </global>
+    <!--- Widgets -->
+    <widget className="RibbonGallery" hover="true"></widget>
+    <widget className="DockDocumentLayoutPanel" autoFillBackground="true"></widget>
+    <widget className="DockCentralPanel" autoFillBackground="true"></widget>
+    <widget className="DockTitleBar" hover="false" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="DockWidgetTitleMargin">1</metric>
+        </pixelMetric>
+    </widget>
+</STYLE>

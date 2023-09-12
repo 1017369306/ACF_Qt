@@ -1,4 +1,4 @@
-/* ================================================ *
+﻿/* ================================================ *
 author:zhangyang
 lastedited:2022.3
 * ================================================ */
@@ -28,6 +28,13 @@ QSplitter::handle
 {
     background-color: $BorderColor;
 }
+/*QSplitter::handle:horizontal {
+    width: 2px;
+}
+
+QSplitter::handle:vertical {
+    height: 2px;
+}*/
 QSplitter::handle:hover
 {
     background-color: $SecondaryBorderColor;
@@ -240,6 +247,11 @@ QToolButton[isIconTransparent='true']:hover{
 }
 QToolButton[isIconTransparent='true']:pressed{
     background-color: transparent;
+}
+QToolButton[isTransparentAndNoPadding='true'], QToolButton[isTransparentAndNoPadding='true']:unchecked{
+    background-color: transparent;
+    border: 0px solid transparent;
+    padding: 0px;
 }
 
 /* =============================================== */

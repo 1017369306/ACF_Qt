@@ -1,3 +1,6 @@
+﻿//解决中文乱码
+#pragma execution_character_set("utf-8")
+
 #include "aboutDialog.h"
 #include "ui_aboutDialog.h"
 #include <globalSizes.h>

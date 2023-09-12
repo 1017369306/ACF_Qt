@@ -1,9 +1,11 @@
-#ifndef ILOGGER_H
+﻿#ifndef ILOGGER_H
 #define ILOGGER_H
 
+#include "mainSystemLib_global.h"
 #include "IPlugIn.h"
 #include <globalInfoEnum.h>
 #include <globalEnums.h>
+#include <acfproperty.h>
 
 //#include <log4cplus/log4cplus.h>
 //#include <log4cplus/logger.h>
@@ -23,7 +25,7 @@
  * 作者 张洋
  * 创建日期 2022-12-05
  */
-class LoggerBase : public QObject, public IPlugIn
+class MAINSYSTEMLIB_EXPORT LoggerBase : public QObject, public IPlugIn
 {
     Q_OBJECT
 public:
@@ -70,12 +72,16 @@ public:
     virtual void sendData(QVariant data = QVariant::Invalid) override {
         if(data.isValid() && data.canConvert<LoggerBaseStruct>()){
             LoggerBaseStruct logger = data.value<LoggerBaseStruct>();
-            switch (logger.level) {
-            case LoggerBaseLevel::TRACE_LogLevel:
-            {
-                this->writeTrace(logger.message);
-                break;
+            //1、如果此日志等级小于系统日志等级，则忽略
+            if(logger.level < ACFProperty::instance()->getLogLevel()){
+                return;
             }
+            //2、如果日志等级大于等于TRACE，都先往TRACE中写
+            if(logger.level >= LoggerBaseLevel::TRACE_LogLevel){
+                this->writeTrace(logger.message);
+            }
+            //3、根据日志等级，写入指定的日志文件
+            switch (logger.level) {
             case LoggerBaseLevel::DEBUG_LogLevel:
             {
                 this->writeDebug(logger.message);
@@ -166,7 +172,7 @@ private:
 };
 
 // define some macros for simplicity
-#define LOG_TRACE(logInfo)                          \
+/*#define LOG_TRACE(logInfo)                          \
     if(LoggerBase::instance() != nullptr){          \
         LoggerBase::instance()->writeTrace(logInfo); \
     }                                               \
@@ -194,6 +200,6 @@ private:
 #define LOG_FATAL(logInfo)                          \
     if(LoggerBase::instance() != nullptr){          \
         LoggerBase::instance()->writeFatal(logInfo); \
-    }                                               \
+    }*/                                               \
 
 #endif // ILOGGER_H

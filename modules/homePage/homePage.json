@@ -1,5 +1,6 @@
-{
+﻿{
     "Name" : "homePage",
+    "Type" : "home",
     "DisplayName" : "首页",
     "Description" : "首页",
     "Category" : "Module Plugin",

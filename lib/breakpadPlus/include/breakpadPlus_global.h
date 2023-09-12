@@ -1,0 +1,12 @@
+﻿#ifndef BREAKPADPLUS_GLOBAL_H
+#define BREAKPADPLUS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(BREAKPADPLUS_LIBRARY)
+#  define BREAKPADPLUS_EXPORT Q_DECL_EXPORT
+#else
+#  define BREAKPADPLUS_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // BREAKPADPLUS_GLOBAL_H

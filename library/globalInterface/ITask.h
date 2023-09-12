@@ -1,6 +1,10 @@
+﻿//解决中文乱码
+//#pragma execution_character_set("utf-8")
+
 #ifndef ITASK_H
 #define ITASK_H
 
+#include <globalInterface_global.h>
 #include <QObject>
 #include <QUuid>
 #include <QVariant>
@@ -50,7 +54,7 @@ enum StopReason
  */
 enum CommandType
 {
-    Unknown = 0,
+    Command_Unknown = 0,
     /**
      * 开始测量
     */
@@ -87,7 +91,7 @@ enum CommandType
  * 作者 张洋
  * 创建日期 2022-12-04
  */
-class ITask
+class GLOBALINTERFACE_EXPORT ITask
 {
   //接口属性定义
  public:

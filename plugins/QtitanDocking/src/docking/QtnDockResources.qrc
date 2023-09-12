@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+        <file>../../res/qtitan.png</file>
+        <file>../../res/qtitanlogo32x32.png</file>
+    </qresource>
+</RCC>

@@ -1,4 +1,4 @@
-#include "pluginManager.h"
+﻿#include "pluginManager.h"
 #include <QDir>
 #include <QCoreApplication>
 #include <QJsonArray>
@@ -121,6 +121,9 @@ void PluginManager::scanMetaData(const QString &filepath)
         if(json.contains(PluginJson_Name)){
             property.name = json.value(PluginJson_Name).toString();
         }
+        if(json.contains(PluginJson_Type)){
+            property.type = json.value(PluginJson_Type).toString();
+        }
         if(json.contains(PluginJson_DisplayName)){
             property.displayName = json.value(PluginJson_DisplayName).toString();
         }
@@ -235,6 +238,8 @@ void PluginManager::loadPlugin(const QString &filepath)
             plugin->setPlugInProperty(property);
             plugin->initModule();
             m_managerPrivate->m_loaders.insert(filepath, loader);
+
+            emit pluginStatusChanged(property, true);
         }
         else{
             loader->unload();
@@ -275,6 +280,8 @@ void PluginManager::loadSystemPlugin(const QString &filepath)
                     plugin->setPlugInProperty(property);
                     plugin->initModule();
                     m_managerPrivate->m_loaders.insert(filepath, loader);
+
+                    emit pluginStatusChanged(property, true);
                 }
                 else{
                     loader->unload();
@@ -298,6 +305,10 @@ void PluginManager::unloadPlugin(const QString &filepath)
         m_managerPrivate->m_loaders.remove(filepath);
         delete loader;
         loader = nullptr;
+
+        if(m_managerPrivate->m_propertys.contains(filepath)){
+            emit pluginStatusChanged(m_managerPrivate->m_propertys.value(filepath), false);
+        }
     }
 }
 

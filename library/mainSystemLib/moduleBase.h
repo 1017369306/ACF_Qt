@@ -1,6 +1,7 @@
-#ifndef MODULEBASE_H
+﻿#ifndef MODULEBASE_H
 #define MODULEBASE_H
 
+#include "mainSystemLib_global.h"
 #include <IPlugIn.h>
 #include <ITask.h>
 #include <QObject>
@@ -36,7 +37,7 @@ enum ModuleGroup{
 /**
  * @brief The ModuleProperty struct 模块的描述信息
  */
-class ModuleProperty
+class MAINSYSTEMLIB_EXPORT ModuleProperty
 {
 public:
 
@@ -91,7 +92,7 @@ Q_DECLARE_METATYPE(ModuleProperty)
 /**
  * @brief The ModuleBase class 功能模块的基类
  */
-class ModuleBase : public QWidget,  public IPlugIn
+class MAINSYSTEMLIB_EXPORT ModuleBase : public QWidget,  public IPlugIn
 { 
     Q_OBJECT
 public:

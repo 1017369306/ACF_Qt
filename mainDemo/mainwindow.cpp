@@ -1,31 +1,15 @@
+﻿#include "aboutDialog.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QFileInfo>
-#include <QDebug>
-#include <QListView>
-#include <globalColors.h>
-#include <globalSizes.h>
-#include <QMetaProperty>
-#include <QDir>
-#include <QSettings>
-#include <QDesktopWidget>
-#include <QtMath>
-#include <QMenuBar>
-#include <QAction>
-#include <globalhelper.h>
-#include <pluginManager.h>
-#include <loggerBase.h>
-#include <moduleBase.h>
-#include <QDebug>
-#include <QResource>
-#include <QLabel>
-#include <aboutDialog.h>
-#include <QDesktopServices>
-#include <QUrl>
+
 #include <QMessageBox>
-#include <QScreen>
-#include <customnativecontrol.h>
+#include <QMouseEvent>
+#include <QUrl>
 #include <frameworktool.h>
+#include <globalEnums.h>
+#include <qdesktopservices.h>
+#include <acfproperty.h>
+#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,8 +22,14 @@ MainWindow::MainWindow(QWidget *parent)
     //初始化顶部
     this->initWidgetTop();
 
-    //初始化功能列表
-    this->initModules();
+    //先初始化框架功级参数类单例
+    ACFProperty::instance();
+
+    //初始化所有插件
+    this->loadAllPlugins();
+
+    m_mainDockWindow = new MainDockWindow();
+    ui->main_centerLayout->addWidget(m_mainDockWindow, 1);
 
     //此分辨率下，初始化元素的相对大小
     frameworkTool::initResolution();
@@ -47,18 +37,18 @@ MainWindow::MainWindow(QWidget *parent)
     //获取有哪些主题样式
     this->loadAllTheme();
 
-    //加载指定目录下的所有插件
-    this->loadAllPlugins();
-
     //建立所有信号和槽
     this->connectAllSignal();
 
-    m_notify = PluginManager::instance()->getIPlugin(notifyName);
+    ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::INFO_LogLevel, "测试信息！！！今天的天气真好，真象出去玩一玩！")));
 
-    if(m_notify != nullptr){
-        m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::SuccessLevel, "测试", "测试信息！！！今天的天气真好，真象出去玩一玩！")));
-    }
-
+    //窗体首次加载时，居中显示
+    QScreen *screen = QGuiApplication::primaryScreen();
+    double widthTemp = screen->geometry().width() * 0.6;
+    double heightTemp = screen->geometry().height() * 0.6;
+    double xTemp = (screen->geometry().width() - widthTemp) / 2.0;
+    double yTemp = (screen->geometry().height() - heightTemp) / 2.0;
+    this->setGeometry(xTemp, yTemp, widthTemp, heightTemp);
 }
 
 MainWindow::~MainWindow()
@@ -69,9 +59,9 @@ MainWindow::~MainWindow()
 void MainWindow::initWidgetTop(){
     this->initMenu();
 
-    this->initReSizeArea();
+    this->initShortcutKey();
 
-    ui->tabWidget->setTabsClosable(true);
+    this->initReSizeArea();
 }
 
 void MainWindow::initMenu(){
@@ -177,38 +167,63 @@ void MainWindow::initMenu(){
 
 }
 
-void MainWindow::initModules(){
-    ui->listWidget->setObjectName("listWidget");
-    ui->listWidget->setResizeMode(QListView::Adjust);
-    ui->listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+void MainWindow::initShortcutKey(){
+    QStringList shortcutKeys {"启动任务", "暂停任务", "停止任务", "截图", "恢复布局", "导出报表"};
+    foreach (QString shortcutKey, shortcutKeys) {
+        QToolButton *toolBtn = new QToolButton();
+        toolBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        toolBtn->setIcon(QIcon("./appPics/svgs/theme/close.svg"));
+        toolBtn->setText(shortcutKey);
+        toolBtn->setCheckable(true);
 
+        ui->horizontalLayout_shortcutKey->addWidget(toolBtn);
+
+        if(shortcutKey == "停止任务"){
+            QFrame *vframe = new QFrame();
+            vframe->setFrameShape(QFrame::VLine);      // 设置垂直方向
+            ui->horizontalLayout_shortcutKey->addWidget(vframe);
+        }
+    }
 }
 
 void MainWindow::slots_menuTriggered(QAction *action){
     QVariant customData = action->property(CUSTOMDATA);
     if(customData.isValid()){
         PlugInProperty property = action->property(CUSTOMDATA).value<PlugInProperty>();
-        QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
+//        QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
 
-        if(loader == nullptr){
-            return;
-        }
+//        if(loader == nullptr){
+//            return;
+//        }
         if(!action->isChecked())
         {
-            if(loader->isLoaded()){
-                loader->unload();
+            IPlugIn *plugin = PluginManager::instance()->getIPlugin(property.name);
+            if(plugin)
+            {
+                plugin->disModule();
             }
+            PluginManager::instance()->unloadPlugin(PluginManager::instance()->getPath(property.name));
+
+//            if(loader->isLoaded()){
+//                loader->unload();
+//            }
         }
         else{
-            if(!loader->isLoaded()){
-                if(loader->load()){
-                    IPlugIn *plugin = qobject_cast<IPlugIn *>(loader->instance());
-                    if(plugin)
-                    {
-                        plugin->initModule();
-                    }
-                }
+            PluginManager::instance()->loadPlugin(PluginManager::instance()->getPath(property.name));
+            IPlugIn *plugin = PluginManager::instance()->getIPlugin(property.name);
+            if(plugin)
+            {
+                plugin->initModule();
             }
+//            if(!loader->isLoaded()){
+//                if(loader->load()){
+//                    IPlugIn *plugin = qobject_cast<IPlugIn *>(loader->instance());
+//                    if(plugin)
+//                    {
+//                        plugin->initModule();
+//                    }
+//                }
+//            }
         }
     }
     else{
@@ -234,7 +249,7 @@ void MainWindow::slots_menuTriggered(QAction *action){
             messageBox.setStyleSheet(this->styleSheet());
             messageBox.setStandardButtons(QMessageBox::Ok);// | QMessageBox::Cancel
             messageBox.setButtonText(QMessageBox::Ok, QString("确 定"));
-//            messageBox.setButtonText(QMessageBox::Cancel, QString("取 消"));
+            //            messageBox.setButtonText(QMessageBox::Cancel, QString("取 消"));
             int retFlag = messageBox.exec();
         }
         else if(text == "关于"){
@@ -254,7 +269,7 @@ void MainWindow::initReSizeArea(){
 
 }
 
-void MainWindow::initIcon(){ 
+void MainWindow::initIcon(){
     SvgHelper::updateSvg("./appPics/svgs/theme/info.svg", GlobalColors::instance()->InfoColor());
     SvgHelper::updateSvg("./appPics/svgs/theme/success.svg", GlobalColors::instance()->SuccessColor());
     SvgHelper::updateSvg("./appPics/svgs/theme/warn.svg", GlobalColors::instance()->WarningColor());
@@ -265,59 +280,60 @@ void MainWindow::initIcon(){
     ui->btn_max->setIcon(QIcon("./appPics/svgs/theme/maxSize.svg"));
     ui->btn_exit->setIcon(QIcon("./appPics/svgs/theme/close.svg"));
 
-    int moduleCount = ui->listWidget->count();
-    for (int i = 0; i < moduleCount; i++) {
-        QWidget *widget = ui->listWidget->itemWidget(ui->listWidget->item(i));
-        if(widget){
-            CustomListItem *customItem = qobject_cast<CustomListItem *>(widget);
-            if(customItem){
-                ModuleProperty property = widget->property(CUSTOMDATA).value<ModuleProperty>();
-                customItem->icon()->setIcon(QIcon(property.icon));
-            }
-        }
-    }
-    int tabCount = ui->tabWidget->count();
-    for (int i = 0; i < tabCount; i++) {
-        QString text = ui->tabWidget->tabText(i);
-        if(m_tabPropertys.contains(text)){
-            ui->tabWidget->setTabIcon(i, QIcon(m_tabPropertys.value(text).icon));
-        }
-
-        QWidget *rightSide = ((QTabBar*)(ui->tabWidget->tabBar()))->tabButton(i, QTabBar::RightSide);
-        if(rightSide){
-            QPushButton *closeBtn = static_cast<QPushButton *>(rightSide);
-            if(closeBtn){
-                closeBtn->setIcon(QIcon("./appPics/svgs/theme/close.svg"));
-            }
-        }
-    }
-
-    //20230317验证多次改变分辨率后有bug
-    //        if(m_changeRateCount == 1){
-    //            //直接将tabBar的最小值设置为qtabwidget的最小值，就可以自适应tabBar的宽度。
-    //            int tabWidgetWidth = this->ui->tabWidget->width();
-    //            this->ui->tabWidget->tabBar()->setMinimumWidth(tabWidgetWidth);
-    //        }
-    //        m_changeRateCount++;
-
-    //设置好图像后，发现这个图标的大小不是我想要的，想调整一下，首先想到的办法使用样式表，但是
-    //QTabBar::close-button {image: url(://close.svg);width: 56;height 56;}
-    //无效。
-    //上网搜了许多也搜到结果，自己总结了如下：
-    //如果是qss设置的图标，可以这样批量修改图标，也可单独修改。
-    QSize iconSize(GlobalSizes::instance()->DefaultIconHeight(), GlobalSizes::instance()->DefaultIconHeight());
-    for (int i = 0; i < tabCount; i++)
-    {
-        ui->tabWidget->setIconSize(iconSize);
-        if(ui->tabWidget->tabBar()->tabButton(i, QTabBar::RightSide) != nullptr){
-            ui->tabWidget->tabBar()->tabButton(i, QTabBar::RightSide)->setFixedSize(iconSize);
-        }
-    }
-    ui->tabWidget->update();
+    //TODO
 
 }
 
+void MainWindow::loadAllPlugins(){
+    QString path = qApp->applicationDirPath() + "/plugins";
+    //设置插件的路径
+    PluginManager::instance()->setPluginDir(path);
+    //获取此路径下的所有插件的信息
+    PluginManager::instance()->loadAllPlugins();
+
+    //所有插件的信息
+    QList<PlugInProperty> plugIns = PluginManager::instance()->allPluginsProperty();
+    //功能视图插件的信息
+    QList<ModuleProperty> modules;
+    //非功能视图插件的信息
+    QList<PlugInProperty> commonPlugIns;
+    int length = plugIns.length();
+    for (int i = 0; i < length; i++) {
+        PlugInProperty property = plugIns.at(i);
+        ModuleProperty moduleProperty = ModuleBase::convertFrom(property);
+        if(moduleProperty.multipleInstance > 0){
+            modules.append(moduleProperty);
+        }
+        else{
+            commonPlugIns.append(property);
+        }
+    }
+
+    int commonLength = commonPlugIns.length();
+    for (int i = 0; i < commonLength; i++) {
+        PlugInProperty property = commonPlugIns.at(i);
+        QAction *action = new QAction();
+        action->setProperty(CUSTOMDATA, QVariant::fromValue(property));
+        action->setText(property.displayName);
+        if(!property.icon.isEmpty()){
+            action->setIcon(QIcon(property.icon));
+        }
+        action->setToolTip(property.description);
+        action->setCheckable(true);
+        QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
+        if(loader != nullptr){
+            action->setChecked(loader->isLoaded());
+        }
+
+        m_pluginMenu->addAction(action);
+        m_pluginMenu->addSeparator();
+    }
+}
+
 void MainWindow::loadAllTheme(){
+    //设置框架外的自定义样式
+    frameworkTool::appendCustomCss(":/qss/customTheme.css");
+
     QList<ListItemProperty> themeItems;
 
     m_oldThemeName = "default";
@@ -350,7 +366,7 @@ void MainWindow::loadAllTheme(){
                 property.customData = fileInfo.filePath();
 
                 themeItems.append(property);
-            }  
+            }
         }
     }
 
@@ -361,100 +377,8 @@ void MainWindow::loadAllTheme(){
         //更新为当前选择的主题（默认主题）
         this->slot_themeSelectedItem(oldThemeIndex, themeItems.at(oldThemeIndex).customData);
     }
-}
 
-void MainWindow::loadAllPlugins(){
-    QString path = qApp->applicationDirPath() + "/plugins";
-    //设置插件的路径
-    PluginManager::instance()->setPluginDir(path);
-    //获取此路径下的所有插件的信息
-    PluginManager::instance()->loadAllPlugins();
-
-    //所有插件的信息
-    QList<PlugInProperty> plugIns = PluginManager::instance()->allPluginsProperty();
-    //功能视图插件的信息
-    QList<ModuleProperty> modules;
-    //非功能视图插件的信息
-    QList<PlugInProperty> commonPlugIns;
-    int length = plugIns.length();
-    for (int i = 0; i < length; i++) {
-        PlugInProperty property = plugIns.at(i);
-        ModuleProperty moduleProperty = ModuleBase::convertFrom(property);
-        if(moduleProperty.multipleInstance > 0){
-            modules.append(moduleProperty);
-        }
-        else{
-            commonPlugIns.append(property);
-        }
-    }
-    //排序
-    std::sort(modules.begin(), modules.end(), ModuleProperty::compareIndex);
-    int moduleLength = modules.length();
-    //当有功能视图默认加载时，其对应ListWidget中的下标，用于选中（如有多个视图默认加载，仅选中第一个视图）
-    int selectIndex = -1;
-    for (int i = 0; i < moduleLength; i++) {
-        ModuleProperty property = modules.at(i);
-        PlugInProperty plugInProperty = PluginManager::instance()->getPluginProperty(property.name);
-
-        CustomListItem *button = new CustomListItem();
-        button->setAttribute(Qt::WA_TransparentForMouseEvents);
-        button->setAttribute(Qt::WA_TranslucentBackground);
-        button->setInfo(ListItemProperty(property.displayName, property.description, property.icon));
-        button->setProperty(CUSTOMDATA, QVariant::fromValue(property));
-
-        QListWidgetItem *listItem = new QListWidgetItem();
-        listItem->setToolTip(property.description);
-        //此多种方式才是默认设置
-        listItem->setFlags(Qt::ItemIsSelectable|Qt::ItemIsDragEnabled|Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
-
-//        QWidget *widget = new QWidget;
-//        auto hlay = new QHBoxLayout;
-//        hlay->addWidget(button);
-//        hlay->setContentsMargins(0,0,0,0);
-//        widget->setLayout(hlay);
-//        widget->setAttribute(Qt::WA_TransparentForMouseEvents);
-//        widget->setAttribute(Qt::WA_TranslucentBackground, true);
-
-        ui->listWidget->addItem(listItem);
-        ui->listWidget->setItemWidget(listItem, button);
-
-        if(plugInProperty.level == PlugInLevel::MustLoad){
-            this->slot_listWidgetItemClicked(listItem);
-
-            if(selectIndex < 0){
-                selectIndex = i;
-            }
-        }
-    }
-
-    int commonLength = commonPlugIns.length();
-    for (int i = 0; i < commonLength; i++) {
-        PlugInProperty property = commonPlugIns.at(i);
-        QAction *action = new QAction();
-        action->setProperty(CUSTOMDATA, QVariant::fromValue(property));
-        action->setText(property.displayName);
-        if(!property.icon.isEmpty()){
-            action->setIcon(QIcon(property.icon));
-        }
-        action->setToolTip(property.description);
-        action->setCheckable(true);
-        QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
-        if(loader != nullptr){
-           action->setChecked(loader->isLoaded());
-        }
-
-        m_pluginMenu->addAction(action);
-        m_pluginMenu->addSeparator();
-    }
-
-//    IPlugIn *homePage = new HomePage();
-//    this->addTab(homePage);
-
-    //加载首页模块
-    if(selectIndex >= 0){
-        ui->listWidget->setCurrentRow(selectIndex);
-        ui->tabWidget->setCurrentIndex(selectIndex);
-    }
+    slot_cssStyleChanged();
 }
 
 void MainWindow::connectAllSignal(){
@@ -466,31 +390,27 @@ void MainWindow::connectAllSignal(){
 
     connect(this->m_themeListWidget, &PopupListWidget::selectedItem, this, &MainWindow::slot_themeSelectedItem);
 
-    connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::slot_listWidgetItemClicked);
-    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::slot_tabCurrentChanged);
-    connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::slot_tabCloseRequested);
-
     connect(frameworkTool::instance(), &frameworkTool::cssStyleChanged, this, &MainWindow::slot_cssStyleChanged);
 
-    //检测屏幕分辨率的变化
-    QDesktopWidget *desktopwidget = QApplication::desktop();
-    connect(desktopwidget, SIGNAL(resized(int)), this, SLOT(slot_desktopwidgetResized()));
-    connect(desktopwidget, SIGNAL(workAreaResized(int)), this, SLOT(slot_desktopwidgetWorkAreaResized()));
-    connect(desktopwidget, SIGNAL(primaryScreenChanged()), this, SLOT(slot_desktopwidgetPrimaryScreenChanged()));
+//    //检测屏幕分辨率的变化
+//    QDesktopWidget *desktopwidget = QApplication::desktop();
+//    connect(desktopwidget, SIGNAL(resized(int)), this, SLOT(slot_desktopwidgetResized()));
+//    connect(desktopwidget, SIGNAL(workAreaResized(int)), this, SLOT(slot_desktopwidgetWorkAreaResized()));
+//    connect(desktopwidget, SIGNAL(primaryScreenChanged()), this, SLOT(slot_desktopwidgetPrimaryScreenChanged()));
 
-//    QList<QScreen *> listScreen = QGuiApplication::screens();
-    QScreen *screen = QGuiApplication::primaryScreen();
-//    foreach (QScreen *screen, listScreen)
-    {
-        connect(screen, &QScreen::availableGeometryChanged, this, &MainWindow::slot_availableGeometryChanged);
-        connect(screen, &QScreen::physicalDotsPerInchChanged, this, &MainWindow::slot_physicalDotsPerInchChanged);
-        connect(screen, &QScreen::logicalDotsPerInchChanged, this, &MainWindow::slot_logicalDotsPerInchChanged);
-        connect(screen, &QScreen::virtualGeometryChanged, this, &MainWindow::slot_virtualGeometryChanged);
-        connect(screen, &QScreen::physicalSizeChanged, this, &MainWindow::slot_physicalSizeChanged);
-        connect(screen, &QScreen::primaryOrientationChanged, this, &MainWindow::slot_primaryOrientationChanged);
-        connect(screen, &QScreen::orientationChanged, this, &MainWindow::slot_orientationChanged);
-        connect(screen, &QScreen::refreshRateChanged, this, &MainWindow::slot_refreshRateChanged);
-    }
+//    //    QList<QScreen *> listScreen = QGuiApplication::screens();
+//    QScreen *screen = QGuiApplication::primaryScreen();
+//    //    foreach (QScreen *screen, listScreen)
+//    {
+//        connect(screen, &QScreen::availableGeometryChanged, this, &MainWindow::slot_availableGeometryChanged);
+//        connect(screen, &QScreen::physicalDotsPerInchChanged, this, &MainWindow::slot_physicalDotsPerInchChanged);
+//        connect(screen, &QScreen::logicalDotsPerInchChanged, this, &MainWindow::slot_logicalDotsPerInchChanged);
+//        connect(screen, &QScreen::virtualGeometryChanged, this, &MainWindow::slot_virtualGeometryChanged);
+//        connect(screen, &QScreen::physicalSizeChanged, this, &MainWindow::slot_physicalSizeChanged);
+//        connect(screen, &QScreen::primaryOrientationChanged, this, &MainWindow::slot_primaryOrientationChanged);
+//        connect(screen, &QScreen::orientationChanged, this, &MainWindow::slot_orientationChanged);
+//        connect(screen, &QScreen::refreshRateChanged, this, &MainWindow::slot_refreshRateChanged);
+//    }
 
 }
 
@@ -557,11 +477,6 @@ void MainWindow::slot_desktopwidgetPrimaryScreenChanged(){
 
 }
 
-double MainWindow::getTabBarWidth(QTabBar *tabBar, const QString &text){
-    int pixelsWidth = tabBar->fontMetrics().width(text);
-    return pixelsWidth;
-}
-
 void MainWindow::slot_minSize(bool checked){
     this->showMinimized();
 }
@@ -586,6 +501,15 @@ void MainWindow::slot_theme(bool checked){
     }
     else
     {
+        //此控件默认未显示出来，此时设置它的样式不生效，故在第一次打开时设置其样式
+        if(m_isFirstOpenThemePopup){
+            if(this->m_themeListWidget){
+                this->m_themeListWidget->setStyleSheet(frameworkTool::getAppCss());
+                this->m_themeListWidget->getListWidget()->setStyleSheet(frameworkTool::getAppCss());
+
+                m_isFirstOpenThemePopup = false;
+            }
+        }
         QPoint mousePoint(ui->btn_theme->mapToGlobal(QPoint(0, 0)));
         this->m_themeListWidget->move(mousePoint.x(), mousePoint.y() + ui->btn_theme->height());
         this->m_themeListWidget->setVisible(true);
@@ -606,182 +530,34 @@ void MainWindow::slot_themeSelectedItem(const int &index, const QVariant propert
     }
 }
 
-void MainWindow::addTab(IPlugIn *plugIn){
-    PlugInProperty property = plugIn->getPlugInProperty();
-    ModuleProperty moduleProperty = ModuleBase::convertFrom(property);
-
-    if(moduleProperty.multipleInstance <= 0){
-        return;
-    }
-
-    QWidget *widget = plugIn->getWidget();
-    int index = ui->tabWidget->indexOf(widget);
-    if(index < 0)
-    {
-        if(property.icon.isEmpty()){
-            index = ui->tabWidget->addTab(widget, property.displayName);
-        }
-        else{
-            index = ui->tabWidget->addTab(widget, QIcon(property.icon), property.displayName);
-        }
-    }
-    else{
-        if(moduleProperty.multipleInstance > 1){
-            if(m_tabs.contains(property.name)){
-                if(m_tabs.value(property.name) >= moduleProperty.multipleInstance){
-                    if(m_notify != nullptr){
-                        m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::WarnLevel, "警告", "功能模块【" + property.displayName + "】已加载了 " + QString::number(m_tabs.value(property.name)) + " 个，不能再加载新实例了！")));
-                    }
-                    return;
-                }
-            }
-
-            int newIndex = -1;
-            widget = plugIn->createNewPlugin()->getWidget();
-            if(property.icon.isEmpty()){
-                newIndex = ui->tabWidget->addTab(widget, property.displayName);
-            }
-            else{
-                newIndex = ui->tabWidget->addTab(widget, QIcon(property.icon), property.displayName);
-            }
-            if(newIndex == index){
-                if(m_notify != nullptr){
-                    m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::ErrorLevel, "错误", "功能模块【" + property.displayName + "】加载异常！此功能可加载多个实例，但当前实例和已打开的此功能模块为同一实例。")));
-                }
-                ui->tabWidget->setCurrentIndex(index);
-                return;
-            }
-            else{
-                index = newIndex;
-            }
-        }
-        else{
-            if(m_notify != nullptr){
-                m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::WarnLevel, "警告", "功能模块【" + property.displayName + "】重复加载！此功能仅可加载1个实例，已跳转到已打开的此功能模块。")));
-            }
-            ui->tabWidget->setCurrentIndex(index);
-            return;
-        }
-    }
-    ui->tabWidget->setCurrentIndex(index);
-    ui->tabWidget->tabBar()->setProperty(CUSTOMDATA, QVariant::fromValue(property));
-
-    //加上关闭按钮
-    bool canClose = true;
-    if(moduleProperty.multipleInstance > 0){
-        canClose = moduleProperty.canClose;
-        //此插件的内容不可关闭时
-        if(!canClose){
-            ((QTabBar*)(ui->tabWidget->tabBar()))->setTabButton(index, QTabBar::RightSide, NULL);
-            m_alwaysOpenModules.append(widget);
-        }
-    }
-    if(canClose){
-//        QPushButton *closeBtn = new QPushButton();
-//        closeBtn->setProperty("isIconNoPadding", "true");
-//        closeBtn->setProperty(CUSTOMDATA, QVariant::fromValue(property));
-//        closeBtn->setIcon(QIcon("./appPics/svgs/theme/close.svg"));
-//        closeBtn->setProperty("index", index);
-//        ((QTabBar*)(ui->tabWidget->tabBar()))->setTabButton(index,QTabBar::RightSide, closeBtn);
-//        connect(closeBtn, &QPushButton::clicked, this, &MainWindow::slot_closeTab);
-
-        foreach (QWidget *widget, m_alwaysOpenModules) {
-            if(widget){
-                int index = ui->tabWidget->indexOf(widget);
-                ((QTabBar*)(ui->tabWidget->tabBar()))->setTabButton(index, QTabBar::RightSide, NULL);
-            }
-        }
-    }
-
-    if(!m_tabs.contains(property.name)){
-        m_tabs.insert(property.name, 1);
-    }
-    else{
-        m_tabs[property.name]++;
-    }
-    m_tabPropertys.insert(property.displayName, property);
-
-    if(m_notify != nullptr){
-        m_notify->sendData(QVariant::fromValue(NotifyStruct(NotifyLevel::SuccessLevel, "成功", "功能模块【" + property.displayName + "】加载成功！")));
-    }
-
-}
-
-//tab的关闭按钮被点击的槽
-void MainWindow::slot_tabCloseRequested(int index)
-{
-    QWidget *widget = ui->tabWidget->widget(index);
-    if(widget){
-        IPlugIn *plugin = qobject_cast<IPlugIn *>(widget);
-        if(plugin){
-            PlugInProperty property = plugin->getPlugInProperty();
-            m_tabIsClosing = true;
-            ui->tabWidget->removeTab(index);
-            if(m_tabs.contains(property.name)){
-                m_tabs[property.name]--;
-            }
-            delete widget;
-            m_tabIsClosing = false;
-        }
-    }
-}
-
-void MainWindow::slot_tabCurrentChanged(int index){
-    if(index >= 0){
-        if(m_tabIsClosing){
-            auto widget = ui->tabWidget->widget(index);
-//            IUiModule *currentUI = dynamic_cast<IUiModule *>(widget);
-//            if(currentUI && currentUI != nullptr){
-//                ILogicModule *logicModule = currentUI->getLogicModule();
-//                if(logicModule && logicModule != nullptr){
-//                    ModuleProperty moduleInfo = logicModule->getModuleProperty();
-//                    if(logicModule->getTaskObject()->getTaskType() == TaskType::E_ReplayTask){
-//                        moduleInfo.tag = Globalstatisdata::instance()->getReplayStr();
-//                    }
-//                    this->slot_SelectedFunction(moduleInfo);
-//                }
-//            }
-        }
-        else{
-//            this->m_controlBarWidget->getControl()->setCurrentItem(index);
-        }
-    }
-}
-
-void MainWindow::slot_listWidgetItemClicked(QListWidgetItem *item){
-    QWidget *widget = ui->listWidget->itemWidget(item);
-    if(widget != nullptr){
-        ModuleProperty property = widget->property(CUSTOMDATA).value<ModuleProperty>();
-
-        QString path = PluginManager::instance()->getPath(property.name);
-        PluginManager::instance()->loadPlugin(path);
-        QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
-        if(loader != nullptr){
-            IPlugIn *plugin = qobject_cast<IPlugIn *>(loader->instance());
-            if(plugin)
-            {
-                this->addTab(plugin);
-            }
-        }
-    }
-}
-
 /**
  * @brief MainWindow::slot_cssStyleChanged 系统的css样式改变后，主界面的额外处理
  */
 void MainWindow::slot_cssStyleChanged(){
-    this->m_menuBar->setStyleSheet(frameworkTool::getAppCss());
+    if(m_menuBar)
+        this->m_menuBar->setStyleSheet(frameworkTool::getAppCss());
+    if(this->m_themeListWidget){
+        this->m_themeListWidget->setStyleSheet(frameworkTool::getAppCss());
+        this->m_themeListWidget->getListWidget()->setStyleSheet(frameworkTool::getAppCss());
+    }
+    if(this->m_languageListWidget){
+        this->m_languageListWidget->setStyleSheet(frameworkTool::getAppCss());
+        this->m_languageListWidget->getListWidget()->setStyleSheet(frameworkTool::getAppCss());
+    }
+
     foreach (QMenu *menu, m_allMenus) {
         menu->setStyleSheet(frameworkTool::getAppCss());
     }
 
-    this->initIcon();
+    initIcon();
+
+    MainWindow::setIconSize(QSize(GlobalSizes::instance()->DefaultIconHeight(), GlobalSizes::instance()->DefaultIconHeight()));
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)//判断鼠标点击时是否小于标题栏高度
 {
     //判断鼠标在顶部区域内
-    if(ui->widget_top->geometry().contains(event->pos()))
+    if(ui->main_top->geometry().contains(event->pos()))
     {
         m_pressPoint = event->globalPos();//获取坐标
         m_isPressInDragArea = true;
@@ -804,3 +580,4 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)//鼠标释放
 {
     m_isPressInDragArea = false;
 }
+

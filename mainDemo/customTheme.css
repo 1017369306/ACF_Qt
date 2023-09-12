@@ -1,4 +1,4 @@
-/* ================================================ *
+﻿/* ================================================ *
 author:zhangyang
 lastedited:2022.12.18
 * ================================================ */
@@ -25,4 +25,16 @@ QTextEdit[PrimaryColor]{
 
 QListView[isPluginView="true"]::item{
     height: 8em;
+}
+
+DockPanelSplitter::handle
+{
+    background-color: $BorderColor;
+}
+DockPanelSplitter::handle:hover
+{
+    background-color: $SecondaryBorderColor;
+}
+DockPanelSplitter::handle:pressed{
+    background-color: $SecondaryBorderColor;
 }

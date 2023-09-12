@@ -4,4 +4,5 @@ SUBDIRS += \
     homePage \
     pluginView \
     loggerView \
-    nativeControls
+    nativeControls \
+    mapModule

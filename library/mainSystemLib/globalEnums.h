@@ -1,6 +1,7 @@
-#ifndef GLOBALENUMS_H
+﻿#ifndef GLOBALENUMS_H
 #define GLOBALENUMS_H
 
+#include "mainSystemLib_global.h"
 #include <QObject>
 #include <QMetaType>
 #include <QVariant>
@@ -36,7 +37,7 @@ Q_DECLARE_METATYPE(NotifyLevel)
 /**
  * @brief The LoggerBaseStruct struct 基类的日志结构体
  */
-struct LoggerBaseStruct{
+struct MAINSYSTEMLIB_EXPORT LoggerBaseStruct{
 
 public:
 
@@ -57,7 +58,7 @@ Q_DECLARE_METATYPE(LoggerBaseStruct)
 /**
  * @brief The NotifyStruct struct 通知消息的结构体
  */
-struct NotifyStruct{
+struct MAINSYSTEMLIB_EXPORT NotifyStruct{
 
 public:
 

@@ -1,6 +1,10 @@
+﻿//解决中文乱码
+#pragma execution_character_set("utf-8")
+
 #ifndef GLOBALCOLORS_H
 #define GLOBALCOLORS_H
 
+#include "globalResource_global.h"
 #include <QObject>
 
 /**
@@ -8,7 +12,7 @@
  * 作者 zhangyang
  * 日期 2022-05-25
  */
-class GlobalColors : public QObject
+class GLOBALRESOURCE_EXPORT GlobalColors : public QObject
 {
     Q_OBJECT
 

@@ -1,10 +1,11 @@
-#ifndef NOTIFY2CLASS_H
+﻿#ifndef NOTIFY2CLASS_H
 #define NOTIFY2CLASS_H
 
 #include <QObject>
 #include <globalInfoEnum.h>
 #include <globalEnums.h>
 #include <loggerBase.h>
+#include <defaultplugin.h>
 // 包含头文件
 #include "notifymanager.h"
 
@@ -12,7 +13,7 @@
 #define def_notifyTitle "title"
 #define def_notifyBody "body"
 
-class Notify2Class : public QObject, public IPlugIn
+class Notify2Class : public DefaultPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID Plugin_iid FILE "notifyLib.json")
@@ -21,29 +22,11 @@ public:
     Notify2Class();
     ~Notify2Class();
 
-    /**
-     * @brief getGUID 获取唯一识别编号
-     * @return 返回唯一识别编号
-     */
-    QUuid getGUID() override {return m_guid;}
-
      /**
      * @brief initModule 初始化模块
      * @return true：初始化成功；false:初始化失败
      */
     int initModule() override;
-
-    /**
-     * @brief run 运行插件
-     * @return
-     */
-    int run() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
-
-    /**
-     * @brief stop 停止插件
-     * @return
-     */
-    int stop() override {return GlobalInfo::GlobalInfoEnum::DealSuccess;}
 
     /**
      * @brief sendData 插件运行起来后，给其发送数据
@@ -57,36 +40,42 @@ public:
             case NotifyLevel::InfoLevel:
             {
                 notify.data.insert("icon", "./appPics/svgs/theme/info.svg"); // 自定义消息图标，也可传入QPixmap
-                LOG_INFO(notify.body.toStdString());
+                ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::INFO_LogLevel, notify.body.toStdString())));
+//                LOG_INFO(notify.body.toStdString());
                 break;
             }
             case NotifyLevel::SuccessLevel:
             {
                 notify.data.insert("icon", "./appPics/svgs/theme/success.svg"); // 自定义消息图标，也可传入QPixmap
-                LOG_INFO(notify.body.toStdString());
+                ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::INFO_LogLevel, notify.body.toStdString())));
+//                LOG_INFO(notify.body.toStdString());
                 break;
             }
             case NotifyLevel::WarnLevel:
             {
                 notify.data.insert("icon", "./appPics/svgs/theme/warn.svg"); // 自定义消息图标，也可传入QPixmap
-                LOG_WARN(notify.body.toStdString());
+                ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::WARN_LogLevel, notify.body.toStdString())));
+//                LOG_WARN(notify.body.toStdString());
                 break;
             }
             case NotifyLevel::ErrorLevel:
             {
                 notify.data.insert("icon", "./appPics/svgs/theme/error.svg"); // 自定义消息图标，也可传入QPixmap
-                LOG_ERROR(notify.body.toStdString());
+                ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::ERROR_LogLevel, notify.body.toStdString())));
+//                LOG_ERROR(notify.body.toStdString());
                 break;
             }
             case NotifyLevel::FatalLevel:
             {
                 notify.data.insert("icon", "./appPics/svgs/theme/fatal.svg"); // 自定义消息图标，也可传入QPixmap
-                LOG_FATAL(notify.body.toStdString());
+                ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::FATAL_LogLevel, notify.body.toStdString())));
+//                LOG_FATAL(notify.body.toStdString());
                 break;
             }
             default:{
-                notify.data.insert("icon", "./appPics/svgs/theme/info.svg"); // 自定义消息图标，也可传入QPixmap
-                LOG_TRACE(notify.body.toStdString());
+                notify.data.insert("icon", "./appPics/svgs/theme/trace.svg"); // 自定义消息图标，也可传入QPixmap
+                ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::TRACE_LogLevel, notify.body.toStdString())));
+//                LOG_TRACE(notify.body.toStdString());
                 break;
             }
             }
@@ -102,10 +91,6 @@ public:
      * @brief disModule 销毁模块
      */
     void disModule() override;
-
-    IPlugIn *createNewPlugin() override {return this;}
-
-    QWidget *getWidget(QWidget *parent = nullptr) override {return nullptr;}
 
     /**
      * @brief ThemeChanged 主题改变通知
@@ -124,11 +109,6 @@ private:
 private:
 
     NotifyManager *manager = nullptr;
-
-    /**
-     * @brief m_str_GUID 功能组件的唯一识别ID
-     */
-    QUuid m_guid;
 
 };
 

@@ -1,11 +1,12 @@
-#ifndef GLOBALINFOENUM_H
+﻿#ifndef GLOBALINFOENUM_H
 #define GLOBALINFOENUM_H
 
+#include "mainSystemLib_global.h"
 #include <QObject>
 #include <QHash>
 #include <QMetaObject>
 
-class GlobalInfo : public QObject
+class MAINSYSTEMLIB_EXPORT GlobalInfo : public QObject
 {
     Q_OBJECT
 public:

@@ -1,13 +1,14 @@
-#ifndef GLOBALSIZES_H
+﻿#ifndef GLOBALSIZES_H
 #define GLOBALSIZES_H
 
+#include "globalResource_global.h"
 #include <QObject>
 #include <QVariant>
 #include <QRectF>
 #include <QMetaObject>
 #include <QMetaProperty>
 
-class GlobalSizes : public QObject
+class GLOBALRESOURCE_EXPORT GlobalSizes : public QObject
 {
     Q_OBJECT
 
@@ -39,6 +40,11 @@ public:
     static const uint Const_PixHeight;
 
     /**
+     * @brief 控件的默认高度，设计时设定值
+     */
+    static const uint Const_DefaultControlHeight;
+
+    /**
      * @brief Const_LeftTopX ubuntu系统下，桌面区域的左上角点的位置，以100%缩放为标准
      */
     static const uint Const_LeftTopX;
@@ -48,7 +54,7 @@ public:
      * @brief updateSize 更新全局的大小值的属性值
      * @param rate 相对于Const_PixWidth，新的缩放比例
      */
-    void updateSize(const uint &rate);
+    void updateSize(const double &rate);
 
     /**
      * @brief DefaultMarginTop 默认的Margin-Top值

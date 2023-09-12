@@ -1,4 +1,4 @@
-#include "popuplistwidget.h"
+﻿#include "popuplistwidget.h"
 #include <QVBoxLayout>
 
 PopupListWidget::PopupListWidget(QWidget *parent) : QWidget(parent)

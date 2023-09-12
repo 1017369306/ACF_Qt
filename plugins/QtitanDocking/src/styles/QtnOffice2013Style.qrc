@@ -1,0 +1,6 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>../../res/Office2013/styleconfig.xml</file>
+    </qresource>
+</RCC>

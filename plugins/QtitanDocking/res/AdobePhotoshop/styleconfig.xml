@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE STYLE>
+<STYLE version="1.0">
+    <global>
+        <!--- StandardPalette -->
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="ToolTipText">#292929</color>
+                <color colorRole="ToolTipBase">#FCFCFC</color>
+                <color colorRole="Button">#F0F0F0</color>
+                <color colorRole="WindowText">#292929</color>
+                <color colorRole="ButtonText">#292929</color>
+                <color colorRole="Window">#F0F0F0</color>
+                <color colorRole="Base">#FCFCFC</color>
+                <color colorRole="AlternateBase">#F4F4F4</color>
+                <color colorRole="Text">#292929</color>
+                <color colorRole="BrightText">#FFFFFF</color>
+                <color colorRole="Light">#CCCCCC</color>
+                <color colorRole="Midlight">#CCCCCC</color>
+                <color colorRole="Dark">#CCCCCC</color>
+                <color colorRole="Mid">#CCCCCC</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="ToolTipText">#292929</color>
+                <color colorRole="ToolTipBase">#FCFCFC</color>
+                <color colorRole="Button">#F0F0F0</color>
+                <color colorRole="WindowText">#292929</color>
+                <color colorRole="ButtonText">#292929</color>
+                <color colorRole="Window">#F0F0F0</color>
+                <color colorRole="Base">#FCFCFC</color>
+                <color colorRole="AlternateBase">#F4F4F4</color>
+                <color colorRole="Text">#292929</color>
+                <color colorRole="Light">#CCCCCC</color>
+                <color colorRole="Midlight">#CCCCCC</color>
+                <color colorRole="Dark">#CCCCCC</color>
+                <color colorRole="Mid">#CCCCCC</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Button">#F0F0F0</color>
+                <color colorRole="Window">#F0F0F0</color>
+                <color colorRole="Base">#FAFAFA</color>
+                <color colorRole="WindowText">#A8A8A8</color>
+                <color colorRole="ButtonText">#A8A8A8</color>
+                <color colorRole="Text">#A8A8A8</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="ToolTipText">#272727</color>
+                <color colorRole="ToolTipBase">#D1D1D1</color>
+                <color colorRole="Button">#B8B8B8</color>
+                <color colorRole="WindowText">#333333</color>
+                <color colorRole="ButtonText">#333333</color>
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Base">#D1D1D1</color>
+                <color colorRole="AlternateBase">#F4F4F4</color>
+                <color colorRole="Text">#333333</color>
+                <color colorRole="BrightText">#333333</color>
+                <color colorRole="Light">#949494</color>
+                <color colorRole="Midlight">#949494</color>
+                <color colorRole="Dark">#949494</color>
+                <color colorRole="Mid">#949494</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="ToolTipText">#272727</color>
+                <color colorRole="ToolTipBase">#D1D1D1</color>
+                <color colorRole="Button">#B8B8B8</color>
+                <color colorRole="WindowText">#333333</color>
+                <color colorRole="ButtonText">#333333</color>
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Base">#D1D1D1</color>
+                <color colorRole="AlternateBase">#F4F4F4</color>
+                <color colorRole="Text">#333333</color>
+                <color colorRole="Light">#949494</color>
+                <color colorRole="Midlight">#949494</color>
+                <color colorRole="Dark">#949494</color>
+                <color colorRole="Mid">#949494</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Button">#B8B8B8</color>
+                <color colorRole="Window">#F0F0F0</color>
+                <color colorRole="Base">#BDBDBD</color>
+                <color colorRole="WindowText">#808080</color>
+                <color colorRole="ButtonText">#808080</color>
+                <color colorRole="Text">#808080</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="ToolTipText">#E1E1E1</color>
+                <color colorRole="ToolTipBase">#535353</color>
+                <color colorRole="Button">#535353</color>
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="ButtonText">#E1E1E1</color>
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Base">#454545</color>
+                <color colorRole="AlternateBase">#535353</color>
+                <color colorRole="Text">#E1E1E1</color>
+                <color colorRole="BrightText">#FFFFFF</color>
+                <color colorRole="Light">#383838</color>
+                <color colorRole="Midlight">#535353</color>
+                <color colorRole="Dark">#3E3E3E</color>
+                <color colorRole="Mid">#3E3E3E</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+                <color colorRole="Highlight">#6B6B6B</color>
+                <color colorRole="HighlightedText">#E1E1E1</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="ToolTipText">#E1E1E1</color>
+                <color colorRole="ToolTipBase">#535353</color>
+                <color colorRole="Button">#535353</color>
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="ButtonText">#E1E1E1</color>
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Base">#454545</color>
+                <color colorRole="AlternateBase">#535353</color>
+                <color colorRole="Text">#E1E1E1</color>
+                <color colorRole="Light">#383838</color>
+                <color colorRole="Midlight">#535353</color>
+                <color colorRole="Dark">#3E3E3E</color>
+                <color colorRole="Mid">#3E3E3E</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+                <color colorRole="Highlight">#6B6B6B</color>
+                <color colorRole="HighlightedText">#E1E1E1</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Button">#4D4D4D</color>
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Base">#4D4D4D</color>
+                <color colorRole="WindowText">#878787</color>
+                <color colorRole="ButtonText">#878787</color>
+                <color colorRole="Text">#878787</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="ToolTipText">#E9E9E9</color>
+                <color colorRole="ToolTipBase">#323232</color>
+                <color colorRole="Button">#323232</color>
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="ButtonText">#E1E1E1</color>
+                <color colorRole="Window">#323232</color>
+                <color colorRole="Base">#292929</color>
+                <color colorRole="AlternateBase">#353535</color>
+                <color colorRole="Text">#E1E1E1</color>
+                <color colorRole="BrightText">#E1E1E1</color>
+                <color colorRole="Light">#262626</color>
+                <color colorRole="Midlight">#262626</color>
+                <color colorRole="Dark">#262626</color>
+                <color colorRole="Mid">#262626</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+                <color colorRole="Highlight">#6B6B6B</color>
+                <color colorRole="HighlightedText">#E1E1E1</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="ToolTipText">#E9E9E9</color>
+                <color colorRole="ToolTipBase">#323232</color>
+                <color colorRole="Button">#323232</color>
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="ButtonText">#E1E1E1</color>
+                <color colorRole="Window">#323232</color>
+                <color colorRole="Base">#292929</color>
+                <color colorRole="AlternateBase">#353535</color>
+                <color colorRole="Text">#E1E1E1</color>
+                <color colorRole="Light">#262626</color>
+                <color colorRole="Midlight">#262626</color>
+                <color colorRole="Dark">#262626</color>
+                <color colorRole="Mid">#262626</color>
+                <color colorRole="Shadow">#3E3E3E</color>
+                <color colorRole="Highlight">#6B6B6B</color>
+                <color colorRole="HighlightedText">#E1E1E1</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Button">#4D4D4D</color>
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Base">#292929</color>
+                <color colorRole="WindowText">#878787</color>
+                <color colorRole="ButtonText">#878787</color>
+                <color colorRole="Text">#878787</color>
+            </colors>
+        </palette>
+        <!--- StandardPixmap -->
+        <standardPixmap>
+            <colorState theme="LightGray" state="Black">#787878</colorState>
+            <colorState theme="LightGray" state="Gray">#B5B5B5</colorState>
+            <colorState theme="Gray" state="Black">#525252</colorState>
+            <colorState theme="Gray" state="Gray">#858585</colorState>
+            <colorState theme="DarkGray" state="Black">#A8A8A8</colorState>
+            <colorState theme="DarkGray" state="Gray">#707070</colorState>
+            <colorState theme="DarkGray" state="White">#ADADAD</colorState>
+            <colorState theme="Black" state="Black">#808080</colorState>
+            <colorState theme="Black" state="Gray">#707070</colorState>
+            <colorState theme="Black" state="White">#ADADAD</colorState>
+            
+            <pixmap id="Image_Close" size="9x9">titlebar_close-9x9.png</pixmap>
+            <pixmap id="Image_Close" size="11x11">titlebar_close-11x11.png</pixmap>
+            <pixmap id="Image_Close" size="13x13">titlebar_close-13x13.png</pixmap>
+            <pixmap id="Image_Close" size="18x18">titlebar_close-18x18.png</pixmap>
+            <pixmap id="Image_Normal" size="9x9">titlebar_normal-9x9.png</pixmap>
+            <pixmap id="Image_Normal" size="11x11">titlebar_normal-11x11.png</pixmap>
+            <pixmap id="Image_Normal" size="13x13">titlebar_normal-13x13.png</pixmap>
+            <pixmap id="Image_Normal" size="18x18">titlebar_normal-18x18.png</pixmap>
+            <pixmap id="Image_Restore" size="9x9">titlebar_restore-9x9.png</pixmap>
+            <pixmap id="Image_Restore" size="11x11">titlebar_restore-11x11.png</pixmap>
+            <pixmap id="Image_Restore" size="13x13">titlebar_restore-13x13.png</pixmap>
+            <pixmap id="Image_Restore" size="18x18">titlebar_restore-18x18.png</pixmap>
+            <pixmap id="Image_Minimize" size="9x9">titlebar_minimize-9x9.png</pixmap>
+            <pixmap id="Image_Minimize" size="11x11">titlebar_minimize-11x11.png</pixmap>
+            <pixmap id="Image_Minimize" size="13x13">titlebar_minimize-13x13.png</pixmap>
+            <pixmap id="Image_Minimize" size="18x18">titlebar_minimize-18x18.png</pixmap>
+            <pixmap id="Image_ArowDownMenu" size="9x9">indicator_arrowdown-9x9.png</pixmap>
+            <pixmap id="Image_ArowDownMenu" size="11x11">indicator_arrowdown-11x11.png</pixmap>
+            <pixmap id="Image_ArowDownMenu" size="13x13">indicator_arrowdown-13x13.png</pixmap>
+            <pixmap id="Image_ArowDownMenu" size="18x18">indicator_arrowdown-18x18.png</pixmap>
+            <pixmap id="Image_ArowUpMenu" size="9x9">indicator_arrowup-9x9.png</pixmap>
+            <pixmap id="Image_ArowUpMenu" size="11x11">indicator_arrowup-11x11.png</pixmap>
+            <pixmap id="Image_ArowUpMenu" size="13x13">indicator_arrowup-13x13.png</pixmap>
+            <pixmap id="Image_ArowUpMenu" size="18x18">indicator_arrowup-18x18.png</pixmap>
+            <pixmap id="Image_GroupOption" size="9x9">group_option-9x9.png</pixmap>
+            <pixmap id="Image_GroupOption" size="11x11">group_option-11x11.png</pixmap>
+            <pixmap id="Image_GroupOption" size="13x13">group_option-13x13.png</pixmap>
+            <pixmap id="Image_GroupOption" size="18x18">group_option-18x18.png</pixmap>
+            <pixmap id="Image_RibbonButtonPopupMenu" size="9x9">qaccess_button-9x9.png</pixmap>
+            <pixmap id="Image_RibbonButtonPopupMenu" size="11x11">qaccess_button-11x11.png</pixmap>
+            <pixmap id="Image_RibbonButtonPopupMenu" size="13x13">qaccess_button-13x13.png</pixmap>
+            <pixmap id="Image_RibbonButtonPopupMenu" size="18x18">qaccess_button-18x18.png</pixmap>
+            <pixmap id="Image_ShadedArrowDown" size="9x9">indicator_shadedarrowdown-9x9.png</pixmap>
+            <pixmap id="Image_ShadedArrowDown" size="11x11">indicator_shadedarrowdown-11x11.png</pixmap>
+            <pixmap id="Image_ShadedArrowDown" size="13x13">indicator_shadedarrowdown-13x13.png</pixmap>
+            <pixmap id="Image_ShadedArrowDown" size="18x18">indicator_shadedarrowdown-18x18.png</pixmap>
+            <pixmap id="Image_ShadedArrowUp" size="9x9">indicator_shadedarrowup-9x9.png</pixmap>
+            <pixmap id="Image_ShadedArrowUp" size="11x11">indicator_shadedarrowup-11x11.png</pixmap>
+            <pixmap id="Image_ShadedArrowUp" size="13x13">indicator_shadedarrowup-13x13.png</pixmap>
+            <pixmap id="Image_ShadedArrowUp" size="18x18">indicator_shadedarrowup-18x18.png</pixmap>
+            <pixmap id="Image_MenuCheckMark" size="9x9">indicator_menucheckmark-9x9.png</pixmap>
+            <pixmap id="Image_MenuCheckMark" size="11x11">indicator_menucheckmark-11x11.png</pixmap>
+            <pixmap id="Image_MenuCheckMark" size="13x13">indicator_menucheckmark-13x13.png</pixmap>
+            <pixmap id="Image_MenuCheckMark" size="18x18">indicator_menucheckmark-18x18.png</pixmap>
+        </standardPixmap>
+        <!--- PixelMetric -->
+        <pixelMetric>
+            <metric number="SplitterWidth">4</metric>
+            <metric number="MenuButtonIndicator">12</metric>
+            <metric number="LargeIconSize">32</metric>
+            <metric number="ButtonIconSize">16</metric>
+            <metric number="SmallIconSize">16</metric>
+            <metric number="ScrollBarExtent">14</metric>
+            <metric number="ToggleSwitchThumbSize">2</metric>
+        </pixelMetric>
+        <!--- StyleHint -->
+        <styleHint>
+            <hint number="UnderlineShortcut">0</hint>
+            <hint number="RibbonStyledFrame">1</hint>
+            <hint number="ComboBox_ListMouseTracking">1</hint>
+        </styleHint>
+    </global>
+    <!--- Widgets -->
+    <widget className="QMainWindow" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Midlight">#F0F0F0</color>
+                <color colorRole="Light">#CCCCCC</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Midlight">#F0F0F0</color>
+                <color colorRole="Light">#CCCCCC</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Midlight">#B8B8B8</color>
+                <color colorRole="Light">#949494</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Midlight">#B8B8B8</color>
+                <color colorRole="Light">#949494</color>
+            </colors>
+        </palette>
+        <subControl id="TitleBarCloseButton">
+            <palette theme="LightGray">
+                <colors colorGroup="Active">
+                    <color colorRole="Light">#A8A8A8</color>
+                    <color colorRole="Highlight">#FAFAFA</color>
+                </colors>
+            </palette>
+            <palette theme="Gray">
+                <colors colorGroup="Active">
+                    <color colorRole="Light">#707070</color>
+                    <color colorRole="Highlight">#CCCCCC</color>
+                </colors>
+            </palette>
+            <palette theme="DarkGray">
+                <colors colorGroup="Active">
+                    <color colorRole="Light">#636363</color>
+                    <color colorRole="Highlight">#474747</color>
+                </colors>
+            </palette>
+            <palette theme="Black">
+                <colors colorGroup="Active">
+                    <color colorRole="Light">#3E3E3E</color>
+                    <color colorRole="Highlight">#292929</color>
+                </colors>
+            </palette>
+        </subControl>
+        <pixelMetric>
+            <metric number="MdiSubWindowFrameWidth" scalableDpi="true">3</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QMdiArea" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="Base">#282828</color>
+                <color colorRole="Light">#3E3E3E</color>
+                <color colorRole="Dark">#3E3E3E</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="All">
+                <color colorRole="Base">#282828</color>
+                <color colorRole="Light">#282828</color>
+                <color colorRole="Dark">#282828</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QMenuBar" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="MenuBarPanelWidth" scalableDpi="true">0</metric>
+        </pixelMetric>
+        <styleHint>
+            <hint number="MenuBar_MouseTracking">1</hint>
+        </styleHint>
+    </widget>
+    <widget className="QMenu" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#F0F0F0</color>
+                <color colorRole="Text">#000000</color>
+                <color colorRole="ButtonText">#000000</color>
+                <color colorRole="Dark">#A0A0A0</color>
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#F0F0F0</color>
+                <color colorRole="Text">#000000</color>
+                <color colorRole="ButtonText">#000000</color>
+                <color colorRole="Dark">#A0A0A0</color>
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="WindowText">#E1E1E1</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="WindowText">#878787</color>
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="MenuPanelWidth" scalableDpi="true">0</metric>
+        </pixelMetric>
+        <styleHint>
+            <hint number="Menu_MouseTracking">1</hint>
+            <hint number="Menu_SupportsSections">1</hint>
+        </styleHint>
+    </widget>
+    <widget className="OfficePopupMenu" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#FCFCFC</color>
+                <color colorRole="Light">#F0F0F0</color> <!--- Separator -->
+                <color colorRole="Midlight">#B8B8B8</color> <!--- Grip -->
+                <color colorRole="Button">#FCFCFC</color> <!--- LineGrip -->
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Light">#D1D1D1</color> <!--- Separator -->
+                <color colorRole="Midlight">#B8B8B8</color> <!--- Grip -->
+                <color colorRole="Button">#E4E4E4</color> <!--- LineGrip -->
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Light">#F0F0F0</color>
+                <color colorRole="Midlight">#B8B8B8</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="Midlight">#808080</color> <!--- Grip -->
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="MenuPanelWidth" scalableDpi="true">0</metric>
+        </pixelMetric>
+        <styleHint>
+            <hint number="Menu_MouseTracking">1</hint>
+        </styleHint>
+    </widget>
+    <widget className="QToolBar" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="ToolBarHandleExtent" scalableDpi="false">3</metric>
+            <metric number="ToolBarItemMargin" scalableDpi="false">5</metric>
+            <metric number="ToolBarItemSpacing" scalableDpi="false">0</metric>
+            <metric number="ToolBarFrameWidth" scalableDpi="false">1</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="RibbonSystemButton" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#1979CA</color>
+                <color colorRole="ButtonText">#FFFFFF</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#1979CA</color>
+                <color colorRole="ButtonText">#FFFFFF</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonSystemMenu" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#9B9B9B</color>
+                <color colorRole="Light">#AAAAAA</color>
+                <color colorRole="Mid">#3C3C3C</color>
+                <color colorRole="Midlight">#AAAAAA</color>
+                <color colorRole="Dark">#E1E1E1</color>
+                <color colorRole="WindowText">#000000</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="WindowText">#787878</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#323232</color>
+                <color colorRole="Dark">#E1E1E1</color>
+                <color colorRole="Mid">#595959</color>
+                <color colorRole="Midlight">#595959</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonPageSystemRecentFileList" hover="true" autoFillBackground="false">
+        <palette theme="Gray">
+            <colors colorGroup="All">
+                <color colorRole="WindowText">#333333</color>
+                <color colorRole="HighlightedText">#333333</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="WindowText">#AAAAAA</color>
+                <color colorRole="HighlightedText">#333333</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="WindowText">#AAAAAA</color>
+                <color colorRole="HighlightedText">#333333</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonPageSystemPopup" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#9B9B9B</color>
+                <color colorRole="Light">#AAAAAA</color>
+                <color colorRole="Mid">#3C3C3C</color>
+                <color colorRole="Midlight">#AAAAAA</color>
+                <color colorRole="Dark">#FFFFFF</color>
+                <color colorRole="WindowText">#000000</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="WindowText">#787878</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#323232</color>
+                <color colorRole="Dark">#FFFFFF</color>
+                <color colorRole="Mid">#595959</color>
+                <color colorRole="Midlight">#595959</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonQuickAccessBar" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="ToolBarHandleExtent" scalableDpi="false">3</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="RibbonBar" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#FCFCFC</color>
+                <color colorRole="Midlight">#CCCCCC</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#FCFCFC</color>
+                <color colorRole="Midlight">#CCCCCC</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#D1D1D1</color>
+                <color colorRole="Midlight">#9C9C9C</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#D1D1D1</color>
+                <color colorRole="Midlight">#9C9C9C</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#454545</color>
+                <color colorRole="Dark">#262626</color>
+                <color colorRole="Midlight">#3C3C3C</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#454545</color>
+                <color colorRole="Dark">#262626</color>
+                <color colorRole="Midlight">#3C3C3C</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#292929</color>
+                <color colorRole="Dark">#161616</color>
+                <color colorRole="Base">#292929</color>
+                <color colorRole="Midlight">#262626</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#292929</color>
+                <color colorRole="Dark">#161616</color>
+                <color colorRole="Base">#292929</color>
+                <color colorRole="Midlight">#262626</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonGroup" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="All">
+                <color colorRole="Midlight">#CCCCCC</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="All">
+                <color colorRole="Midlight">#9C9C9C</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="Midlight">#3C3C3C</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="All">
+                <color colorRole="Midlight">#484848</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonBackstageView" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#F0F0F0</color>
+                <color colorRole="Light">#CCCCCC</color>
+                <color colorRole="Midlight">#F0F0F0</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#F0F0F0</color>
+                <color colorRole="Light">#CCCCCC</color>
+                <color colorRole="Midlight">#F0F0F0</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Light">#949494</color>
+                <color colorRole="Midlight">#B8B8B8</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Light">#949494</color>
+                <color colorRole="Midlight">#B8B8B8</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Light">#383838</color>
+                <color colorRole="Midlight">#535353</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Light">#383838</color>
+                <color colorRole="Midlight">#535353</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#323232</color>
+                <color colorRole="Light">#262626</color>
+                <color colorRole="Midlight">#323232</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#323232</color>
+                <color colorRole="Light">#262626</color>
+                <color colorRole="Midlight">#323232</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonBackstageButton" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Button">#FFFFFF</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Button">#FFFFFF</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Button">#D4D4D4</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Button">#D4D4D4</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Button">#D4D4D4</color>
+                <color colorRole="ButtonText">#262626</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Button">#D4D4D4</color>
+                <color colorRole="ButtonText">#262626</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Button">#303030</color>
+                <color colorRole="ButtonText">#E9E9E9</color>
+                <color colorRole="Highlight">#575757</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Button">#303030</color>
+                <color colorRole="ButtonText">#E9E9E9</color>
+                <color colorRole="Highlight">#575757</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonKeyTip" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray,Black">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#FFD633</color>
+                <color colorRole="Midlight">#FFD633</color>
+                <color colorRole="Dark">#FFD633</color>
+                <color colorRole="ToolTipText">#000000</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Base">#FFD633</color>
+                <color colorRole="Midlight">#FFD633</color>
+                <color colorRole="Dark">#FFD633</color>
+                <color colorRole="ToolTipText">#000000</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#FFD633</color>
+                <color colorRole="Midlight">#FFD633</color>
+                <color colorRole="Dark">#FFD633</color>
+                <color colorRole="ToolTipText">#000000</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QToolButton" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="ButtonShiftHorizontal" scalableDpi="false">0</metric>
+            <metric number="ButtonShiftVertical" scalableDpi="false">0</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="DockTitleBar" hover="false" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#007ACC</color>
+                <color colorRole="WindowText">#FFFFFF</color>
+                <color colorRole="Dark">#59A8DE</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#EEEEF2</color>
+                <color colorRole="WindowText">#444444</color>
+                <color colorRole="Dark">#999999</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#007ACC</color>
+                <color colorRole="WindowText">#FFFFFF</color>
+                <color colorRole="Dark">#59A8DE</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="WindowText">#272727</color>
+                <color colorRole="Dark">#46464A</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#6B6B6B</color>
+                <color colorRole="WindowText">#FFFFFF</color>
+                <color colorRole="Dark">#A1A1A1</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="WindowText">#D0D0D0</color>
+                <color colorRole="Dark">#46464A</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#6B6B6B</color>
+                <color colorRole="WindowText">#FFFFFF</color>
+                <color colorRole="Dark">#59A8DE</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#262626</color>
+                <color colorRole="WindowText">#D0D0D0</color>
+                <color colorRole="Dark">#46464A</color>
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="DockWidgetTitleBarButtonMargin">4</metric>
+            <metric number="DockWidgetTitleMargin">1</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="DockWidgetTitleButton" hover="false" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="WindowText">#6C6C6C</color>
+                <color colorRole="HighlightedText">#202020</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="WindowText">#202020</color>
+                <color colorRole="HighlightedText">#202020</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="WindowText">#272727</color>
+                <color colorRole="HighlightedText">#272727</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="WindowText">#272727</color>
+                <color colorRole="HighlightedText">#272727</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Shadow">#0E6198</color>
+                <color colorRole="Highlight">#52B0EF</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Shadow">#0E6198</color>
+                <color colorRole="Highlight">#393939</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Shadow">#0E6198</color>
+                <color colorRole="Highlight">#52B0EF</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Shadow">#0E6198</color>
+                <color colorRole="Highlight">#393939</color>
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="DockWidgetTitleBarButtonMargin">4</metric>
+            <metric number="DockWidgetTitleMargin">1</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QDockWidget" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="DockWidgetTitleMargin" scalableDpi="true">4</metric>
+            <metric number="DockWidgetTitleBarButtonMargin" scalableDpi="true">5</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QDockWidgetTitleButton" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#6B6B6B</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Highlight">#6B6B6B</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#6B6B6B</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Highlight">#6B6B6B</color>
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="DockWidgetTitleBarButtonMargin" scalableDpi="true">5</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QScrollBar" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Button">#939393</color>
+                <color colorRole="Light">#ADADAD</color>
+                <color colorRole="Dark">#AFAFAF</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Button">#939393</color>
+                <color colorRole="Light">#ADADAD</color>
+                <color colorRole="Dark">#AFAFAF</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Button">#939393</color>
+                <color colorRole="Light">#ADADAD</color>
+                <color colorRole="Dark">#AFAFAF</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Button">#939393</color>
+                <color colorRole="Light">#ADADAD</color>
+                <color colorRole="Dark">#AFAFAF</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QSlider" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#FFFFFF</color>
+                <color colorRole="Shadow">#CCCCCC</color>
+                <color colorRole="Dark">#CCCCCC</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#B8B8B8</color>
+                <color colorRole="Shadow">#6E6E6E</color>
+                <color colorRole="Dark">#6E6E6E</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#A8A8A8</color>
+                <color colorRole="Shadow">#757575</color>
+                <color colorRole="Dark">#383838</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="All">
+                <color colorRole="Button">#A8A8A8</color>
+                <color colorRole="Shadow">#757575</color>
+                <color colorRole="Dark">#383838</color>
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="SliderTickmarkOffset">4</metric>
+            <metric number="SliderThickness">10</metric>
+            <metric number="SliderLength">10</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="RibbonSliderSlider" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#FFFFFF</color>
+                <color colorRole="Shadow">#CCCCCC</color>
+                <color colorRole="Dark">#CCCCCC</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#B8B8B8</color>
+                <color colorRole="Shadow">#6E6E6E</color>
+                <color colorRole="Dark">#6E6E6E</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="Button">#A8A8A8</color>
+                <color colorRole="Shadow">#757575</color>
+                <color colorRole="Dark">#383838</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="All">
+                <color colorRole="Button">#A8A8A8</color>
+                <color colorRole="Shadow">#757575</color>
+                <color colorRole="Dark">#383838</color>
+            </colors>
+        </palette>
+        <pixelMetric>
+            <metric number="SliderTickmarkOffset">4</metric>
+            <metric number="SliderThickness">10</metric>
+            <metric number="SliderLength">7</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QCheckBox" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="ButtonText">#6C6C6C</color>
+                <color colorRole="Window">#6D6D6D</color>
+                <color colorRole="Base">#FFFFFF</color>
+                <color colorRole="Light">#FAFAFA</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="Window">#DEDEDE</color>
+                <color colorRole="Base">#FFFFFF</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="ButtonText">#6C6C6C</color>
+                <color colorRole="Window">#4C4C4C</color>
+                <color colorRole="Base">#CCCCCC</color>
+                <color colorRole="Light">#CCCCCC</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Base">#B8B8B8</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Light">#404040</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Light">#404040</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QRadioButton" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="ButtonText">#6C6C6C</color>
+                <color colorRole="Window">#6D6D6D</color>
+                <color colorRole="Base">#FFFFFF</color>
+                <color colorRole="Light">#FAFAFA</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="Window">#DEDEDE</color>
+                <color colorRole="Base">#FFFFFF</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="ButtonText">#6C6C6C</color>
+                <color colorRole="Window">#4C4C4C</color>
+                <color colorRole="Base">#CCCCCC</color>
+                <color colorRole="Light">#CCCCCC</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Base">#B8B8B8</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Light">#404040</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Light">#404040</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QPushButton" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QComboBox" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QAbstractSpinBox" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#F0F0F0</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#B8B8B8</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+                <color colorRole="Mid">#3E3E3E</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Mid">#3E3E3E</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#292929</color>
+                <color colorRole="Mid">#262626</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QLineEdit" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#F0F0F0</color>
+                <color colorRole="Light">#808080</color>
+                <color colorRole="Window">#5C5C5C</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#B8B8B8</color>
+                <color colorRole="Light">#949494</color>
+                <color colorRole="Window">#5C5C5C</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Highlight">#3399FF</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#4D4D4D</color>
+                <color colorRole="Light">#808080</color>
+                <color colorRole="Window">#5C5C5C</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Disabled">
+                <color colorRole="Base">#4D4D4D</color>
+                <color colorRole="Light">#808080</color>
+                <color colorRole="Mid">#808080</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="AbstractTabBar" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="TabBarTabHSpace">24</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QTabBar" hover="true" autoFillBackground="false">
+        <pixelMetric>
+            <metric number="TabBarTabHSpace">24</metric>
+        </pixelMetric>
+    </widget>
+    <widget className="QToolBoxButton" hover="true" autoFillBackground="false"></widget>
+    <widget className="QTreeView" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+            </colors>
+        </palette>
+    </widget>
+    <widget className="QTableView" hover="true" autoFillBackground="false">
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+            </colors>
+        </palette>
+    </widget>
+    <widget className="RibbonGallery" hover="true" autoFillBackground="false">
+        <palette theme="LightGray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#F0F0F0</color>
+                <color colorRole="WindowText">#464646</color>
+                <color colorRole="Mid">#E8E8E8</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Base">#F0F0F0</color>
+                <color colorRole="WindowText">#464646</color>
+                <color colorRole="Mid">#E8E8E8</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Window">#F0F0F0</color>
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="Active">
+                <color colorRole="Base">#B8B8B8</color>
+                <color colorRole="WindowText">#303030</color>
+                <color colorRole="Mid">#B0B0B0</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Base">#B8B8B8</color>
+                <color colorRole="WindowText">#303030</color>
+                <color colorRole="Mid">#B0B0B0</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Window">#B8B8B8</color>
+                <color colorRole="Midlight">#949494</color>
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#535353</color>
+                <color colorRole="WindowText">#F0F0F0</color>
+                <color colorRole="Mid">#4D4D4D</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#535353</color>
+                <color colorRole="WindowText">#F0F0F0</color>
+                <color colorRole="Mid">#4D4D4D</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Window">#535353</color>
+                <color colorRole="Midlight">#535353</color>
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="Active">
+                <color colorRole="Window">#323232</color>
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="Mid">#2B2B2B</color>
+            </colors>
+            <colors colorGroup="Inactive">
+                <color colorRole="Window">#323232</color>
+                <color colorRole="WindowText">#E1E1E1</color>
+                <color colorRole="Mid">#2B2B2B</color>
+            </colors>
+            <colors colorGroup="Disabled">
+                <color colorRole="Window">#323232</color>
+                <color colorRole="Midlight">#262626</color>
+            </colors>
+        </palette>
+    </widget>
+    <widget className="ToggleSwitch">
+        <palette theme="LightGray">
+            <colors colorGroup="All">
+                <color colorRole="ButtonText">#FFFFFF</color> <!-- TextOn -->
+                <color colorRole="Text">#000000</color> <!-- TextOff -->
+                <color colorRole="Light">#8DA3C4</color> <!-- OutlineOnGroove -->
+                <color colorRole="Mid">#CACACA</color> <!-- OutlineOffGroove -->
+                <color colorRole="Highlight">#2B579A</color> <!-- FillOnGroove -->
+                <color colorRole="Button">#FFFFFF</color> <!-- FillOffGroove -->
+                <color colorRole="Dark">#A5A5A5</color> <!-- OutlineOnThumb -->
+                <color colorRole="Midlight">#A6A6A6</color> <!-- OutlineOffThumb -->
+                <color colorRole="Base">#EEEEEE</color> <!-- FillOnThumb -->
+                <color colorRole="Window">#EEEEEE</color> <!-- FillOffThumb -->
+            </colors>
+        </palette>
+        <palette theme="Gray">
+            <colors colorGroup="All">
+                <color colorRole="ButtonText">#FFFFFF</color> <!-- TextOn -->
+                <color colorRole="Text">#000000</color> <!-- TextOff -->
+                <color colorRole="Light">#899FC0</color> <!-- OutlineOnGroove -->
+                <color colorRole="Mid">#CACACA</color> <!-- OutlineOffGroove -->
+                <color colorRole="Highlight">#2B579A</color> <!-- FillOnGroove -->
+                <color colorRole="Button">#F1F1F1</color> <!-- FillOffGroove -->
+                <color colorRole="Dark">#C8C8C8</color> <!-- OutlineOnThumb -->
+                <color colorRole="Midlight">#CBCCCC</color> <!-- OutlineOffThumb -->
+                <color colorRole="Base">#E6E6E6</color> <!-- FillOnThumb -->
+                <color colorRole="Window">#E6E6E6</color> <!-- FillOffThumb -->
+            </colors>
+        </palette>
+        <palette theme="DarkGray">
+            <colors colorGroup="All">
+                <color colorRole="ButtonText">#FFFFFF</color> <!-- TextOn -->
+                <color colorRole="Text">#000000</color> <!-- TextOff -->
+                <color colorRole="Light">#788EAF</color> <!-- OutlineOnGroove -->
+                <color colorRole="Mid">#C8C8C8</color> <!-- OutlineOffGroove -->
+                <color colorRole="Highlight">#2B579A</color> <!-- FillOnGroove -->
+                <color colorRole="Button">#E5E5E5</color> <!-- FillOffGroove -->
+                <color colorRole="Dark">#ACACAC</color> <!-- OutlineOnThumb -->
+                <color colorRole="Midlight">#ADADAD</color> <!-- OutlineOffThumb -->
+                <color colorRole="Base">#C5C5C5</color> <!-- FillOnThumb -->
+                <color colorRole="Window">#C5C5C5</color> <!-- FillOffThumb -->
+            </colors>
+        </palette>
+        <palette theme="Black">
+            <colors colorGroup="All">
+                <color colorRole="ButtonText">#FFFFFF</color> <!-- TextOn -->
+                <color colorRole="Text">#FFFFFF</color> <!-- TextOff -->
+                <color colorRole="Light">#205D86</color> <!-- OutlineOnGroove -->
+                <color colorRole="Mid">#3B3B3B</color> <!-- OutlineOffGroove -->
+                <color colorRole="Highlight">#007ACC</color> <!-- FillOnGroove -->
+                <color colorRole="Button">#363636</color> <!-- FillOffGroove -->
+                <color colorRole="Dark">#5F5F5F</color> <!-- OutlineOnThumb -->
+                <color colorRole="Midlight">#5F5F5F</color> <!-- OutlineOffThumb -->
+                <color colorRole="Base">#404040</color> <!-- FillOnThumb -->
+                <color colorRole="Window">#404040</color> <!-- FillOffThumb -->
+            </colors>
+        </palette>
+    </widget>
+</STYLE>

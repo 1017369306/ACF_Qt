@@ -1,6 +1,7 @@
-#ifndef CUSTOMNATIVECONTROL_H
+﻿#ifndef CUSTOMNATIVECONTROL_H
 #define CUSTOMNATIVECONTROL_H
 
+#include "mainSystemLib_global.h"
 #include <QObject>
 #include <QTabWidget>
 #include <QTabBar>
@@ -8,7 +9,7 @@
 /**
  * @brief The CustomTabBar class 重写QTabBar，用于实现选项卡宽度自适应
  */
-class CustomTabBar : public QTabBar
+class MAINSYSTEMLIB_EXPORT CustomTabBar : public QTabBar
 {
 public:
     CustomTabBar(QWidget *parent = nullptr);

@@ -1,6 +1,7 @@
-#ifndef TASKBASE_H
+﻿#ifndef TASKBASE_H
 #define TASKBASE_H
 
+#include "mainSystemLib_global.h"
 #include <QObject>
 #include <ITask.h>
 #include <globalInfoEnum.h>
@@ -10,7 +11,7 @@
  * 作者 张洋
  * 日期 2022-12-04
  */
-class taskBase : public ITask
+class MAINSYSTEMLIB_EXPORT taskBase : public ITask
 {
 public:
     /**

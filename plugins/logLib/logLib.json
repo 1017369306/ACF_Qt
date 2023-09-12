@@ -1,5 +1,6 @@
-{
+﻿{
     "Name" : "logLib",
+    "Type" : "log",
     "DisplayName" : "log4Qt日志插件",
     "Description" : "log4Qt日志插件",
     "Category" : "Common Plugin",

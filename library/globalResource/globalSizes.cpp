@@ -1,10 +1,12 @@
-#include "globalSizes.h"
+﻿#include "globalSizes.h"
 #include <QtMath>
 
 GlobalSizes *GlobalSizes::m_instance = nullptr;
 
 const uint GlobalSizes::Const_PixWidth = 1280;
 const uint GlobalSizes::Const_PixHeight = 1024;
+
+const uint GlobalSizes::Const_DefaultControlHeight = 36;
 
 const uint GlobalSizes::Const_LeftTopX = 72;
 const uint GlobalSizes::Const_LeftTopY = 27;
@@ -31,7 +33,7 @@ void GlobalSizes::loadConstProperty(){
     }
 }
 
-void GlobalSizes::updateSize(const uint &rate){
+void GlobalSizes::updateSize(const double &rate){
     if(m_allConstPropertys.size() > 0){
         //        const QMetaObject *metaObj = this->metaObject();
         foreach (QString key, m_allConstPropertys.keys()) {

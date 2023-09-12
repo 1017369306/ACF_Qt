@@ -1,0 +1,18 @@
+﻿{
+    "Name" : "mapModule",
+    "Type" : "map",
+    "DisplayName" : "地图展示",
+    "Description" : "此界面主要用于展示地图元素（支持windows的wingw和msvc编译器，linux的cmake编译器）。",
+    "Category" : "Module Plugin",
+    "Icon" : "",
+    "Author" : "张洋",
+    "Version" : "V 1.0.0.0",
+    "Copyright" : "Copyright by zhangyang",
+    "Level" : 0,
+    "CustomData" : {
+        "MultipleInstance" : 2,
+        "CanClose" : true,
+        "Group" : 1,
+        "Index" : 3
+    }
+}

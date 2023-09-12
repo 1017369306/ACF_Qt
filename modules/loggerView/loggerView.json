@@ -1,8 +1,9 @@
-{
+﻿{
     "Name" : "loggerView",
+    "Type" : "logView",
     "DisplayName" : "日志管理",
     "Description" : "此界面用于查询系统的日志！",
-    "Category" : "Common Plugin",
+    "Category" : "Module Plugin",
     "Icon" : "",
     "Author" : "张洋",
     "Version" : "V 1.0.0.0",

@@ -1,4 +1,4 @@
-#include "pluginview.h"
+﻿#include "pluginview.h"
 #include "ui_pluginview.h"
 #include <pluginManager.h>
 #include <QListView>
@@ -43,7 +43,7 @@ void PluginView::loadAllPlugins(){
     int length = modules.length();
     for (int i = 0; i < length; i++) {
         PlugInProperty property = modules.at(i);
-        if(property.level == PlugInLevel::MustLoad){
+        if(property.level == PlugInLevel::MustLoad && property.category == "Common Plugin"){
             QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
             if(loader == nullptr)
                 continue;
@@ -99,22 +99,40 @@ void PluginView::slot_currentRowChanged(int currentRow){
 }
 
 void PluginView::slot_pluginStatusChanging(PluginInfoView *sender, const PlugInProperty &property, const bool &isLoad){
-    QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
-    if(loader != nullptr)
-    {
-        bool newStatus = isLoad;
-        if(isLoad && loader->isLoaded()){
-            if(loader->unload()){
-                newStatus = !isLoad;
-            }
+    if(isLoad){
+        IPlugIn *plugin = PluginManager::instance()->getIPlugin(property.name);
+        if(plugin)
+        {
+            plugin->disModule();
         }
-        else if(!isLoad && !loader->isLoaded()){
-            if(loader->load()){
-                newStatus = !isLoad;
-            }
-        }
-        if(newStatus != isLoad){
-            sender->setInfo(property, newStatus);
+        PluginManager::instance()->unloadPlugin(PluginManager::instance()->getPath(property.name));
+    }
+    else{
+        PluginManager::instance()->loadPlugin(PluginManager::instance()->getPath(property.name));
+        IPlugIn *plugin = PluginManager::instance()->getIPlugin(property.name);
+        if(plugin)
+        {
+            plugin->initModule();
         }
     }
+    sender->setInfo(property, !isLoad);
+
+//    QPluginLoader *loader = PluginManager::instance()->getPlugin(property.name);
+//    if(loader != nullptr)
+//    {
+//        bool newStatus = isLoad;
+//        if(isLoad && loader->isLoaded()){
+//            if(loader->unload()){
+//                newStatus = !isLoad;
+//            }
+//        }
+//        else if(!isLoad && !loader->isLoaded()){
+//            if(loader->load()){
+//                newStatus = !isLoad;
+//            }
+//        }
+//        if(newStatus != isLoad){
+//            sender->setInfo(property, newStatus);
+//        }
+//    }
 }

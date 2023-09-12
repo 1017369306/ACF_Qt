@@ -1,0 +1,78 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../res/Base/default_styleconfig.xml</file>
+        <file>../../res/qtitan.png</file>
+        <file>../../res/qtitanlogo32x32.png</file>
+        <file>../../res/qtitanlogo64x64.png</file>
+        <file>../../res/qtitanheader.png</file>
+        <file>../../res/acrylic_noise.png</file>
+        <file>../../res/glass_background.png</file>
+        <file>../../res/micon.ttf</file>
+
+        <!--- Standard_images -->
+        <file>../../res/Base/titlebar_close-9x9.png</file>
+        <file>../../res/Base/titlebar_close-11x11.png</file>
+        <file>../../res/Base/titlebar_close-13x13.png</file>
+        <file>../../res/Base/titlebar_close-18x18.png</file>
+
+        <file>../../res/Base/titlebar_normal-9x9.png</file>
+        <file>../../res/Base/titlebar_normal-11x11.png</file>
+        <file>../../res/Base/titlebar_normal-13x13.png</file>
+        <file>../../res/Base/titlebar_normal-18x18.png</file>
+
+        <file>../../res/Base/titlebar_pin-9x9.png</file>
+        <file>../../res/Base/titlebar_pin-11x11.png</file>
+        <file>../../res/Base/titlebar_pin-13x13.png</file>
+        <file>../../res/Base/titlebar_pin-18x18.png</file>
+
+        <file>../../res/Base/titlebar_pinned-9x9.png</file>
+        <file>../../res/Base/titlebar_pinned-11x11.png</file>
+        <file>../../res/Base/titlebar_pinned-13x13.png</file>
+        <file>../../res/Base/titlebar_pinned-18x18.png</file>
+
+        <file>../../res/Base/indicator_arrowup-9x9.png</file>
+        <file>../../res/Base/indicator_arrowup-11x11.png</file>
+        <file>../../res/Base/indicator_arrowup-13x13.png</file>
+        <file>../../res/Base/indicator_arrowup-18x18.png</file>
+
+        <file>../../res/Base/indicator_arrowdown-9x9.png</file>
+        <file>../../res/Base/indicator_arrowdown-11x11.png</file>
+        <file>../../res/Base/indicator_arrowdown-13x13.png</file>
+        <file>../../res/Base/indicator_arrowdown-18x18.png</file>
+
+        <file>../../res/Base/indicator_shadedarrowup-9x9.png</file>
+        <file>../../res/Base/indicator_shadedarrowup-11x11.png</file>
+        <file>../../res/Base/indicator_shadedarrowup-13x13.png</file>
+        <file>../../res/Base/indicator_shadedarrowup-18x18.png</file>
+
+        <file>../../res/Base/indicator_shadedarrowdown-9x9.png</file>
+        <file>../../res/Base/indicator_shadedarrowdown-11x11.png</file>
+        <file>../../res/Base/indicator_shadedarrowdown-13x13.png</file>
+        <file>../../res/Base/indicator_shadedarrowdown-18x18.png</file>
+
+        <file>../../res/Base/indicator_shadedarrowleft-9x9.png</file>
+        <file>../../res/Base/indicator_shadedarrowleft-11x11.png</file>
+        <file>../../res/Base/indicator_shadedarrowleft-13x13.png</file>
+        <file>../../res/Base/indicator_shadedarrowleft-18x18.png</file>
+
+        <file>../../res/Base/indicator_shadedarrowright-9x9.png</file>
+        <file>../../res/Base/indicator_shadedarrowright-11x11.png</file>
+        <file>../../res/Base/indicator_shadedarrowright-13x13.png</file>
+        <file>../../res/Base/indicator_shadedarrowright-18x18.png</file>
+
+        <file>../../res/Base/group_option-9x9.png</file>
+        <file>../../res/Base/group_option-11x11.png</file>
+        <file>../../res/Base/group_option-13x13.png</file>
+        <file>../../res/Base/group_option-18x18.png</file>
+
+        <file>../../res/Base/qaccess_button-9x9.png</file>
+        <file>../../res/Base/qaccess_button-11x11.png</file>
+        <file>../../res/Base/qaccess_button-13x13.png</file>
+        <file>../../res/Base/qaccess_button-18x18.png</file>
+
+        <file>../../res/Base/indicator_menucheckmark-9x9.png</file>
+        <file>../../res/Base/indicator_menucheckmark-11x11.png</file>
+        <file>../../res/Base/indicator_menucheckmark-13x13.png</file>
+        <file>../../res/Base/indicator_menucheckmark-18x18.png</file>
+    </qresource>
+</RCC>
