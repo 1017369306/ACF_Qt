@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
+#include <QSizeGrip>
 #include "maindockwindow.h"
 
 #define VERSION "V 1.0.0.1"
@@ -48,20 +49,6 @@ protected:
 
 private slots:
 
-    //屏幕分辩改变信号
-    void slot_availableGeometryChanged(const QRect &geometry);
-    void slot_physicalSizeChanged(const QSizeF &size);
-    void slot_physicalDotsPerInchChanged(qreal dpi);
-    void slot_logicalDotsPerInchChanged(qreal dpi);
-    void slot_virtualGeometryChanged(const QRect &rect);
-    void slot_primaryOrientationChanged(Qt::ScreenOrientation orientation);
-    void slot_orientationChanged(Qt::ScreenOrientation orientation);
-    void slot_refreshRateChanged(qreal refreshRate);
-
-    void slot_desktopwidgetResized(int value);
-    void slot_desktopwidgetWorkAreaResized(int value);
-    void slot_desktopwidgetPrimaryScreenChanged();
-
     void slot_minSize(bool checked = false);
 
     void slot_maxSize(bool checked = false);
@@ -99,6 +86,11 @@ private:
      * @brief initWidgetTop 初始化顶部
      */
     void initWidgetTop();
+
+    /**
+     * @brief 初始化鼠标改变窗体大小的区域
+     */
+    void initResizeArea();
 
     /**
      * @brief 初始化快捷键区域
@@ -147,6 +139,16 @@ private:
 //    int m_changeRateCount = 0;
 
     MainDockWindow *m_mainDockWindow = nullptr;
+
+    //-------鼠标拖动改变窗体大小的变量集--------
+
+//    QSizeGrip *m_pSizeGrip = nullptr;
+    QStatusBar *m_pStatusBar = nullptr;
+
+//    bool m_bLeftMousePressed = false;  // 鼠标左键是否被按下
+//    QPoint m_lastPoint;               // 鼠标上次按下的点
+
+    //-------鼠标拖动改变窗体大小的变量集--------
 
 };
 

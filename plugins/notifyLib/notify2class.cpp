@@ -2,7 +2,6 @@
 #include <globalInfoEnum.h>
 #include <QMessageBox>
 #include <globalhelper.h>
-#include <loggerBase.h>
 #include <globalSizes.h>
 #include <globalColors.h>
 #include <frameworktool.h>
@@ -27,9 +26,9 @@ int Notify2Class::initModule(){
         manager = new NotifyManager(qApp);
     }
 
-    if(!frameworkTool::getCustomCssList().contains(":/qss/notifyTheme.css")){
-        frameworkTool::appendCustomCss(":/qss/notifyTheme.css");
-        frameworkTool::reLoadCssStyle();
+    if(!FrameworkTool::getCustomCssList().contains(":/qss/notifyTheme.css")){
+        FrameworkTool::appendCustomCss(":/qss/notifyTheme.css");
+        FrameworkTool::reLoadCssStyle();
 
         this->cssStyleChanged();
     }
@@ -77,7 +76,7 @@ void Notify2Class::cssStyleChanged(){
     manager->setShowQueueCount(true); // 是否显示超出最大数未显示的消息数量，默认true
     manager->setIconSize(QSize(GlobalSizes::instance()->DefaultIconHeight(), GlobalSizes::instance()->DefaultIconHeight()));//设置左上角图标大小
 
-    manager->setStyleSheet(frameworkTool::getAppCss(), "default");
+    manager->setStyleSheet(FrameworkTool::getAppCss(), "default");
 }
 
 void Notify2Class::slot_notifyDetail(const QVariantMap &data){

@@ -42,29 +42,8 @@ unix {
 }
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../library/globalInterface/ -lglobalInterface
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../library/globalInterface/ -lglobalInterface
-else:unix: LIBS += -L$$OUT_PWD/../../library/globalInterface/ -lglobalInterface
-
-INCLUDEPATH += $$PWD/../../library/globalInterface
-DEPENDPATH += $$PWD/../../library/globalInterface
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../library/mainSystemLib/ -lmainSystemLib
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../library/mainSystemLib/ -lmainSystemLib
-else:unix: LIBS += -L$$OUT_PWD/../../library/mainSystemLib/ -lmainSystemLib
-
-INCLUDEPATH += $$PWD/../../library/mainSystemLib
-DEPENDPATH += $$PWD/../../library/mainSystemLib
-
 DISTFILES += \
     mapModule.json
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../library/globalResource/ -lglobalResource
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../library/globalResource/ -lglobalResource
-else:unix: LIBS += -L$$OUT_PWD/../../library/globalResource/ -lglobalResource
-
-INCLUDEPATH += $$PWD/../../library/globalResource
-DEPENDPATH += $$PWD/../../library/globalResource
 
 FORMS += \
     mainview.ui
@@ -74,3 +53,19 @@ HEADERS += \
 
 SOURCES += \
     mainview.cpp
+
+
+unix|win32: LIBS += -L$$PWD/../../lib/framework/globalInterface/lib/ -lglobalInterface
+
+INCLUDEPATH += $$PWD/../../lib/framework/globalInterface/include
+DEPENDPATH += $$PWD/../../lib/framework/globalInterface/include
+
+unix|win32: LIBS += -L$$PWD/../../lib/framework/mainSystemLib/lib/ -lmainSystemLib
+
+INCLUDEPATH += $$PWD/../../lib/framework/mainSystemLib/include
+DEPENDPATH += $$PWD/../../lib/framework/mainSystemLib/include
+
+unix|win32: LIBS += -L$$PWD/../../lib/framework/globalResource/lib/ -lglobalResource
+
+INCLUDEPATH += $$PWD/../../lib/framework/globalResource/include
+DEPENDPATH += $$PWD/../../lib/framework/globalResource/include

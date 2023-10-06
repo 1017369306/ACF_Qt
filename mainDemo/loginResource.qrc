@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>appPics/login/background.jpg</file>
+        <file>appPics/login/login.gif</file>
+        <file>appPics/login/wave.gif</file>
+    </qresource>
+</RCC>

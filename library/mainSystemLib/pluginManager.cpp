@@ -91,11 +91,15 @@ void PluginManager::loadAllPlugins()
     //初始化插件中的元数据
     for(QFileInfo fileinfo : pluginsInfo){
         scanMetaData(fileinfo.absoluteFilePath());
+        QCoreApplication::processEvents();
     }
 
     //加载插件
     for(QFileInfo fileinfo : pluginsInfo)
+    {
         loadSystemPlugin(fileinfo.absoluteFilePath());
+        QCoreApplication::processEvents();
+    }
 }
 
 void PluginManager::unloadAllPlugins()

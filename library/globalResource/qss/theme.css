@@ -8,6 +8,11 @@ QWidget
     color: $PrimaryTextColor;
     background-color: $RegionColor;
 }
+QWidget[transparent="true"]
+{
+    color: $PrimaryTextColor;
+    background-color: transparent;
+}
 
 QFrame{
     color: $PrimaryTextColor;
@@ -145,7 +150,7 @@ QPushButton:disabled{
     opacity: 102;/*0.4*/
 }
 
-QPushButton[isIcon='true']{
+QPushButton[isIcon="true"]{
     background-color: transparent;
     border: 0px;
     border-radius: $DefaultCornerRadius;
@@ -155,20 +160,20 @@ QPushButton[isIcon='true']{
     font-size: $DefaultFontSizepx;
     icon-size: $DefaultIconHeightpx;
 }
-QPushButton[isIcon='true']:hover, QPushButton[isIcon='true']:checked{
+QPushButton[isIcon="true"]:hover, QPushButton[isIcon="true"]:checked{
     background-color: $SecondaryRegionColor;
 }
 
-QPushButton[isIcon='true']:pressed{
+QPushButton[isIcon="true"]:pressed{
     background-color: $BorderColor;
     opacity: 153;/*0.6*/
 }
 
-QPushButton[isIcon='true']:disabled{
+QPushButton[isIcon="true"]:disabled{
     opacity: 102;/*0.4*/
 }
 
-QPushButton[isIconNoPadding='true']{
+QPushButton[isIconNoPadding="true"]{
     background-color: transparent;
     border: 0px;
     border-radius: $DefaultCornerRadius;
@@ -178,20 +183,20 @@ QPushButton[isIconNoPadding='true']{
     font-size: $DefaultFontSizepx;
     icon-size: $DefaultIconHeightpx;
 }
-QPushButton[isIconNoPadding='true']:hover, QPushButton[isIconNoPadding='true']:checked{
+QPushButton[isIconNoPadding="true"]:hover, QPushButton[isIconNoPadding="true"]:checked{
     background-color: $SecondaryRegionColor;
 }
 
-QPushButton[isIconNoPadding='true']:pressed{
+QPushButton[isIconNoPadding="true"]:pressed{
     background-color: $BorderColor;
     opacity: 153;/*0.6*/
 }
 
-QPushButton[isIconNoPadding='true']:disabled{
+QPushButton[isIconNoPadding="true"]:disabled{
     opacity: 102;/*0.4*/
 }
 
-QPushButton[isIconTransparent='true']{
+QPushButton[isIconTransparent="true"]{
     background-color: transparent;
     border: 0px;
     border-radius: $DefaultCornerRadius;
@@ -201,11 +206,11 @@ QPushButton[isIconTransparent='true']{
     font-size: $DefaultFontSizepx;
     icon-size: $DefaultIconHeightpx;
 }
-QPushButton[isIconTransparent='true']:hover, QPushButton[isIconTransparent='true']:checked{
+QPushButton[isIconTransparent="true"]:hover, QPushButton[isIconTransparent="true"]:checked{
     background-color: transparent;
 }
 
-QPushButton[isIconTransparent='true']:pressed{
+QPushButton[isIconTransparent="true"]:pressed{
     background-color: transparent;
 }
 
@@ -232,23 +237,23 @@ QToolButton:pressed{
 QToolButton:disabled{
     opacity: 102;/*0.4*/
 }
-QToolButton[isIcon='true']:checked{
+QToolButton[isIcon="true"]:checked{
     border: 1px solid $BorderColor;
 }
-QToolButton[isIconTransparent='true'], QToolButton[isIconTransparent='true']:unchecked{
+QToolButton[isIconTransparent="true"], QToolButton[isIconTransparent="true"]:unchecked{
     background-color: transparent;
     border: 0px solid transparent;
 }
-QToolButton[isIconTransparent='true']:checked{
+QToolButton[isIconTransparent="true"]:checked{
     border: 0px solid transparent;
 }
-QToolButton[isIconTransparent='true']:hover{
+QToolButton[isIconTransparent="true"]:hover{
     background-color: transparent;
 }
-QToolButton[isIconTransparent='true']:pressed{
+QToolButton[isIconTransparent="true"]:pressed{
     background-color: transparent;
 }
-QToolButton[isTransparentAndNoPadding='true'], QToolButton[isTransparentAndNoPadding='true']:unchecked{
+QToolButton[isTransparentAndNoPadding="true"], QToolButton[isTransparentAndNoPadding="true"]:unchecked{
     background-color: transparent;
     border: 0px solid transparent;
     padding: 0px;
@@ -1266,4 +1271,10 @@ QMessageBox{
     icon-size: $DefaultIconHeightpx;
 /*    border-radius: $DefaultCornerRadius;*/
 /*    border: 1px solid $BorderColor;*/
+}
+
+QSizeGrip {
+    image: url("./appPics/svgs/theme/resize.svg");
+    width: $DefaultFontSizepx;
+    height: $DefaultFontSizepx;
 }

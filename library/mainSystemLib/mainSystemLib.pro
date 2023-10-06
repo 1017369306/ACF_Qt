@@ -20,7 +20,6 @@ HEADERS += \
     globalEnums.h \
     globalInfoEnum.h \
     globalhelper.h \
-#    loggerBase.h \
     mainSystemLib_global.h \
     moduleBase.h \
     pluginManager.h \
@@ -39,7 +38,6 @@ SOURCES += \
     frameworktool.cpp \
     globalInfoEnum.cpp \
     globalhelper.cpp \
-#    loggerBase.cpp \
     moduleBase.cpp \
     pluginManager.cpp \
     systeminfohelper.cpp \
@@ -66,3 +64,14 @@ else:unix: LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
 
 INCLUDEPATH += $$PWD/../globalInterface
 DEPENDPATH += $$PWD/../globalInterface
+
+#拷贝编译库文件到代码仓库中的相对目录
+DESTDIR += $$PWD/../../lib/framework/mainSystemLib/lib
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:DLLDESTDIR += $$PWD/../../lib/framework/mainSystemLib/lib
+}
+#拷贝头文件到代码仓库中的相对目录
+CONFIG += file_copies
+header.files = $$HEADERS
+header.path = $$PWD/../../lib/framework/mainSystemLib/include
+COPIES += header

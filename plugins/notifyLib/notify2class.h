@@ -4,7 +4,6 @@
 #include <QObject>
 #include <globalInfoEnum.h>
 #include <globalEnums.h>
-#include <loggerBase.h>
 #include <defaultplugin.h>
 // 包含头文件
 #include "notifymanager.h"

@@ -16,31 +16,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    /** 设置主窗体的属性
+     *
+    **/
     setWindowFlags(Qt::FramelessWindowHint);
     this->setWindowIcon(QIcon("./appPics/icons/rabbit.ico"));
-
-    //初始化顶部
-    this->initWidgetTop();
-
-    //先初始化框架功级参数类单例
-    ACFProperty::instance();
-
-    //初始化所有插件
-    this->loadAllPlugins();
-
-    m_mainDockWindow = new MainDockWindow();
-    ui->main_centerLayout->addWidget(m_mainDockWindow, 1);
-
-    //此分辨率下，初始化元素的相对大小
-    frameworkTool::initResolution();
-
-    //获取有哪些主题样式
-    this->loadAllTheme();
-
-    //建立所有信号和槽
-    this->connectAllSignal();
-
-    ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::INFO_LogLevel, "测试信息！！！今天的天气真好，真象出去玩一玩！")));
 
     //窗体首次加载时，居中显示
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -49,6 +30,37 @@ MainWindow::MainWindow(QWidget *parent)
     double xTemp = (screen->geometry().width() - widthTemp) / 2.0;
     double yTemp = (screen->geometry().height() - heightTemp) / 2.0;
     this->setGeometry(xTemp, yTemp, widthTemp, heightTemp);
+
+    this->setMinimumSize(screen->geometry().width() * 0.4, screen->geometry().height() * 0.4);
+
+    QCoreApplication::processEvents();
+
+    //初始化顶部
+    this->initWidgetTop();
+
+    //初始化鼠标改变窗体大小的区域
+    initResizeArea();
+
+    //插件的额外处理（如进行关联）
+    this->loadAllPlugins();
+
+    QCoreApplication::processEvents();
+
+    m_mainDockWindow = new MainDockWindow();
+    ui->main_centerLayout->addWidget(m_mainDockWindow, 1);
+
+    QCoreApplication::processEvents();
+
+    //获取有哪些主题样式
+    this->loadAllTheme();
+
+    //建立所有信号和槽
+    this->connectAllSignal();
+
+    qDebug() << "测试消息，用于验证日志插件是否捕获到了qDebug()的输出！";
+    ACFProperty::instance()->getLogPlugIn()->sendData(QVariant::fromValue(LoggerBaseStruct(LoggerBaseLevel::INFO_LogLevel, "测试信息！！！今天的天气真好，真象出去玩一玩！")));
+
+    QCoreApplication::processEvents();
 }
 
 MainWindow::~MainWindow()
@@ -62,6 +74,23 @@ void MainWindow::initWidgetTop(){
     this->initShortcutKey();
 
     this->initReSizeArea();
+}
+
+void MainWindow::initResizeArea(){
+//    setMouseTracking(true);
+    // 创建QSizeGrip对象，该对象就是用来调整窗体大小的
+//    m_pSizeGrip = new QSizeGrip(this);
+//    m_pSizeGrip->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+//    m_pSizeGrip->setCursor(Qt::SizeAllCursor);
+//    m_pSizeGrip->setToolTip("改变窗口大小");
+//    ui->main_bottom->layout()->addWidget(m_pSizeGrip);// 将QSizeGrip对象加入窗体右下角
+
+    // 也可以加入一个状态栏来实现拖动窗体右下角改变窗体大小
+    m_pStatusBar = new QStatusBar();
+    m_pStatusBar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    m_pStatusBar->setToolTip("改变窗口大小");
+    m_pStatusBar->setSizeGripEnabled(true);
+    ui->main_bottom->layout()->addWidget(m_pStatusBar);
 }
 
 void MainWindow::initMenu(){
@@ -285,11 +314,11 @@ void MainWindow::initIcon(){
 }
 
 void MainWindow::loadAllPlugins(){
-    QString path = qApp->applicationDirPath() + "/plugins";
-    //设置插件的路径
-    PluginManager::instance()->setPluginDir(path);
-    //获取此路径下的所有插件的信息
-    PluginManager::instance()->loadAllPlugins();
+//    QString path = qApp->applicationDirPath() + "/plugins";
+//    //设置插件的路径
+//    PluginManager::instance()->setPluginDir(path);
+//    //获取此路径下的所有插件的信息
+//    PluginManager::instance()->loadAllPlugins();
 
     //所有插件的信息
     QList<PlugInProperty> plugIns = PluginManager::instance()->allPluginsProperty();
@@ -332,7 +361,7 @@ void MainWindow::loadAllPlugins(){
 
 void MainWindow::loadAllTheme(){
     //设置框架外的自定义样式
-    frameworkTool::appendCustomCss(":/qss/customTheme.css");
+    FrameworkTool::appendCustomCss(":/qss/customTheme.css");
 
     QList<ListItemProperty> themeItems;
 
@@ -390,90 +419,7 @@ void MainWindow::connectAllSignal(){
 
     connect(this->m_themeListWidget, &PopupListWidget::selectedItem, this, &MainWindow::slot_themeSelectedItem);
 
-    connect(frameworkTool::instance(), &frameworkTool::cssStyleChanged, this, &MainWindow::slot_cssStyleChanged);
-
-//    //检测屏幕分辨率的变化
-//    QDesktopWidget *desktopwidget = QApplication::desktop();
-//    connect(desktopwidget, SIGNAL(resized(int)), this, SLOT(slot_desktopwidgetResized()));
-//    connect(desktopwidget, SIGNAL(workAreaResized(int)), this, SLOT(slot_desktopwidgetWorkAreaResized()));
-//    connect(desktopwidget, SIGNAL(primaryScreenChanged()), this, SLOT(slot_desktopwidgetPrimaryScreenChanged()));
-
-//    //    QList<QScreen *> listScreen = QGuiApplication::screens();
-//    QScreen *screen = QGuiApplication::primaryScreen();
-//    //    foreach (QScreen *screen, listScreen)
-//    {
-//        connect(screen, &QScreen::availableGeometryChanged, this, &MainWindow::slot_availableGeometryChanged);
-//        connect(screen, &QScreen::physicalDotsPerInchChanged, this, &MainWindow::slot_physicalDotsPerInchChanged);
-//        connect(screen, &QScreen::logicalDotsPerInchChanged, this, &MainWindow::slot_logicalDotsPerInchChanged);
-//        connect(screen, &QScreen::virtualGeometryChanged, this, &MainWindow::slot_virtualGeometryChanged);
-//        connect(screen, &QScreen::physicalSizeChanged, this, &MainWindow::slot_physicalSizeChanged);
-//        connect(screen, &QScreen::primaryOrientationChanged, this, &MainWindow::slot_primaryOrientationChanged);
-//        connect(screen, &QScreen::orientationChanged, this, &MainWindow::slot_orientationChanged);
-//        connect(screen, &QScreen::refreshRateChanged, this, &MainWindow::slot_refreshRateChanged);
-//    }
-
-}
-
-void MainWindow::slot_availableGeometryChanged(const QRect &geometry){
-    qDebug() << "Screen availableGeometryChanged:" << geometry;
-
-    int scaleRate = 0;
-    if(geometry.x() != 0){
-        scaleRate = geometry.x() / GlobalSizes::Const_LeftTopX;
-    }
-    //屏幕分辩改变信号
-    frameworkTool::resolutionChanged(scaleRate);
-}
-
-void MainWindow::slot_physicalSizeChanged(const QSizeF &size){
-    qDebug() << "Screen physicalSizeChanged(width, height):" << size.width() << size.height();
-
-    //屏幕分辩改变信号
-    frameworkTool::resolutionChanged();
-}
-
-void MainWindow::slot_physicalDotsPerInchChanged(qreal dpi){
-    qDebug() << "Screen physicalDotsPerInchChanged:" << dpi;
-
-}
-
-void MainWindow::slot_logicalDotsPerInchChanged(qreal dpi){
-    qDebug() << "Screen logicalDotsPerInchChanged:" << dpi;
-
-}
-
-void MainWindow::slot_virtualGeometryChanged(const QRect &rect){
-    qDebug() << "Screen virtualGeometryChanged:" << rect;
-
-}
-
-void MainWindow::slot_primaryOrientationChanged(Qt::ScreenOrientation orientation){
-    qDebug() << "Screen primaryOrientationChanged:" << orientation;
-
-}
-
-void MainWindow::slot_orientationChanged(Qt::ScreenOrientation orientation){
-    qDebug() << "Screen orientationChanged:" << orientation;
-
-}
-
-void MainWindow::slot_refreshRateChanged(qreal refreshRate){
-    qDebug() << "Screen refreshRateChanged:" << refreshRate;
-
-}
-
-void MainWindow::slot_desktopwidgetResized(int value){
-    qDebug() << "Screen Resized:" << value;
-
-}
-
-void MainWindow::slot_desktopwidgetWorkAreaResized(int value){
-    qDebug() << "Screen WorkAreaResized:" << value;
-
-}
-
-void MainWindow::slot_desktopwidgetPrimaryScreenChanged(){
-    qDebug() << "Screen PrimaryScreenChanged!";
+    connect(FrameworkTool::instance(), &FrameworkTool::cssStyleChanged, this, &MainWindow::slot_cssStyleChanged);
 
 }
 
@@ -504,8 +450,8 @@ void MainWindow::slot_theme(bool checked){
         //此控件默认未显示出来，此时设置它的样式不生效，故在第一次打开时设置其样式
         if(m_isFirstOpenThemePopup){
             if(this->m_themeListWidget){
-                this->m_themeListWidget->setStyleSheet(frameworkTool::getAppCss());
-                this->m_themeListWidget->getListWidget()->setStyleSheet(frameworkTool::getAppCss());
+                this->m_themeListWidget->setStyleSheet(FrameworkTool::getAppCss());
+                this->m_themeListWidget->getListWidget()->setStyleSheet(FrameworkTool::getAppCss());
 
                 m_isFirstOpenThemePopup = false;
             }
@@ -526,7 +472,7 @@ void MainWindow::slot_themeSelectedItem(const int &index, const QVariant propert
         QString themePath = property.toString();
 
         //调用框架的方法进行更换主题
-        frameworkTool::reLoadTheme(themePath);
+        FrameworkTool::reLoadTheme(themePath);
     }
 }
 
@@ -535,18 +481,18 @@ void MainWindow::slot_themeSelectedItem(const int &index, const QVariant propert
  */
 void MainWindow::slot_cssStyleChanged(){
     if(m_menuBar)
-        this->m_menuBar->setStyleSheet(frameworkTool::getAppCss());
+        this->m_menuBar->setStyleSheet(FrameworkTool::getAppCss());
     if(this->m_themeListWidget){
-        this->m_themeListWidget->setStyleSheet(frameworkTool::getAppCss());
-        this->m_themeListWidget->getListWidget()->setStyleSheet(frameworkTool::getAppCss());
+        this->m_themeListWidget->setStyleSheet(FrameworkTool::getAppCss());
+        this->m_themeListWidget->getListWidget()->setStyleSheet(FrameworkTool::getAppCss());
     }
     if(this->m_languageListWidget){
-        this->m_languageListWidget->setStyleSheet(frameworkTool::getAppCss());
-        this->m_languageListWidget->getListWidget()->setStyleSheet(frameworkTool::getAppCss());
+        this->m_languageListWidget->setStyleSheet(FrameworkTool::getAppCss());
+        this->m_languageListWidget->getListWidget()->setStyleSheet(FrameworkTool::getAppCss());
     }
 
     foreach (QMenu *menu, m_allMenus) {
-        menu->setStyleSheet(frameworkTool::getAppCss());
+        menu->setStyleSheet(FrameworkTool::getAppCss());
     }
 
     initIcon();
@@ -562,10 +508,20 @@ void MainWindow::mousePressEvent(QMouseEvent *event)//判断鼠标点击时是�
         m_pressPoint = event->globalPos();//获取坐标
         m_isPressInDragArea = true;
     }
+//    else if(m_pSizeGrip != nullptr && m_pSizeGrip->geometry().contains(event->pos())){
+//        m_lastPoint = event->globalPos();
+//        m_bLeftMousePressed = true;
+//    }
+//    else if(m_pStatusBar != nullptr && m_pStatusBar->geometry().contains(event->pos())){
+//        m_lastPoint = event->globalPos();
+//        m_bLeftMousePressed = true;
+//    }
+
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)//鼠标移动，实时修改窗口的坐标
 {
+//    int minWidth = this->minimumWidth();
     //判断鼠标在顶部区域内
     if(m_isPressInDragArea)
     {
@@ -574,10 +530,18 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)//鼠标移动，实时修改
         m_pressPoint = event->globalPos();
         this->move(this->x() + dx, this->y() + dy);
     }
+
+//    if(m_bLeftMousePressed){
+//        auto curMousePt = event->globalPos(); // 注意：这里记录是窗体在屏幕上的坐标位置
+//        auto offsetPt = curMousePt - m_lastPoint; // 计算和上次移动点的坐标差值
+//        move(pos() + offsetPt);
+//        m_lastPoint = curMousePt;  // 记录本次窗体所在位置，以便下次计算位置
+//    }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)//鼠标释放
 {
     m_isPressInDragArea = false;
+//    m_bLeftMousePressed = false;
 }
 

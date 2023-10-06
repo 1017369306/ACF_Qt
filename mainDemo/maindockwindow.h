@@ -7,6 +7,7 @@
 #include <customlistitem.h>
 #include <QString>
 #include <moduleBase.h>
+#include <acfproperty.h>
 
 #include <DevMachines/QtitanBase>
 #include <DevMachines/QtitanDocking>

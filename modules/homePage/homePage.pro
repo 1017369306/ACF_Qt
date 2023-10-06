@@ -30,19 +30,15 @@ unix {
 }
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../library/globalInterface/ -lglobalInterface
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../library/globalInterface/ -lglobalInterface
-else:unix: LIBS += -L$$OUT_PWD/../../library/globalInterface/ -lglobalInterface
-
-INCLUDEPATH += $$PWD/../../library/globalInterface
-DEPENDPATH += $$PWD/../../library/globalInterface
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../library/mainSystemLib/ -lmainSystemLib
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../library/mainSystemLib/ -lmainSystemLib
-else:unix: LIBS += -L$$OUT_PWD/../../library/mainSystemLib/ -lmainSystemLib
-
-INCLUDEPATH += $$PWD/../../library/mainSystemLib
-DEPENDPATH += $$PWD/../../library/mainSystemLib
-
 DISTFILES += \
     homePage.json
+
+unix|win32: LIBS += -L$$PWD/../../lib/framework/globalInterface/lib/ -lglobalInterface
+
+INCLUDEPATH += $$PWD/../../lib/framework/globalInterface/include
+DEPENDPATH += $$PWD/../../lib/framework/globalInterface/include
+
+unix|win32: LIBS += -L$$PWD/../../lib/framework/mainSystemLib/lib/ -lmainSystemLib
+
+INCLUDEPATH += $$PWD/../../lib/framework/mainSystemLib/include
+DEPENDPATH += $$PWD/../../lib/framework/mainSystemLib/include

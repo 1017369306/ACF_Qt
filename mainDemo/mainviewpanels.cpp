@@ -71,7 +71,7 @@ void ReplayModuleListViewPanelCreator::fillFileView()
     treeWidget->setFocusPolicy(Qt::StrongFocus);
     treeWidget->setAlternatingRowColors(false);
 
-    treeWidget->setMinimumWidth(190);
+//    treeWidget->setMinimumWidth(190);
     treeWidget->setHeaderHidden(true);
 
     QStringList strings;
@@ -354,7 +354,7 @@ void ResourceViewPanelCreator::fillResourceView()
     treeWidget->setFocusPolicy(Qt::StrongFocus);
     treeWidget->setAlternatingRowColors(false);
 
-    treeWidget->setMinimumWidth(190);
+//    treeWidget->setMinimumWidth(190);
     treeWidget->setHeaderHidden(true);
 
     QStringList strings;

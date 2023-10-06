@@ -7,19 +7,46 @@ lastedited:2022.12.18
 /* =============================================== */
 /* Label                                           */
 /* =============================================== */
-QLabel[title]{
+QLabel[title="true"]{
+    background-color: transparent;
     font: bold $LargeFontSizepx;
+    color: $PrimaryTextColor;
 }
 
-QLabel[head]{
+QLabel[head="true"]{
+    background-color: transparent;
     font-size: $MiddleFontSizepx;
+    color: $PrimaryTextColor;
 }
 
-QLabel[PrimaryColor]{
+QLabel[PrimaryColor="true"]{
+    background-color: transparent;
+    font-size: $DefaultFontSizepx;
     color: $PrimaryColor;
 }
 
-QTextEdit[PrimaryColor]{
+/* =============================================== */
+/* Login Label                                           */
+/* =============================================== */
+QLabel[login="true"]{
+    background-color: transparent;
+    color: white;
+    font-size: $DefaultFontSizepx;
+}
+QLabel[loginMiddle="true"]{
+    background-color: transparent;
+    color: #e59900;
+    font-size: $MiddleFontSizepx;
+    font: bold;
+}
+QLabel[loginLarge="true"]{
+    background-color: transparent;
+    color: #e59900;
+    font-size: $LargeFontSizepx;
+    font: bold;
+}
+
+QTextEdit[PrimaryColor="true"]{
     color: $PrimaryColor;
 }
 

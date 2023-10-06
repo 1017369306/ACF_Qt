@@ -1,6 +1,7 @@
 ﻿#include "logger4Qt.h"
 #include <globalInfoEnum.h>
 #include <QFileInfo>
+#include <QDir>
 
 Logger4Qt::Logger4Qt() : DefaultPlugin(){
 
@@ -17,12 +18,19 @@ Logger4Qt::~Logger4Qt(){
 int Logger4Qt::initModule(){
     int result = GlobalInfo::GlobalInfoEnum::DealFatal;
 
+    //重要：这里要手动创建最外层的logs目录，不然Log4Qt会初始化失败，它也不会帮你创建
+    QString logDir = qApp->applicationDirPath() + "/logs/";
+    QDir dir(logDir);
+    if(!dir.exists()){
+        dir.mkdir(logDir);
+    }
+
     QString path = qApp->applicationDirPath() + "/config/log4qt.conf";
     if(QFileInfo::exists(path)){
         //配置文件路径
-        Log4Qt::PropertyConfigurator::configure(path);
+        bool flag = Log4Qt::PropertyConfigurator::configure(path);
         //将qDebug()调试信息直接记录到日志文件
-//        Log4Qt::LogManager::setHandleQtMessages(true);
+        Log4Qt::LogManager::setHandleQtMessages(true);
 
         m_traceLogger = Log4Qt::Logger::logger("traceAppender");
         m_debugLogger = Log4Qt::Logger::logger("debugAppender");
@@ -31,7 +39,9 @@ int Logger4Qt::initModule(){
         m_errorLogger = Log4Qt::Logger::logger("errorAppender");
         m_fatalLogger = Log4Qt::Logger::logger("fatalAppender");
 
-        result = GlobalInfo::GlobalInfoEnum::DealSuccess;
+        if(flag){
+            result = GlobalInfo::GlobalInfoEnum::DealSuccess;
+        }
     }
 
     return result;

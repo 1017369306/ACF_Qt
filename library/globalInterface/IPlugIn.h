@@ -108,8 +108,13 @@ Q_DECLARE_METATYPE(PlugInProperty)
  */
 class GLOBALINTERFACE_EXPORT IPlugIn
 {
+public:
+    IPlugIn(){}
+    //析构函数使用virtual修饰为虚函数，这样可以delete用父类指针指向的子类指针
+    virtual ~IPlugIn(){}
+
   //接口属性定义
- public:
+public:
     /**
     * @brief getGUID 获取唯一识别编号
     * @return 返回唯一识别编号

@@ -22,19 +22,19 @@
 #include <globalEnums.h>
 
 /**
- * @brief The frameworkTool class 框架工具类，提供了框架相关的属性，函数
+ * @brief 框架工具类，提供了框架相关的属性，函数
  */
-class MAINSYSTEMLIB_EXPORT frameworkTool : public QObject
+class MAINSYSTEMLIB_EXPORT FrameworkTool : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit frameworkTool(QObject *parent = nullptr);
-    ~frameworkTool();
+    explicit FrameworkTool(QObject *parent = nullptr);
+    ~FrameworkTool();
 
-    static frameworkTool *instance(){
+    static FrameworkTool *instance(){
         if(m_instance == nullptr)
-            m_instance = new frameworkTool();
+            m_instance = new FrameworkTool();
         return m_instance;
     }
 
@@ -74,7 +74,31 @@ public:
      */
     static QString getAppCss();
 
+    /**
+     * @brief 获取是否启用分辨率因子（启用时，控件、字体大小在基础上乘以此因子，如：设计时的标准为1280 x 1024，控件默认高度为36，
+     * 此时的分辨率为2560 x 1600，则此因子值为1600 / 1024 * 36 = 56.25），默认false
+     */
+    static bool getResolutionScaleable() {return m_resolutionScaleable;}
+    /**
+     * @brief 设置是否启用分辨率因子（启用时，控件、字体大小在基础上乘以此因子，如：设计时的标准为1280 x 1024，控件默认高度为36，
+     * 此时的分辨率为2560 x 1600，则此因子值为1600 / 1024 * 36 = 56.25），默认false
+     * @param value
+     */
+    static void setResolutionScaleable(const bool& value) {m_resolutionScaleable = value;}
+
+    /**
+     * @brief 获取DPI缩放比例（当开启了AA_EnableHighDpiScaling时，获取的DPI缩放比例都是1）
+     * @return
+     */
+    static double getDPIScaleFactor()
+    {
+        double dpiScaleFactor = QGuiApplication::primaryScreen()->logicalDotsPerInch() / 96.0;
+        return dpiScaleFactor;
+    }
+
 public:
+
+    static QString getCssStyle();
 
     /**
      * @brief reLoadCssStyle 重新加载系统的css样式
@@ -92,31 +116,26 @@ public:
      */
     static void initResolution();
 
-    /**
-     * @brief resolutionChanged 屏幕分辩改变信号
-     * @param scale 缩放比例
-     */
-    static void resolutionChanged(int scale = 0);
-
 private slots:
 
     //屏幕分辩改变信号
     void slot_availableGeometryChanged(const QRect &geometry);
-    void slot_physicalSizeChanged(const QSizeF &size);
-    void slot_physicalDotsPerInchChanged(qreal dpi);
     void slot_logicalDotsPerInchChanged(qreal dpi);
-    void slot_virtualGeometryChanged(const QRect &rect);
-    void slot_primaryOrientationChanged(Qt::ScreenOrientation orientation);
-    void slot_orientationChanged(Qt::ScreenOrientation orientation);
-    void slot_refreshRateChanged(qreal refreshRate);
 
-    void slot_desktopwidgetResized(int value);
-    void slot_desktopwidgetWorkAreaResized(int value);
-    void slot_desktopwidgetPrimaryScreenChanged();
+//    void slot_physicalSizeChanged(const QSizeF &size);
+//    void slot_physicalDotsPerInchChanged(qreal dpi);
+//    void slot_virtualGeometryChanged(const QRect &rect);
+//    void slot_primaryOrientationChanged(Qt::ScreenOrientation orientation);
+//    void slot_orientationChanged(Qt::ScreenOrientation orientation);
+//    void slot_refreshRateChanged(qreal refreshRate);
+
+//    void slot_desktopwidgetResized(int value);
+//    void slot_desktopwidgetWorkAreaResized(int value);
+//    void slot_desktopwidgetPrimaryScreenChanged();
 
 private:
 
-    static frameworkTool *m_instance;
+    static FrameworkTool *m_instance;
 
     /**
      * @brief m_currentPixWidth 当前的像素宽度
@@ -141,6 +160,12 @@ private:
      * @brief appCss 整个系统的css样式
      */
     static QString appCss;
+
+    /**
+     * @brief 是否启用分辨率因子（启用时，控件、字体大小在基础上乘以此因子，如：设计时的标准为1280 x 1024，控件默认高度为36，
+     * 此时的分辨率为2560 x 1600，则此因子值为1600 / 1024 * 36 = 56.25），默认false
+     */
+    static bool m_resolutionScaleable;
 
 };
 

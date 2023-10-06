@@ -69,3 +69,13 @@ SOURCES += \
     IPlugIn.cpp \
     ITask.cpp
 
+#拷贝编译库文件到代码仓库中的相对目录
+DESTDIR += $$PWD/../../lib/framework/globalInterface/lib
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:DLLDESTDIR += $$PWD/../../lib/framework/globalInterface/lib
+}
+#拷贝头文件到代码仓库中的相对目录
+CONFIG += file_copies
+header.files = $$HEADERS
+header.path = $$PWD/../../lib/framework/globalInterface/include
+COPIES += header

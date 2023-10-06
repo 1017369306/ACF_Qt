@@ -16,7 +16,6 @@
 #include <QAction>
 #include <globalhelper.h>
 #include <pluginManager.h>
-#include <loggerBase.h>
 #include <moduleBase.h>
 #include <QDebug>
 #include <QResource>
@@ -333,7 +332,7 @@ void MainDockWindow::initIcon(){
 }
 
 void MainDockWindow::connectAllSignal(){
-    connect(frameworkTool::instance(), &frameworkTool::cssStyleChanged, this, &MainDockWindow::slot_cssStyleChanged);
+    connect(FrameworkTool::instance(), &FrameworkTool::cssStyleChanged, this, &MainDockWindow::slot_cssStyleChanged);
 
     connect(dockPanelManager(), &DockPanelManager::aboutToShow, this, &MainDockWindow::slot_aboutToShow);
     connect(dockPanelManager(), &DockPanelManager::aboutToClose, this, &MainDockWindow::slot_aboutToClose);
@@ -376,39 +375,39 @@ void MainDockWindow::slot_cssStyleChanged(){
     QList<DockWidgetPanel*> widgetPanels = dockPanelManager()->widgetPanelList();
     foreach (DockWidgetPanel* panel, widgetPanels)
     {
-        panel->setStyleSheet(frameworkTool::getAppCss());
+        panel->setStyleSheet(FrameworkTool::getAppCss());
         if(panel->widget() != nullptr){
-            panel->widget()->setStyleSheet(frameworkTool::getAppCss());
+            panel->widget()->setStyleSheet(FrameworkTool::getAppCss());
         }
     }
     QList<DockDocumentPanel*> documentPanels = dockPanelManager()->documentPanelList();
     foreach (DockDocumentPanel* panel, documentPanels)
     {
-        panel->setStyleSheet(frameworkTool::getAppCss());
+        panel->setStyleSheet(FrameworkTool::getAppCss());
         if(panel->widget() != nullptr){
-            panel->widget()->setStyleSheet(frameworkTool::getAppCss());
+            panel->widget()->setStyleSheet(FrameworkTool::getAppCss());
         }
     }
     if(m_outputView != nullptr){
-        m_outputView->widgetPanel()->widget()->setStyleSheet(frameworkTool::getAppCss());
-        m_outputView->widgetPanel()->menuButton()->setStyleSheet(frameworkTool::getAppCss());
-        m_outputView->widgetPanel()->titleBar()->setStyleSheet(frameworkTool::getAppCss());
+        m_outputView->widgetPanel()->widget()->setStyleSheet(FrameworkTool::getAppCss());
+        m_outputView->widgetPanel()->menuButton()->setStyleSheet(FrameworkTool::getAppCss());
+        m_outputView->widgetPanel()->titleBar()->setStyleSheet(FrameworkTool::getAppCss());
     }
     QList<DockToolBar*> toolBars = dockBarManager()->toolBars();
     foreach (DockToolBar* toolBar, toolBars)
     {
-        toolBar->setStyleSheet(frameworkTool::getAppCss());
+        toolBar->setStyleSheet(FrameworkTool::getAppCss());
     }
     QList<DockBarBase*> dockBars = dockBarManager()->dockBars();
     foreach (DockBarBase* dockBar, dockBars)
     {
-        dockBar->setStyleSheet(frameworkTool::getAppCss());
+        dockBar->setStyleSheet(FrameworkTool::getAppCss());
     }
 
     QList<QToolButton *> toolBtns = findChildren<QToolButton *>();
     foreach (QToolButton* toolBtn, toolBtns)
     {
-        toolBtn->setStyleSheet(frameworkTool::getAppCss());
+        toolBtn->setStyleSheet(FrameworkTool::getAppCss());
         QString className = toolBtn->metaObject()->className();
         qDebug() << "className: " << className;
         if(className.contains("DockWidgetTitleButton")){

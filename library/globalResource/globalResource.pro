@@ -2,7 +2,6 @@ QT -= gui
 
 TEMPLATE = lib
 DEFINES += GLOBALRESOURCE_LIBRARY
-#DESTDIR = $$OUT_PWD/../../mainDemo
 
 CONFIG += c++11 resources_big
 CONFIG -= debug_and_release
@@ -60,3 +59,14 @@ unix {
 
 RESOURCES += \
     Resources.qrc
+
+#拷贝编译库文件到代码仓库中的相对目录
+DESTDIR += $$PWD/../../lib/framework/globalResource/lib
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:DLLDESTDIR += $$PWD/../../lib/framework/globalResource/lib
+}
+#拷贝头文件到代码仓库中的相对目录
+CONFIG += file_copies
+header.files = $$HEADERS
+header.path = $$PWD/../../lib/framework/globalResource/include
+COPIES += header

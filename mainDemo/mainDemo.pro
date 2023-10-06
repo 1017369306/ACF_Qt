@@ -51,6 +51,8 @@ message("QtitanDocking dll copy completed")
 CONFIG += thread exceptions rtti stl
 macx: LIBS += -framework AppKit
 
+QMAKE_CXXFLAGS += -g
+
 msvc {
     #解决msvc乱码
     QMAKE_CXXFLAGS += -execution-charset:utf-8
@@ -193,6 +195,7 @@ SOURCES += \
     aboutDialog.cpp \
     customdockwindowbase.cpp \
     customlistitem.cpp \
+    login.cpp \
     main.cpp \
     maindockwindow.cpp \
     mainviewpanels.cpp \
@@ -207,6 +210,7 @@ HEADERS += \
     aboutDialog.h \
     customdockwindowbase.h \
     customlistitem.h \
+    login.h \
     maindockwindow.h \
     mainviewpanels.h \
     mainwindow.h \
@@ -214,6 +218,7 @@ HEADERS += \
 
 FORMS += \
     aboutDialog.ui \
+    login.ui \
     mainwindow.ui
 
 # Default rules for deployment.
@@ -221,27 +226,27 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../library/globalResource/ -lglobalResource
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../library/globalResource/ -lglobalResource
-else:unix: LIBS += -L$$OUT_PWD/../library/globalResource/ -lglobalResource
-
-INCLUDEPATH += $$PWD/../library/globalResource
-DEPENDPATH += $$PWD/../library/globalResource
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../library/mainSystemLib/ -lmainSystemLib
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../library/mainSystemLib/ -lmainSystemLib
-else:unix: LIBS += -L$$OUT_PWD/../library/mainSystemLib/ -lmainSystemLib
-
-INCLUDEPATH += $$PWD/../library/mainSystemLib
-DEPENDPATH += $$PWD/../library/mainSystemLib
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../library/globalInterface/ -lglobalInterface
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../library/globalInterface/ -lglobalInterface
-else:unix: LIBS += -L$$OUT_PWD/../library/globalInterface/ -lglobalInterface
-
-INCLUDEPATH += $$PWD/../library/globalInterface
-DEPENDPATH += $$PWD/../library/globalInterface
-
 RESOURCES += \
-    customTheme.qrc
+    customTheme.qrc \
+    loginResource.qrc
 
+
+unix|win32: LIBS += -L$$PWD/../lib/framework/globalInterface/lib/ -lglobalInterface
+
+INCLUDEPATH += $$PWD/../lib/framework/globalInterface/include
+DEPENDPATH += $$PWD/../lib/framework/globalInterface/include
+
+unix|win32: LIBS += -L$$PWD/../lib/framework/globalResource/lib/ -lglobalResource
+
+INCLUDEPATH += $$PWD/../lib/framework/globalResource/include
+DEPENDPATH += $$PWD/../lib/framework/globalResource/include
+
+unix|win32: LIBS += -L$$PWD/../lib/framework/mainSystemLib/lib/ -lmainSystemLib
+
+INCLUDEPATH += $$PWD/../lib/framework/mainSystemLib/include
+DEPENDPATH += $$PWD/../lib/framework/mainSystemLib/include
+
+unix|win32: LIBS += -L$$PWD/../lib/framework/loginLib/lib/ -lloginLib
+
+INCLUDEPATH += $$PWD/../lib/framework/loginLib/include
+DEPENDPATH += $$PWD/../lib/framework/loginLib/include

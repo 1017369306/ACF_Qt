@@ -3,5 +3,6 @@ CONFIG += ordered
 SUBDIRS += \
     globalResource \
     globalInterface \
-    mainSystemLib
+    mainSystemLib \
+    loginLib
 
