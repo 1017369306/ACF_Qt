@@ -43,27 +43,16 @@ SOURCES += \
     systeminfohelper.cpp \
     taskBase.cpp
 
-#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
-#else:unix: LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
 
-#INCLUDEPATH += $$PWD/../globalInterface
-#DEPENDPATH += $$PWD/../globalInterface
+unix|win32: LIBS += -L$$PWD/../../lib/framework/globalInterface/lib/ -lglobalInterface
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../globalResource/ -lglobalResource
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../globalResource/ -lglobalResource
-else:unix: LIBS += -L$$OUT_PWD/../globalResource/ -lglobalResource
+INCLUDEPATH += $$PWD/../../lib/framework/globalInterface/include
+DEPENDPATH += $$PWD/../../lib/framework/globalInterface/include
 
-INCLUDEPATH += $$PWD/../globalResource
-DEPENDPATH += $$PWD/../globalResource
+unix|win32: LIBS += -L$$PWD/../../lib/framework/globalResource/lib/ -lglobalResource
 
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
-else:unix: LIBS += -L$$OUT_PWD/../globalInterface/ -lglobalInterface
-
-INCLUDEPATH += $$PWD/../globalInterface
-DEPENDPATH += $$PWD/../globalInterface
+INCLUDEPATH += $$PWD/../../lib/framework/globalResource/include
+DEPENDPATH += $$PWD/../../lib/framework/globalResource/include
 
 #拷贝编译库文件到代码仓库中的相对目录
 DESTDIR += $$PWD/../../lib/framework/mainSystemLib/lib
